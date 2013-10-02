@@ -2,8 +2,9 @@ DataStructsCasesSimulator
 =========================
 
 This will let us compare different data structs performance. 
+----------------------
 
-This will include the following structures : 
+Structures to use : 
   Simple linked lists and Double Linked Lists
       Operations :
         -Insert at the beginning
