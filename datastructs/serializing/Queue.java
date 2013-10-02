@@ -1,6 +1,6 @@
-package edu.itcr.startec.datastructs.serializing;
+package serializing;
 
-import edu.itcr.startec.datastructs.doublelist.DoubleList;
+import doublelist.DoubleList;
 
 public class Queue<K> extends DoubleList<K>{	
 	

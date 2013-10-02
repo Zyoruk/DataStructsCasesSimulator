@@ -1,4 +1,6 @@
-package edu.itcr.startec.datastructs.simplelist;
+package simplelist;
+
+
 
 class SimpleListNode<K> {
     

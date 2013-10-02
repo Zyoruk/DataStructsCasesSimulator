@@ -1,6 +1,8 @@
-package edu.itcr.startec.datastructs.serializing;
+package serializing;
 
-import edu.itcr.startec.datastructs.simplelist.SimpleList;
+import simplelist.SimpleList;
+
+
 
 public class Stack<K> extends SimpleList<K>{
 

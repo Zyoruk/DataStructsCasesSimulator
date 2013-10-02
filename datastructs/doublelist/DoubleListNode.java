@@ -1,4 +1,6 @@
-package edu.itcr.startec.datastructs.doublelist;
+package doublelist;
+
+
 
 public class DoubleListNode<K> {
     

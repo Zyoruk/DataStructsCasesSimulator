@@ -1,16 +1,9 @@
-package edu.itcr.startec.datastructs.doublelist;
+package doublelist;
+
+
+import interfaces.ListInterface;
 
 import java.util.Iterator;
-
-import edu.itcr.startec.datastructs.ListInterface;
-import edu.itcr.startec.logicclasses.structs.Base;
-import edu.itcr.startec.logicclasses.structs.House;
-import edu.itcr.startec.logicclasses.structs.PapaBuilding;
-import edu.itcr.startec.logicclasses.units.Harvester;
-import edu.itcr.startec.logicclasses.units.Healer;
-import edu.itcr.startec.logicclasses.units.Kamikaze;
-import edu.itcr.startec.logicclasses.units.Monk;
-import edu.itcr.startec.logicclasses.units.PapaBicho;
 
 class DoubleListIterator<K> implements Iterator<K> {
 
@@ -225,31 +218,6 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 
         return result.toString();
     }
-    
-    public String searchANDdescribe() {
-		StringBuilder result = new StringBuilder();
-		for(K k : this) {
-			if(k.getClass().equals(PapaBuilding.class)){
-				result.append(((PapaBuilding) k).getAttributes());
-			}else if(k.getClass().equals(PapaBicho.class)){
-				result.append(((PapaBicho) k).getAttributes());
-			}else if(k.getClass().equals(Monk.class)){
-				result.append(((PapaBicho) k).getAttributes());
-			}else if(k.getClass().equals(Harvester.class)){
-				result.append(((PapaBicho) k).getAttributes());
-			}else if (k.getClass().equals(Healer.class)){
-				result.append(((PapaBicho) k).getAttributes());
-			}else if(k.getClass().equals(Kamikaze.class)){
-				result.append(((PapaBicho) k).getAttributes());
-			}else if(k.getClass().equals(Base.class)){
-				result.append(((PapaBuilding) k).getAttributes());
-			}else if (k.getClass().equals(House.class)){
-				result.append(((PapaBuilding) k).getAttributes());
-			}
-		}
-		return result.toString();
-	}
-
     @Override
     public boolean insert(K pk) {
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
