@@ -9,7 +9,7 @@ public class StackCreator {
 	public StackCreator(){
 		this._myStack = new Stack<Integer>();
 	}
-	public void Qcreator(ArrayList<Integer> pNumbersToAdd){
+	public void Screator(ArrayList<Integer> pNumbersToAdd){
 		while(pNumbersToAdd.size()!=0){
 			_myStack.push(pNumbersToAdd.remove(0));
 		}
