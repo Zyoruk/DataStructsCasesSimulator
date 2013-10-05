@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class NumGenerator {
 	private ArrayList<Integer>randomnumbers;
 	private int lenght;
+
 	public NumGenerator(){
 		this.randomnumbers = new ArrayList<Integer>();
 	}
+
 	public ArrayList<Integer> generate(int phowmanynumbers){
 		double myDouble;
 		int myInt;
@@ -26,6 +28,7 @@ public class NumGenerator {
 		}
 		return this.randomnumbers;
 	}
+
 	public int getLenght(){
 		return this.lenght;
 	}

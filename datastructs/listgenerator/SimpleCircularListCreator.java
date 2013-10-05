@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 import simplelist.SimpleCircularList;
 
-public class SimpleCircularListCreator {
+public class SimpleCircularListCreator{
 	private SimpleCircularList<Integer> _mySimpleCircularList;
+	
 	public SimpleCircularListCreator(){
 		this._mySimpleCircularList = new SimpleCircularList<Integer>();
 	}
-	public void SCLcreator(ArrayList<Integer> pNumbersToAdd){
+	
+
+	public SimpleCircularList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
 		while(pNumbersToAdd.size()!=0){
 			_mySimpleCircularList.append(pNumbersToAdd.remove(0));
 		}
+		return this._mySimpleCircularList;
 	}
 }
