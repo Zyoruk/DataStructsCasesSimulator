@@ -1,5 +1,11 @@
 package listgenerator;
 
+import serializing.Queue;
+import serializing.Stack;
+import simplelist.SimpleCircularList;
+import simplelist.SimpleList;
+import doublelist.DoubleCircularList;
+import doublelist.DoubleList;
 import interfaces.ListInterface;
 
 
@@ -8,46 +14,54 @@ public class DataStructureChoose {
 	private String _datastructureKind;
 	private int _quantity;
 	private NumGenerator generator = new NumGenerator();
-	private ListInterface<Integer> myNewDataStructure;
-
+	ListInterface<Integer> myNewDataStructure = null;
+	
 	public DataStructureChoose(String pkindoflist , int pQuantity){
 		this._datastructureKind = pkindoflist;
 		this._quantity= pQuantity;
 	}
 
-	public  void createDataStructure(){
-		
+	public  ListInterface<Integer> createDataStructure(){
+
 		if (this._datastructureKind == "DoubleList"){
-			DoubleListCreator myNewDataStruct = new DoubleListCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
-			this.myNewDataStructure =  myNewDataStruct;
+			DoubleListCreator temp = new DoubleListCreator();
+			myNewDataStructure = (DoubleList<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
 
 		}else if(this._datastructureKind == "SimpleList"){
-			SimpleListCreator myNewDataStruct = new SimpleListCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
-
+			SimpleListCreator temp = new SimpleListCreator();
+			myNewDataStructure = (SimpleList<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
 		}else if(this._datastructureKind == "SimpleCircularList"){
-			SimpleCircularListCreator myNewDataStruct = new SimpleCircularListCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
+			SimpleCircularListCreator temp = new SimpleCircularListCreator();
+			myNewDataStructure = (SimpleCircularList<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
 			
 
 		}else if(this._datastructureKind == "DoubleCircularList"){
-			DoubleCircularListCreator myNewDataStruct = new DoubleCircularListCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
+			DoubleCircularListCreator temp = new DoubleCircularListCreator();
+			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
 			
 
 		}else if(this._datastructureKind == "Queue"){
-			QueueCreator myNewDataStruct = new QueueCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
+			QueueCreator temp = new QueueCreator();
+			myNewDataStructure = (Queue<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
 			
 
 		}else if(this._datastructureKind == "Stack"){
-			StackCreator myNewDataStruct = new StackCreator();
-			myNewDataStruct.creator(generator.generate(this._quantity));
-			
+			StackCreator temp = new StackCreator();
+			myNewDataStructure = (Stack<Integer>) myNewDataStructure;
+			myNewDataStructure  = temp.creator(generator.generate(this._quantity));			
 		}
+		
+		return myNewDataStructure;
 
-
+	}
+	
+	public void describe(){
+		
 	}
 
 

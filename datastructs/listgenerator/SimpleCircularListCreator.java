@@ -4,18 +4,34 @@ import java.util.ArrayList;
 
 import simplelist.SimpleCircularList;
 
-public class SimpleCircularListCreator{
-	private SimpleCircularList<Integer> _mySimpleCircularList;
+public  class SimpleCircularListCreator{
+	private static SimpleCircularList<Integer> _mySimpleCircularList;
 	
 	public SimpleCircularListCreator(){
-		this._mySimpleCircularList = new SimpleCircularList<Integer>();
+		SimpleCircularListCreator.set_mySimpleCircularList(new SimpleCircularList<Integer>());
 	}
 	
 
 	public SimpleCircularList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		while(pNumbersToAdd.size()!=0){
-			_mySimpleCircularList.append(pNumbersToAdd.remove(0));
+		ArrayList<Integer> temp= pNumbersToAdd;
+		int counter = pNumbersToAdd.size();
+		while(temp.size()!=0){
+			if (_mySimpleCircularList.length()!= counter){
+				get_mySimpleCircularList().append(temp.remove(0));
+			}else{
+				break;
+			}
 		}
-		return this._mySimpleCircularList;
+		temp = pNumbersToAdd;
+		return _mySimpleCircularList;
+	}
+
+	public static SimpleCircularList<Integer> get_mySimpleCircularList() {
+		return _mySimpleCircularList;
+	}
+
+
+	public static void set_mySimpleCircularList(SimpleCircularList<Integer> _mySimpleCircularList) {
+		SimpleCircularListCreator._mySimpleCircularList = _mySimpleCircularList;
 	}
 }

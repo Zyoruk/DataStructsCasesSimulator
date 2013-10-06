@@ -1,24 +1,39 @@
 package listgenerator;
 
-import interfaces.ListInterface;
-
 import java.util.ArrayList;
 
 import doublelist.DoubleList;
 
-public class DoubleListCreator implements ListInterface<Integer> {
-	
-	private DoubleList<Integer> _myDoublelist;
+public class DoubleListCreator{	
+	private static DoubleList<Integer> _myDoublelist;
 	
 	public DoubleListCreator(){
-		this._myDoublelist = new DoubleList<Integer>();
+		DoubleListCreator.set_myDoublelist(new DoubleList<Integer>());
 	}
 	
 
 	public DoubleList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		while(pNumbersToAdd.size()!=0){
-			_myDoublelist.append(pNumbersToAdd.remove(0));
+		ArrayList<Integer> temp= pNumbersToAdd;
+		int counter = pNumbersToAdd.size();
+		while(temp.size()!=0){
+			if (_myDoublelist.length()!= counter){
+				get_myDoublelist().append(temp.remove(0));
+			}else{
+				break;
+			}
 		}
-		return this._myDoublelist;
+		temp = pNumbersToAdd;
+		return _myDoublelist;
+
+	}
+
+
+	public static DoubleList<Integer> get_myDoublelist() {
+		return _myDoublelist;
+	}
+
+
+	public static void set_myDoublelist(DoubleList<Integer> _myDoublelist) {
+		DoubleListCreator._myDoublelist = _myDoublelist;
 	}
 }

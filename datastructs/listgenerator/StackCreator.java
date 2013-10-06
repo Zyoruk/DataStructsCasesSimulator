@@ -4,19 +4,37 @@ import java.util.ArrayList;
 
 import serializing.Stack;
 
-public class StackCreator{
-	private Stack<Integer> _myStack;
+public  class StackCreator{
+	private static Stack<Integer> _myStack;
 	
 	public StackCreator(){
-		this._myStack = new Stack<Integer>();
+		StackCreator.set_myStack(new Stack<Integer>());
 	}
 	
 
 	public Stack<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		while(pNumbersToAdd.size()!=0){
-			_myStack.push(pNumbersToAdd.remove(0));
+		ArrayList<Integer> temp= pNumbersToAdd;
+		int counter = pNumbersToAdd.size();
+		while(temp.size()!=0){
+			if (_myStack.length()!= counter){
+				get_myStack().append(temp.remove(0));
+			}else{
+				break;
+			}
 		}
-		return this._myStack;
+		temp = pNumbersToAdd;
+		return _myStack;
+
+	}
+
+
+	public static Stack<Integer> get_myStack() {
+		return _myStack;
+	}
+
+
+	public static void set_myStack(Stack<Integer> _myStack) {
+		StackCreator._myStack = _myStack;
 	}
 }
 

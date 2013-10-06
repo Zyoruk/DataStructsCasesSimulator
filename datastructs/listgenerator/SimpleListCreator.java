@@ -1,22 +1,38 @@
 package listgenerator;
 
 import java.util.ArrayList;
-
 import simplelist.SimpleList;
 
-
-public class SimpleListCreator{
-	private SimpleList<Integer> _mySimpleList;
+public  class SimpleListCreator  {
+	private static SimpleList<Integer> _mySimpleList;
 	
 	public SimpleListCreator(){
-		this._mySimpleList = new SimpleList<Integer>();
+		SimpleListCreator.set_mySimpleList(new SimpleList<Integer>());
 	}
 	
 
 	public SimpleList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		while(pNumbersToAdd.size()!=0){
-			_mySimpleList.append(pNumbersToAdd.remove(0));
+		ArrayList<Integer> temp= pNumbersToAdd;
+		int counter = pNumbersToAdd.size();
+		while(temp.size()!=0){
+			if (_mySimpleList.length()!= counter){
+				get_mySimpleList().append(temp.remove(0));
+			}else{
+				break;
+			}
 		}
-		return this._mySimpleList;
+		temp = pNumbersToAdd;
+		return _mySimpleList;
+
+	}
+
+
+	public static SimpleList<Integer> get_mySimpleList() {
+		return _mySimpleList;
+	}
+
+
+	public static void set_mySimpleList(SimpleList<Integer> _mySimpleList) {
+		SimpleListCreator._mySimpleList = _mySimpleList;
 	}
 }

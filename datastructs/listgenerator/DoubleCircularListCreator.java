@@ -1,22 +1,40 @@
 package listgenerator;
 
+
 import java.util.ArrayList;
 
 import doublelist.DoubleCircularList;
 
-public class DoubleCircularListCreator{
+public class DoubleCircularListCreator {
 	
-	private DoubleCircularList<Integer> _myDoubleCircularlist;
+	private static DoubleCircularList<Integer> _myDoubleCircularlist;
 	
 	public DoubleCircularListCreator(){
-		this._myDoubleCircularlist = new DoubleCircularList<Integer>();
+		DoubleCircularListCreator.set_myDoubleCircularlist(new DoubleCircularList<Integer>());
 	}
 	
 
 	public DoubleCircularList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		while(pNumbersToAdd.size()!=0){
-			_myDoubleCircularlist.append(pNumbersToAdd.remove(0));
+		ArrayList<Integer> temp= pNumbersToAdd;
+		int counter = pNumbersToAdd.size();
+		while(temp.size()!=0){
+			if (_myDoubleCircularlist.length()!= counter){
+				get_myDoubleCircularlist().append(temp.remove(0));
+			}else{
+				break;
+			}
 		}
-		return this._myDoubleCircularlist;
+		return _myDoubleCircularlist;
+
+	}
+
+
+	public static DoubleCircularList<Integer> get_myDoubleCircularlist() {
+		return _myDoubleCircularlist;
+	}
+
+
+	public static void set_myDoubleCircularlist(DoubleCircularList<Integer> _myDoubleCircularlist) {
+		DoubleCircularListCreator._myDoubleCircularlist = _myDoubleCircularlist;
 	}
 }
