@@ -1,6 +1,6 @@
 package listgenerator;
 
-import java.util.ArrayList;
+import simplelist.SimpleList;
 
 import doublelist.DoubleList;
 
@@ -12,17 +12,17 @@ public class DoubleListCreator{
 	}
 	
 
-	public DoubleList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		ArrayList<Integer> temp= pNumbersToAdd;
-		int counter = pNumbersToAdd.size();
-		while(temp.size()!=0){
+	public DoubleList<Integer> creator(SimpleList<Integer> simpleList){
+		SimpleList<Integer> temp= simpleList;
+		int counter = simpleList.length();
+		while(temp.length()!=0){
 			if (_myDoublelist.length()!= counter){
-				get_myDoublelist().append(temp.remove(0));
+				get_myDoublelist().append(temp.deleteHead());
 			}else{
 				break;
 			}
 		}
-		temp = pNumbersToAdd;
+		temp = simpleList;
 		return _myDoublelist;
 
 	}

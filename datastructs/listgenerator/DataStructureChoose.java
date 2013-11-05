@@ -13,25 +13,26 @@ import interfaces.ListInterface;
 public class DataStructureChoose {
 	private String _datastructureKind;
 	private int _quantity;
-	private NumGenerator generator = new NumGenerator();
-	ListInterface<Integer> myNewDataStructure = null;
+	private NumGenerator generator;
+	ListInterface<Integer> myNewDataStructure ;
 	
 	public DataStructureChoose(String pkindoflist , int pQuantity){
-		this._datastructureKind = pkindoflist;
-		this._quantity= pQuantity;
+		_datastructureKind = pkindoflist;
+		_quantity= pQuantity;
+		generator= new NumGenerator();
+		myNewDataStructure = null;
 	}
 
 	public  ListInterface<Integer> createDataStructure(){
 
 		if (this._datastructureKind == "DoubleList"){
 			DoubleListCreator temp = new DoubleListCreator();
-			myNewDataStructure = (DoubleList<Integer>) myNewDataStructure;
-			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
-
+			myNewDataStructure = (DoubleList<Integer>) temp.creator(generator.generate(this._quantity));
 		}else if(this._datastructureKind == "SimpleList"){
 			SimpleListCreator temp = new SimpleListCreator();
 			myNewDataStructure = (SimpleList<Integer>) myNewDataStructure;
 			myNewDataStructure  = temp.creator(generator.generate(this._quantity));
+			
 		}else if(this._datastructureKind == "SimpleCircularList"){
 			SimpleCircularListCreator temp = new SimpleCircularListCreator();
 			myNewDataStructure = (SimpleCircularList<Integer>) myNewDataStructure;
@@ -59,10 +60,8 @@ public class DataStructureChoose {
 		return myNewDataStructure;
 
 	}
-	
-	public void describe(){
-		
+	public String getStructureKind(){
+		return this._datastructureKind;
 	}
-
 
 }

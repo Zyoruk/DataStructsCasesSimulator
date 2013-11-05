@@ -1,6 +1,5 @@
 package listgenerator;
 
-import java.util.ArrayList;
 import simplelist.SimpleList;
 
 public  class SimpleListCreator  {
@@ -11,17 +10,17 @@ public  class SimpleListCreator  {
 	}
 	
 
-	public SimpleList<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		ArrayList<Integer> temp= pNumbersToAdd;
-		int counter = pNumbersToAdd.size();
-		while(temp.size()!=0){
+	public SimpleList<Integer> creator(SimpleList<Integer> simpleList){
+		SimpleList<Integer> temp= simpleList;
+		int counter = simpleList.length();
+		while(temp.length()!=0){
 			if (_mySimpleList.length()!= counter){
-				get_mySimpleList().append(temp.remove(0));
+				get_mySimpleList().append(temp.deleteHead());
 			}else{
 				break;
 			}
 		}
-		temp = pNumbersToAdd;
+		temp = simpleList;
 		return _mySimpleList;
 
 	}

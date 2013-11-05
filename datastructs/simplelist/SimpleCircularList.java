@@ -48,6 +48,8 @@ class SimpleCircularListIterator<K> implements Iterator<K> {
 public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
     
     protected int length;
+    protected float _start;
+    protected float _end;
     protected SimpleListNode<K> head;
     protected SimpleListNode<K> tail;
 
@@ -64,6 +66,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
     @Override
     public boolean append(K pk) {
+    	_start = System.currentTimeMillis();
 
         SimpleListNode<K> node = new SimpleListNode<K>(pk);
 
@@ -74,13 +77,15 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         }
         this.tail = node;
         this.length += 1;
+        _end = System.currentTimeMillis();
         return true;
     }
 
     @Override
     public boolean delete(K pk) {
-        
+    	_start = System.currentTimeMillis();
         if(isEmpty()) {
+        	_end = System.currentTimeMillis();
             return false;
         }
         
@@ -97,6 +102,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
         // If not found
         if(current == null) {
+        	_end = System.currentTimeMillis();
             return false;
         }
 
@@ -116,6 +122,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         current.setNext(null);
         current = null;
         this.length -= 1;
+        _end = System.currentTimeMillis();
         return true;
     }
 
@@ -126,21 +133,25 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
     @Override
     public boolean exists(K pk) {
+    	_start = System.currentTimeMillis();
         for(K ck : this) {
             if(ck.equals(pk)) {
+            	_end = System.currentTimeMillis();
                 return true;
             }
         }
+        _end = System.currentTimeMillis();
         return false;
     }
 
     @Override
     public boolean insert(int pos, K pk) {
-
+    	_start = System.currentTimeMillis();
         SimpleListNode<K> node = new SimpleListNode<K>(pk);
 
         // Check valid position
         if((pos < 0) || (pos > this.length)) {
+        	_end = System.currentTimeMillis();
             return false;
         }
 
@@ -168,11 +179,13 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         }
 
         this.length += 1;
+        _end = System.currentTimeMillis();
         return true;
     }
     
     @Override
     public boolean insert(K pk) {
+    	_start = System.currentTimeMillis();
         SimpleListNode<K> node = new SimpleListNode<K>(pk);
 
         // Insert node
@@ -182,6 +195,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         this.head = node;
 
         this.length += 1;
+        _end = System.currentTimeMillis();
         return true;
     }
 
@@ -226,6 +240,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
     @Override
     public boolean delete() {
+    	_start = System.currentTimeMillis();
         //Set tmp list
         SimpleListNode<K> node = this.head.getNext();
         
@@ -234,6 +249,7 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         
         //Set new list
         this.head = node;
+        _end = System.currentTimeMillis();
         return true;
     }
 
@@ -241,5 +257,11 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 	public boolean cut() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public float getExecuteTime() {
+		float executeTime = _end - _start;
+		return executeTime;
 	}
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import simplelist.SimpleList;
 
 import listgenerator.DoubleListCreator;
 import listgenerator.NumGenerator;
@@ -11,9 +11,8 @@ public class DoubleListCreatorTester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		NumGenerator numGen = new NumGenerator();		
-		ArrayList<Integer> temporal= numGen.generate(20);
+		SimpleList<Integer> temporal= numGen.generate(20);
 		System.out.println("DoubleListCreatorTester");
 		DoubleListCreator myNewDoubleList = new DoubleListCreator();
 		DoubleList<Integer> DoubleList = myNewDoubleList.creator(temporal);

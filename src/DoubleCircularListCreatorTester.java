@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import simplelist.SimpleList;
 
 import listgenerator.DoubleCircularListCreator;
 import listgenerator.NumGenerator;
@@ -11,9 +11,8 @@ public class DoubleCircularListCreatorTester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		NumGenerator numGen = new NumGenerator();		
-		ArrayList<Integer> temporal= numGen.generate(20);
+		SimpleList<Integer> temporal= numGen.generate(20);
 		System.out.println("DoubleCircularListCreatorTester");
 		DoubleCircularListCreator myNewDoubleCircularList = 
 												new DoubleCircularListCreator();
@@ -21,6 +20,7 @@ public class DoubleCircularListCreatorTester {
 									myNewDoubleCircularList.creator(temporal);
 		System.out.println(CircularList.describe());
 		System.out.println("#################################################");
+		
 	}
 
 }

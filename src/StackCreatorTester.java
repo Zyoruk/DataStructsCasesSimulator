@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-
 import listgenerator.NumGenerator;
 import listgenerator.StackCreator;
 import serializing.Stack;
+import simplelist.SimpleList;
 
 
 public class StackCreatorTester {
@@ -11,14 +10,17 @@ public class StackCreatorTester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		long start , end;
 		NumGenerator numGen = new NumGenerator();		
-		ArrayList<Integer> temporal= numGen.generate(20);
+		SimpleList<Integer> temporal= numGen.generate(10000);
 		System.out.println("StackCreatorTester");
+		start = System.currentTimeMillis();
 		StackCreator myNewStack = new StackCreator();
 		Stack<Integer> Stack = myNewStack.creator(temporal);
+		end = System.currentTimeMillis();
 		System.out.println(Stack.describe());
-		System.out.println("#################################################");
+		System.out.println("Started  "+start +"  Ended  "+ end +"  LAsted  "+ (end - start));	
+		
 	}
 
 }

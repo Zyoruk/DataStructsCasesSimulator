@@ -11,4 +11,5 @@ public interface ListInterface<K> {
     public boolean clear();
     public boolean cut();
     public String describe();
+    public float getExecuteTime();
 }

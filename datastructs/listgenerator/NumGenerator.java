@@ -1,6 +1,6 @@
 package listgenerator;
 
-import java.util.ArrayList;
+import simplelist.SimpleList;
 /**
  * 
  * @author zyoruk
@@ -9,31 +9,31 @@ import java.util.ArrayList;
  */
 
 public class NumGenerator {
-	private ArrayList<Integer>randomnumbers;
+	private SimpleList<Integer> randomnumbers;
 	private int lenght;
 	private double myDouble=0;
 	private int myInt=0;
 	
 	public NumGenerator(){
-		this.randomnumbers = new ArrayList<Integer>();
+		this.randomnumbers = new SimpleList<Integer>();
 	}
 
-	public ArrayList<Integer> generate(int phowmanynumbers){
+	public SimpleList<Integer> generate(int phowmanynumbers){
 		int count = phowmanynumbers;
 		
 		while (count!=0){	
 			
-			if (randomnumbers.size()!=0 && randomnumbers.contains(myInt)){
-				while(randomnumbers.contains(myInt)){
-					this.myDouble = Math.random() * ((phowmanynumbers + 1));//random number
+			if (randomnumbers.length()!=0 && randomnumbers.exists(myInt)){
+				while(randomnumbers.exists(myInt)){
+					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
 				}
 			}else{
-				this.myDouble = Math.random() * ((phowmanynumbers + 1));//random number
+				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
 			
-			this.randomnumbers.add(myInt); //inserts my new number to the list
+			this.randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
 			this.lenght++;
 		}

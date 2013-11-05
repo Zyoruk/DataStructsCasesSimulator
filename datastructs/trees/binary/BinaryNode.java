@@ -1,3 +1,5 @@
+package trees.binary;
+
 /*
  * BinaryNode.java
  *
@@ -21,7 +23,7 @@
  *
  */
 
-package edu.itcr.logictec.trees.binary;
+
 
 public class BinaryNode{
     int data;

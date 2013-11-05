@@ -21,7 +21,7 @@
  * 
  */
 
-package edu.itcr.logictec.trees.Splay;
+package trees.splay;
 
 public class SplayNode {
 	

@@ -19,7 +19,7 @@
  * MA 02110-1301, USA.
  */
 
-package edu.itcr.logictec.trees.AVL;
+package trees.avl;
 
 public class AVLNode{
     int data;

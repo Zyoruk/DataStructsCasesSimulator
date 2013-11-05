@@ -1,8 +1,7 @@
 package listgenerator;
 
-import java.util.ArrayList;
-
 import serializing.Stack;
+import simplelist.SimpleList;
 
 public  class StackCreator{
 	private static Stack<Integer> _myStack;
@@ -12,17 +11,17 @@ public  class StackCreator{
 	}
 	
 
-	public Stack<Integer> creator(ArrayList<Integer> pNumbersToAdd){
-		ArrayList<Integer> temp= pNumbersToAdd;
-		int counter = pNumbersToAdd.size();
-		while(temp.size()!=0){
+	public Stack<Integer> creator(SimpleList<Integer> simpleList){
+		SimpleList<Integer> temp= simpleList;
+		int counter = simpleList.length();
+		while(temp.length()!=0){
 			if (_myStack.length()!= counter){
-				get_myStack().append(temp.remove(0));
+				get_myStack().append(temp.deleteHead());
 			}else{
 				break;
 			}
 		}
-		temp = pNumbersToAdd;
+		temp = simpleList;
 		return _myStack;
 
 	}

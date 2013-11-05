@@ -21,7 +21,7 @@
  *
  */
 
-package edu.itcr.logictec.trees.binary;
+package trees.binary;
 
 public class BinaryTree {
     private BinaryNode root;   
