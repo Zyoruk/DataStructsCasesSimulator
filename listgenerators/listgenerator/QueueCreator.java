@@ -1,16 +1,16 @@
 package listgenerator;
 
-import serializing.Queue;
+import queue.QueueWithList;
 import simplelist.SimpleList;
 
 public class QueueCreator  {
-	private static Queue<Integer> _myQueue;
+	private static QueueWithList<Integer> _myQueue;
 	
 	public QueueCreator(){
-		QueueCreator.set_myQueue(new Queue<Integer>());
+		QueueCreator.set_myQueue(new QueueWithList<Integer>());
 	}
 	
-	public Queue<Integer> creator(SimpleList<Integer> simpleList){
+	public QueueWithList<Integer> creator(SimpleList<Integer> simpleList){
 		SimpleList<Integer> temp= simpleList;
 		int counter = simpleList.length();
 		while(temp.length()!=0){
@@ -25,11 +25,11 @@ public class QueueCreator  {
 
 	}
 
-	public static Queue<Integer> get_myQueue() {
+	public static QueueWithList<Integer> get_myQueue() {
 		return _myQueue;
 	}
 
-	public static void set_myQueue(Queue<Integer> _myQueue) {
+	public static void set_myQueue(QueueWithList<Integer> _myQueue) {
 		QueueCreator._myQueue = _myQueue;
 	}
 }

@@ -47,8 +47,8 @@ class DoubleListIterator<K> implements Iterator<K> {
 public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
     
     protected int length;
-    protected float _start;
-    protected float _end;
+    protected double _start;
+    protected double _end;
     protected DoubleListNode<K> head;
     protected DoubleListNode<K> tail;
 
@@ -78,6 +78,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         this.tail = node;
         this.length += 1;
         _end = System.currentTimeMillis();
+        System.out.println("Append lasted:  " + getExecuteTime());
         return true;
     }
 
@@ -86,6 +87,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
     	_start = System.currentTimeMillis();
         if(isEmpty()) {
         	_end = System.currentTimeMillis();
+        	System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         if(this.length == 1) {
@@ -93,9 +95,11 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 clear();
                 this.length -= 1;
                 _end = System.currentTimeMillis();
+                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }
             _end = System.currentTimeMillis();
+            System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         
@@ -108,6 +112,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 	current.getPrevious().setNext(current.getNext());
                 	this.length -= 1;
                 	_end = System.currentTimeMillis();
+                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 if (current == this.head){
@@ -115,6 +120,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 	current.getNext().setPrevious(current.getPrevious());
                 	this.length -= 1;
                 	_end = System.currentTimeMillis();
+                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 current.getPrevious().setNext(current.getNext());
@@ -123,11 +129,13 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 current = null;
                 this.length -= 1;
                 _end = System.currentTimeMillis();
+                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }            
             current = current.getNext();
         }        
         _end = System.currentTimeMillis();
+        System.out.println("Delete lasted:  " + getExecuteTime());
         return false;
     }
 
@@ -142,10 +150,12 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         for(K ck : this) {
             if(ck.equals(pk)) {
             	_end = System.currentTimeMillis();
+            	System.out.println("Search lasted:  " + getExecuteTime());
                 return true;
             }
         }
         _end = System.currentTimeMillis();
+        System.out.println("Search lasted:  " + getExecuteTime());
         return false;
     }
 
@@ -158,6 +168,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         // Check valid position
         if((pos < 0) || (pos > this.length)) {
         	_end = System.currentTimeMillis();
+        	System.out.println("Insert lasted:  " + getExecuteTime());
             return false;
         }
 
@@ -190,6 +201,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         }
         this.length += 1;
         _end = System.currentTimeMillis();
+        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
     }
 
@@ -251,6 +263,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 
         this.length += 1;
         _end = System.currentTimeMillis();
+        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
 	}
 
@@ -268,6 +281,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         //Set new list
         this.head = node;
         _end = System.currentTimeMillis();
+        System.out.println("Delete lasted:  " + getExecuteTime());
         return true;
 	}
 
@@ -277,6 +291,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 		_start = System.currentTimeMillis();
 		if (this.tail == null){
 			_end = System.currentTimeMillis();
+			System.out.println("Cut lasted:  " + getExecuteTime());
 			return false;
 		} else if (this.tail.getPrevious() == null){
 			this.head = null;
@@ -287,12 +302,13 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 		}
 		this.length--;
 		_end = System.currentTimeMillis();
+		System.out.println("Cut lasted:  " + getExecuteTime());
 		return true;
 	}
 
 	@Override
-	public float getExecuteTime() {
-		float executeTime = _end - _start;
+	public double getExecuteTime() {
+		double executeTime = _end - _start;
 		return executeTime;
 	}
 }

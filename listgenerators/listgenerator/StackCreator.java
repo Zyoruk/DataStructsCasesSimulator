@@ -1,17 +1,17 @@
 package listgenerator;
 
-import serializing.Stack;
 import simplelist.SimpleList;
+import stack.StackWithList;
 
 public  class StackCreator{
-	private static Stack<Integer> _myStack;
+	private static StackWithList<Integer> _myStack;
 	
 	public StackCreator(){
-		StackCreator.set_myStack(new Stack<Integer>());
+		StackCreator.set_myStack(new StackWithList<Integer>());
 	}
 	
 
-	public Stack<Integer> creator(SimpleList<Integer> simpleList){
+	public StackWithList<Integer> creator(SimpleList<Integer> simpleList){
 		SimpleList<Integer> temp= simpleList;
 		int counter = simpleList.length();
 		while(temp.length()!=0){
@@ -27,12 +27,12 @@ public  class StackCreator{
 	}
 
 
-	public static Stack<Integer> get_myStack() {
+	public static StackWithList<Integer> get_myStack() {
 		return _myStack;
 	}
 
 
-	public static void set_myStack(Stack<Integer> _myStack) {
+	public static void set_myStack(StackWithList<Integer> _myStack) {
 		StackCreator._myStack = _myStack;
 	}
 }

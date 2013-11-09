@@ -1,8 +1,9 @@
-package serializing;
+package queue;
 
+import interfaces.QueueInterface;
 import doublelist.DoubleList;
 
-public class Queue<K> extends DoubleList<K>{	
+public class QueueWithList<K> extends DoubleList<K> implements QueueInterface<K> {	
 	
 	public void Enqueue(K pk){
 		super.insert(pk);

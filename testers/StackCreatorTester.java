@@ -1,7 +1,7 @@
 import listgenerator.NumGenerator;
 import listgenerator.StackCreator;
-import serializing.Stack;
 import simplelist.SimpleList;
+import stack.StackWithList;
 
 
 public class StackCreatorTester {
@@ -16,10 +16,10 @@ public class StackCreatorTester {
 		System.out.println("StackCreatorTester");
 		start = System.currentTimeMillis();
 		StackCreator myNewStack = new StackCreator();
-		Stack<Integer> Stack = myNewStack.creator(temporal);
+		StackWithList<Integer> Stack = myNewStack.creator(temporal);
 		end = System.currentTimeMillis();
 		System.out.println(Stack.describe());
-		System.out.println("Started  "+start +"  Ended  "+ end +"  LAsted  "+ (end - start));	
+		System.out.println("Started  "+start +"  Ended  "+ end +"  LAsted  "+ (end - start));
 		
 	}
 
