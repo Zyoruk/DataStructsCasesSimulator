@@ -1,11 +1,17 @@
 package listgenerator;
 
+import array.Array;
+import queue.BiQueueWithList;
+import queue.PriorityQueue;
 import queue.QueueWithArray;
 import queue.QueueWithList;
 import simplelist.SimpleCircularList;
 import simplelist.SimpleList;
 import stack.StackWithArray;
 import stack.StackWithList;
+import trees.avl.AVLTree;
+import trees.binary.BinaryTree;
+import trees.splay.SplayTree;
 import doublelist.DoubleCircularList;
 import doublelist.DoubleList;
 import interfaces.DataStructure;
@@ -45,6 +51,7 @@ public class DataStructureChoose {
 
 		}else if(this._datastructureKind == "QueueWithArray"){
 			myNewDataStructure= generator.generateQueueWithArray(_quantity);
+			System.out.println(":@");
 			myNewDataStructure = (QueueWithArray<Integer>) myNewDataStructure;
 			
 		}else if(this._datastructureKind == "QueueWithList"){
@@ -60,17 +67,32 @@ public class DataStructureChoose {
 			myNewDataStructure = generator.generateStackWithList(_quantity);
 			
 			
-//		}else if(this._datastructureKind == "PriorityQueue"){
-//			PrioriryQueue<Integer> myNewDataStructure = generator.generatePrioriryQueue(_quantity);
+		}else if(this._datastructureKind == "PriorityQueue"){
+			myNewDataStructure = (PriorityQueue<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generatePriorityQueue(_quantity);
 			
-//		}else if(this._datastructureKind == "BiQueueWithList"){
-//			BiQueue<Integer> myNewDataStructure = generator.generateBiQueue(_quantity);
+		}else if(this._datastructureKind == "BiQueueWithList"){
+			myNewDataStructure = (BiQueueWithList<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generateBiQueueWithList(_quantity);
 			
 //		}else if(this._datastructureKind == "BiQueueWithArray"){
-//			BiQueue<Integer> myNewDataStructure = generator.generateBiQueue(_quantity);
+//			BiQueueWithList<Integer> myNewDataStructure = generator.generateBiQueueWithList(_quantity);
+//			
+		}else if(this._datastructureKind == "Array"){
+			myNewDataStructure = (Array<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generateArray(_quantity);
 			
-//		}else if(this._datastructureKind == "Array"){
-//			ArrayList<Integer> myNewDataStructure = generator.generateArray(_quantity);
+		}else if(this._datastructureKind == "AVLTree"){
+			myNewDataStructure = (AVLTree<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generateAVLTree(_quantity);
+			
+		}else if(this._datastructureKind == "BinaryTree"){
+			myNewDataStructure = (BinaryTree<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generateBinaryTree(_quantity);
+			
+		}else if(this._datastructureKind == "SplayTree"){
+			myNewDataStructure = (SplayTree<Integer>) myNewDataStructure;
+			myNewDataStructure = generator.generateSplayTree(_quantity);
 		
 		}
 		

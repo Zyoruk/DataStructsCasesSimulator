@@ -1,7 +1,6 @@
 /*
  * AVLNode.java
  *
- * Copyright 2013 Anibal Alvarez <aaalvarez94@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,26 +20,33 @@
 
 package trees.avl;
 
-public class AVLNode{
-    int data;
+class AVLNode<K>{
+    K data;
     int balance;
-    AVLNode left, right;
+    AVLNode<K> left, right;
 
-    public AVLNode(int data){
+    public AVLNode(K data){
         this.data = data;
         this.left = null;
         this.right = null;
         this.balance = 0;
     }
-    public AVLNode(int data, AVLNode left, AVLNode rigth) {
+    
+    public K getData(){
+    	return this.data;
+    }
+    
+    public AVLNode(K data, AVLNode<K> left, AVLNode<K> rigth) {
         this.data = data;
         this.left = left;
         this.right = rigth;
     }
-    static int size (AVLNode node){
-        if (node == null){
-            return 0;
-        }
-        return 1 + size(node.left) + size(node.right);
-    }
+
+	public AVLNode<K> getLeft() {
+		return this.left;
+	}
+	
+	public AVLNode<K> getRight() {
+		return this.right;
+	}
 }

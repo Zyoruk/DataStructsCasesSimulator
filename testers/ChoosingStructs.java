@@ -19,6 +19,7 @@ public class ChoosingStructs {
 
 	double _start = 0;
 	double _end = 0;
+	
 	@Test
 	public void DoubleListTester(){		
 		
@@ -129,13 +130,13 @@ public class ChoosingStructs {
 		System.out.println("<<<<<<<<<<<<<<<<<TESTING QUEUE WITH ARRAY >>>>>>>>>>>>>>");
 		DataStructureChoose testQueue = 
 							new DataStructureChoose ("QueueWithArray", 20);
-		
+		System.out.println(":D");
 		DataStructure<Integer> newQueue = 
 							   testQueue.createDataStructure();
-		
+		System.out.println(":(");
 		newQueue = (QueueWithArray<Integer>) newQueue;
 		System.out.println(testQueue.getStructureKind());
-//		System.out.println(newQueue.describe());
+		System.out.println(newQueue.describe());
 		System.out.println(newQueue.isEmpty());
 		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE WITH ARRAY TESTER>>>>>>>>>");
 	}

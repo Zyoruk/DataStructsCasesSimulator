@@ -272,11 +272,15 @@ public class SimpleList<K> implements ListInterface<K>, Iterable<K> {
 
     }
 	@Override
-	public boolean cut() {
-//    	_start = System.currentTimeMillis();
-    	//Between these two goes the method's code.
-//    	_end = System.currentTimeMillis();
-		return false;
+	public K cut() {
+		// TODO Auto-generated method stub
+		SimpleListNode<K> current = this.head;
+		while(current.getNext() != this.tail){
+			current = current.getNext();
+		}
+		this.tail = current;
+		current.setNext(null);
+		return current.getElem();
 	}
 
 //	@Override

@@ -264,9 +264,10 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
     }
 
 	@Override
-	public boolean cut() {
+	public K cut() {
 		// TODO Auto-generated method stub
-		return false;
+		SimpleListNode<K> p = new SimpleListNode<K>(null);
+		return p.getElem();
 	}
 
 //	@Override

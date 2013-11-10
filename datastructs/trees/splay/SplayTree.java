@@ -1,8 +1,6 @@
 /*
  * SplayTree.java
  *
- * Copyright 2013 Daniel Jenkins <jeukel@gmail.com>
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,91 +21,128 @@
 
 package trees.splay;
 
-public class SplayTree {
+import simplelist.SimpleList;
+import interfaces.TreeInterface;
+
+
+public class SplayTree<K> implements TreeInterface<K>{
 
     int cont;
-    private SplayNode root;
-    SplayNode dad_node;
-    SplayNode son_node;
-    int last;       //removed or inserted
+    SplayNode<K> root;
+    SplayNode<K> dad_node;
+    SplayNode<K> son_node;
+    K last;       //removed or inserted
     boolean flag = true;
-    //private SLL list = new SLL();
     
-    public SplayNode Search(int data, SplayNode raiz) {
-        root = raiz;
+    @Override
+	public int length() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean exists(K pk) {
+		search(pk);
+		return true;
+	}
+    
+    public SplayNode<K> search(K data) {
         if (data == getRoot().data) {
         } else {
-            SplayNode padre = null;
-            SplayNode hijo = getRoot();
-            while ((hijo != null) && (hijo.data != data)) {
-                if (data < hijo.data) {
-                    padre = hijo;
-                    hijo = hijo.left;
-                } else {
-                    padre = hijo;
-                    hijo = hijo.right;
-                }
-            }
-            if (hijo == null) {
-                SplayNode aux = gotGrandPa(padre);
-                if (padre != getRoot()) {
-                    Splay(aux, padre);
-                }
-            } else {
-                Splay(padre, hijo);
+            SplayNode<K> padre = null;
+            SplayNode<K> hijo = this.root;
+            
+            if(data.getClass().equals(Integer.class)){
+	            while ((hijo != null) && (hijo.data != data)) {
+	                if ((Integer)data < (Integer)hijo.data) {
+	                    padre = hijo;
+	                    hijo = hijo.left;
+	                }else{
+	                    padre = hijo;
+	                    hijo = hijo.right;
+	                }
+	            }
+	            if (hijo == null) {
+	                SplayNode<K> aux = gotGrandPa(padre);
+	                if (padre != this.root) {
+	                    Splay(aux, padre);
+	                }
+	            }else{
+	                Splay(padre, hijo);
+	            }
             }
         }
-        return getRoot();
+        return this.root;
     }
 
     //Inserta un elemento en un arbol splay
-    public void add(int data) {
+    @Override
+    public boolean insert(K data) {
         if (!existBool(data)) {
             insert(data);
             last = data;
         } else {
             System.out.println("El elemento ya existe");
+            return false;
         }
+        return true;
     }
-
-    public SplayNode insert(int data) {
-        if (getRoot() == null) {
+	
+    public SplayNode insert_aux(K data) {
+        if (this.root == null) {
             root = new SplayNode(data);
         } else {
             dad_node = null;
             son_node = getRoot();
-            while (son_node != null) {
-                if(data == son_node.data){
-                    System.out.println("El nodo ya existe");
-                }else if (data < son_node.data) {
-                    dad_node = son_node;
-                    son_node = son_node.left;
-                }else {
-                    dad_node = son_node;
-                    son_node = son_node.right;
+            
+            if(data.getClass().equals(Integer.class)){
+            	while (son_node != null) {
+                    if(data == son_node.data){
+                        System.out.println("El nodo ya existe");
+                    }else if ((Integer)data < (Integer)son_node.data) {
+                        dad_node = son_node;
+                        son_node = son_node.left;
+                    }else {
+                        dad_node = son_node;
+                        son_node = son_node.right;
+                    }
                 }
-            }
-            SplayNode splaynode = new SplayNode(data);
-            if (data > dad_node.data) {
-                dad_node.right = splaynode;
-                Splay(dad_node, splaynode);
-            } else {
-               dad_node.left = splaynode;
-                Splay(dad_node, splaynode);
+                   
+            
+	            SplayNode<K> splaynode = new SplayNode<K>(data);
+	            if ((Integer)data > (Integer)dad_node.data) {
+	                dad_node.right = splaynode;
+	                Splay(dad_node, splaynode);
+	            } else {
+	               dad_node.left = splaynode;
+	                Splay(dad_node, splaynode);
+	            }
             }
         }
-        return getRoot();
+        return this.root;
     }
 
     public SplayTree() {
         root = null;
     }
 
-    public SplayTree(SplayNode root) {
+    public SplayTree(SplayNode<K> root) {
         this.root = root;
     }
  
-    public void zagzag(SplayNode grandPa) {
+    public void zagzag(SplayNode<K> grandPa) {
         if (cont < 2) {
             System.out.println("zag zag");
             cont++;
@@ -117,7 +152,7 @@ public class SplayTree {
             temp.right = dad_node.left;
             grandPa.left = temp;
             grandPa.right = dad_node.right;
-            grandPa.data = dad_node.data;
+            grandPa.data = (K) dad_node.data;
 
             if (grandPa == getRoot()) {
                 flag = false;
@@ -172,15 +207,15 @@ public class SplayTree {
     }
 
     //rotacion zig zag
-    public void zigzag(SplayNode grandPa) {
+    public void zigzag(SplayNode<K> grandPa) {
         if (cont == 1 || cont == 2) {
             System.out.println("zig zag");
         }
         cont = 0;
-        SplayNode temp = new SplayNode(grandPa.data);
+        SplayNode<K> temp = new SplayNode<K>((K)grandPa.data);
         temp.left = grandPa.left;
         temp.right = grandPa.right;
-        grandPa.data = son_node.data;
+        grandPa.data = (K) son_node.data;
         temp.left = son_node.right;
         grandPa.right = temp;
         dad_node.right = son_node.left;
@@ -216,7 +251,7 @@ public class SplayTree {
     }
 
     //sube el recien insertado a la root
-    public void Splay(SplayNode dad, SplayNode son) {
+    public void Splay(SplayNode<K> dad, SplayNode<K> son) {
         flag = true;
         dad_node = dad;
         son_node = son;
@@ -227,11 +262,15 @@ public class SplayTree {
                 zagzag(grandPa);
             } else {
                 //zag zig
-                if ((grandPa.right == dad_node) && (dad_node.left == son_node)) {
+                if (grandPa.right == dad_node && 
+                	dad_node.left == son_node){
+                	
                     zagzig(grandPa);
                 } else {
                     //zig zig
-                    if ((grandPa.left == dad_node) && (dad_node.left == son_node)) {
+                    if (grandPa.left == dad_node && 
+                    	dad_node.left == son_node){
+                    	
                         zigzig(grandPa);
                     } //zig zag
                     else {
@@ -240,7 +279,7 @@ public class SplayTree {
                 }
             }
         }
-        if (son_node != getRoot()) {
+        if (son_node != this.root) {
             //zag
             if (getRoot().right == son_node) {
                 zag();
@@ -252,82 +291,92 @@ public class SplayTree {
     }
 
     //grandPa de un nieto
-    public SplayNode gotGrandPa(SplayNode node) {
+    public SplayNode<K> gotGrandPa(SplayNode<K> node) {
         if (node == getRoot()) {
             return null;
         } else {
-            SplayNode dad = null;
-            SplayNode son = getRoot();
-            while (son != node) {
-                if (node.data < son.data) {
-                    dad = son;
-                    son = son.left;
-                } else {
-                    dad = son;
-                    son = son.right;
+            SplayNode<K> dad = null;
+            @SuppressWarnings("unchecked")
+			SplayNode<K> son = this.root;
+            
+            if(node.data.equals(Integer.class)){
+            	while (son != node) {
+                    if ((Integer)node.data < (Integer)son.data) {
+                        dad = son;
+                        son = son.left;
+                    } else {
+                        dad = son;
+                        son = son.right;
+                    }
                 }
-            }
+            }            
             return dad;
         }
     }
-
-    public void delete(int data) {
+    
+	@Override
+    public boolean delete(K data) {
         if (!existBool(data)) {
             System.out.println("El elemento no existe");
-            System.out.println("Se bisela = " + lastVisited(data, getRoot()));
-            int splay = lastVisited(data, getRoot());
-            Search(splay, getRoot());
+            System.out.println("Se bisela = " + lastVisited(data));
+            K splay = lastVisited(data);
+            search(splay);
+            return false;
         } else {
             delete_aux(data);
         }
+        return true;
     }
 
-    private SplayNode delete_aux(int data) {
-        if (data == getRoot().data) {
-            SplayNode to_erase = getRoot();
-            if ((getRoot().left == null) && (getRoot().right == null)) {
-                root = null;
-                return to_erase;
-            } else {
-                if ((getRoot().left != null) && (getRoot().right != null)) {
-                    SplayNode aux = getRoot();
-                    root = BigSmall(getRoot());
-                    root.left = aux.left;
-                    root.right = aux.right;
-                    return to_erase;
+    private SplayNode<K> delete_aux(K data) {
+    	SplayNode<K> to_erase = this.root;
+        if(data.getClass().equals(Integer.class)){
+        	if ((Integer)data == getRoot().data) {
+                if ((getRoot().left == null) && (getRoot().right == null)){
+                    root = null;
                 } else {
-                    if (getRoot().right != null) {
-                        root = getRoot().right;
-                        return to_erase;
+                    if ((this.root.left != null) && (getRoot().right != null)){
+                        SplayNode<K> aux = this.root;
+                        this.root = BigSmall(getRoot());
+                        this.root.left = aux.left;
+                        this.root.right = aux.right;
                     } else {
-                        root = getRoot().left;
-                        return to_erase;
+                        if (getRoot().right != null) {
+                            root = getRoot().right;
+                        } else {
+                            root = getRoot().left;
+                        }
                     }
                 }
-            }
-        } else {
-            SplayNode dad = null;
-            SplayNode son = getRoot();
-            while (son.data != data) {
-                if (data < son.data) {
-                    dad = son;
-                    son = son.left;
-                } else {
-                    dad = son;
-                    son = son.right;
+                
+            }else {
+                SplayNode<K> dad = null;
+                SplayNode<K> son = this.root;
+                
+                if(data.getClass().equals(Integer.class)){
+                	while (son.data != (Integer)data) {
+                        if ((Integer)data < (Integer)son.data) {
+                            dad = son;
+                            son = son.left;
+                        } else {
+                            dad = son;
+                            son = son.right;
+                        }
+                    }
                 }
+                
+                Splay(dad, son);
+                SplayNode<K> raiz = this.root;
+                delete_aux((K) this.root.data);
             }
-            Splay(dad, son);
-            SplayNode raiz = getRoot();
-            delete_aux(getRoot().data);
-            return raiz;
         }
+        return to_erase;    	
     }
 
     //buscar el mayor de los menores
-    public SplayNode BigSmall(SplayNode nodo) {
-        SplayNode dad = nodo;
-        SplayNode aux = nodo.left;
+    public SplayNode<K> BigSmall(SplayNode<K> nodo) {
+        SplayNode<K> dad = nodo;
+        SplayNode<K> aux = nodo.left;
         while (aux.right != null) {
             dad = aux;
             aux = aux.right;
@@ -337,81 +386,143 @@ public class SplayTree {
     }    
 
     //retorna si el elemento existe un elemento
-    boolean existBool(int data) {
-        SplayNode temp = this.root;
+    boolean existBool(K data) {
+        SplayNode<K> temp = this.root;
         boolean exist = false;
-        while (temp != null) {
-            if (data == temp.data) {
-                exist = true;
-            } else {
-                if (data > temp.data) {
-                    temp = temp.right;
+        
+        if(data.getClass().equals(Integer.class)){
+        	while (temp != null) {
+                if ((Integer)data == temp.data) {
+                    exist = true;
                 } else {
-                    temp = temp.left;
+                    if ((Integer)data > (Integer)temp.data) {
+                        temp = temp.right;
+                    } else {
+                        temp = temp.left;
+                    }
                 }
             }
-        }
+        }        
         return exist;
     }
 
-    int lastVisited(int data, SplayNode root) {
-        SplayNode nodoAuxiliar = root;
-        int last_int = 0;
-        while (nodoAuxiliar != null) {
-            last_int = nodoAuxiliar.data;
-            if (data == nodoAuxiliar.data) {
-                nodoAuxiliar = null;
-            } else {
-                if (data > nodoAuxiliar.data) {
-                    nodoAuxiliar = nodoAuxiliar.right;
+    private K lastVisited(K data) {
+        SplayNode<K> nodoAuxiliar = this.root;
+        K last_int = nodoAuxiliar.data;
+        
+        if(data.getClass().equals(Integer.class)){
+        	while (nodoAuxiliar != null) {
+                if (data == nodoAuxiliar.data){
+                    nodoAuxiliar = null;
                 } else {
-                    nodoAuxiliar = nodoAuxiliar.left;
+                    if ((Integer)data > (Integer)nodoAuxiliar.data) {
+                        nodoAuxiliar = nodoAuxiliar.right;
+                    } else {
+                        nodoAuxiliar = nodoAuxiliar.left;
+                    }
                 }
             }
-        }
+        }        
         return last_int;
-    }
-
-    void inOrden() {
-        inOrden(this.getRoot());
-    }
-
-    void inOrden(SplayNode root) {
-        if (root != null) {
-            inOrden(root.left);
-            String hex = Integer.toHexString(root.data);
-            System.out.print(hex + " -- ");
-            inOrden(root.right);
-        }
-    }
-
-    void postOrden() {
-        postOrden(this.getRoot());
-    }
-
-    void postOrden(SplayNode root) {
-        if (root != null) {
-            postOrden(root.left);
-            postOrden(root.right);
-            String hex = Integer.toHexString(root.data);
-            System.out.print(hex + " -- ");
-        }
-    }
-
-    void preOrden() {
-        preOrden(this.getRoot());
-    }
-
-    void preOrden(SplayNode root) {
-        if (root != null) {
-            String hex = Integer.toHexString(root.data);
-            System.out.print(hex + " -- ");
-            preOrden(root.left);
-            preOrden(root.right);
-        }
     }   
    
-    public SplayNode getRoot() {
+    public SplayNode<K> getRoot() {
         return root;
     }
+    
+  //**********************************************************************//
+    /*
+	 * How to goes through the tree made by an exit.
+	 */
+	public SimpleList<K> preorden (){
+        SimpleList<K> list = new SimpleList<K>();
+        list.append(this.root.getData());
+        if (this.root.getLeft() != null){
+        	list = preorden_extended(this.root.getLeft(),list);
+        }
+        if (this.root.getRight() != null){
+        	list = preorden_extended(this.root.getRight(),list);
+        }
+        return list;
+    }
+	
+	/*
+	 * Extended method for going though the exit.
+	 */
+	private SimpleList<K> preorden_extended(SplayNode<K> pnode,
+											SimpleList<K> plist){
+		
+		System.out.println(pnode.getData());
+        plist.append(pnode.getData());
+        if (pnode.getLeft() != null){
+        	plist = preorden_extended(this.root.getLeft(),plist);
+        }
+        if (pnode.getRight() != null){
+        	plist = preorden_extended(this.root.getRight(),plist);
+        }
+        return plist;
+	}
+	/*
+	 * Inorden
+	 */
+	public SimpleList<K> inorden (){
+        SimpleList<K> list = new SimpleList<K>();
+        if (this.root.getLeft() != null){
+        	list = inorden_extended(this.root.getLeft(),list);
+        }
+        list.append(this.root.getData());
+        if (this.root.getRight() != null){
+        	list = inorden_extended(this.root.getRight(),list);
+        }
+        return list;
+    }
+	
+	private SimpleList<K> inorden_extended(SplayNode<K> pnode,
+										   SimpleList<K> plist){
+		
+		System.out.println(pnode.getData());
+        if (pnode.getLeft() != null){
+        	plist = inorden_extended(this.root.getLeft(),plist);
+        }
+        plist.append(this.root.getData());
+        if (pnode.getRight() != null){
+        	plist = inorden_extended(this.root.getRight(),plist);
+        }
+        return plist;
+	}
+	
+	/*
+	 * Postorden
+	 */
+	public SimpleList<K> postorden (){
+        SimpleList<K> list = new SimpleList<K>();
+        if (this.root.getLeft() != null){
+        	list = postorden_extended(this.root.getLeft(),list);
+        }
+        if (this.root.getRight() != null){
+        	list = postorden_extended(this.root.getRight(),list);
+        }
+        list.append(this.root.getData());
+        return list;
+    }
+
+	private SimpleList<K> postorden_extended(SplayNode<K> pnode,
+											 SimpleList<K> plist){
+		
+		System.out.println(pnode.getData());
+        if (pnode.getLeft() != null){
+        	plist = postorden_extended(this.root.getLeft(),plist);
+        }
+        if (pnode.getRight() != null){
+        	plist = postorden_extended(this.root.getRight(),plist);
+        }
+        plist.append(this.root.getData());
+        return plist;
+	}
+
+	@Override
+	public String describe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

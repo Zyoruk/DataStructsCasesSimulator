@@ -7,11 +7,13 @@ public class DoubleListNode<K> {
     private K elem;
     private DoubleListNode<K> next;
     private DoubleListNode<K> previous;
+    private int priority;
     
     public DoubleListNode(K elem) {
         this.elem = elem;
         this.next = null;
         this.previous = null;
+        this.priority = 0;
     }
     public DoubleListNode(K elem, DoubleListNode<K> next) {
         this.elem = elem;
@@ -37,5 +39,12 @@ public class DoubleListNode<K> {
     
     public K getElem() {
         return this.elem;
+    }
+    public int getPriority() {
+        return this.priority;
+    }
+
+    public void setPriority(int priori) {
+        this.priority = priori;
     }
 }

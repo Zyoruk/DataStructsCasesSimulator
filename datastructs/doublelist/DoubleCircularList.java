@@ -284,12 +284,13 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
 	}
 
 	@Override
-	public boolean cut() {
+	public K cut() {
 //		_start = System.currentTimeMillis();
 		// TODO Auto-generated method stub
 //		_end = System.currentTimeMillis();
 //		System.out.println("Cut lasted:  " + getExecuteTime());
-		return false;
+		DoubleListNode<K> p = new DoubleListNode<K>(null); 
+		return p.getElem();
 	}
 
 //	@Override

@@ -51,7 +51,7 @@ public interface ListInterface<K> extends DataStructure<K> {
      * removes the last element of the list
      * @return
      */
-    public boolean cut();
+    public K cut();
 //
 //	/**
 //	 * calcualtes the time an operation took to execute

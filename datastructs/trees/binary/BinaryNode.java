@@ -1,5 +1,3 @@
-package trees.binary;
-
 /*
  * BinaryNode.java
  *
@@ -23,49 +21,61 @@ package trees.binary;
  *
  */
 
+package trees.binary;
 
-
-public class BinaryNode{
-    int data;
-    BinaryNode left, right;
-
-    public BinaryNode(int data) {
-        this.data = data;
+public class BinaryNode<K>{
+    private K data;
+    private BinaryNode<K> left, right;
+    
+    public BinaryNode() {
+        this.data = null;
         this.left = null;
         this.right = null;
     }
 
-    public BinaryNode(int data, BinaryNode left, BinaryNode rigth) {
-        this.data = data;
-        this.left = left;
-        this.right = rigth;
+    public BinaryNode(K pdata) {
+        this.data = pdata;
+        this.left = null;
+        this.right = null;
     }
-
-    /* Recorridos */
-    void preorden (BinaryNode node){
-        if(node == null){
-            return;
-        }
-        System.out.println(data);
-        left.preorden(node.left);
-        right.preorden(node.right);
+    
+    //*********************************************************//
+    /*
+     * Regular setters and getters
+     */
+    //*********************************************************//
+    
+    public K getData(){
+    	return this.data;
     }
-
-    void inorden(BinaryNode node){
-        if(node == null){
-            return;
-        }
-        left.inorden(node.left);
-        System.out.println(data);
-        right.inorden(node.right);
+    
+    public BinaryNode<K> getLeft(){
+    	return this.left;
     }
-
-    void postorden(BinaryNode node){
-        if(node == null){
-            return;
-        }
-        left.postorden(node.left);
-        right.postorden(node.right);
-        System.out.println(data);
+    
+    public BinaryNode<K> getRight(){
+    	return this.right;
+    }
+    
+    public void setData(K pk){
+    	this.data = pk;
+    }
+    
+    public void setLeft(K pk){
+    	BinaryNode<K> left = new BinaryNode<K>(pk);
+    	this.left = left;
+    }
+    
+    public void setLeft(BinaryNode<K> pk){
+    	this.left = pk;
+    }
+    
+    public void setRight(K pk){
+    	BinaryNode<K> right = new BinaryNode<K>(pk);
+    	this.right = right;
+    }
+    
+    public void setRight(BinaryNode<K> pk){
+    	this.right = pk;
     }
 }

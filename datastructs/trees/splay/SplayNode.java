@@ -1,8 +1,6 @@
 /*
  * SplayNode.java
  * 
- * Copyright 2013 Anibal Alvarez <anibal@anibal-G53SX>
- * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,22 +21,36 @@
 
 package trees.splay;
 
-public class SplayNode {
+class SplayNode<K> {
 	
-    int data;
+    K data;
     int balance;
-    SplayNode right,left;
+    SplayNode<K> right,left;
     
-    public SplayNode(int data){
-        this.data=data;
-        this.left=null;
-        this.right=null;
+    public SplayNode(K pdata){
+        this.data = pdata;
+        this.left = null;
+        this.right = null;
         
         this.balance=0;
     }
-    public SplayNode(int data, SplayNode left, SplayNode rigth) {
+    
+    public SplayNode(K data, SplayNode<K> left, SplayNode<K> rigth) {
         this.data = data;
         this.left = left;
         this.right = rigth;
     }
+
+	public SplayNode<K> getRight() {
+		return this.right;
+	}
+
+	public SplayNode<K> getLeft() {
+		return this.left;
+	}
+
+	public K getData() {
+		return this.data;
+	}
+    
 }

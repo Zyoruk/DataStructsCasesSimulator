@@ -9,8 +9,9 @@ public class QueueWithList<K> extends DoubleList<K> implements QueueInterface<K>
 		super.insert(pk);
 	}
 	
-	public void Dequeue(){
-		super.cut();
+	public int Dequeue(){
+		int removed = (Integer) super.cut();
+		return removed;
 	}
 
 	public String Peek(){

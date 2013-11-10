@@ -287,12 +287,12 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 
 	//Erase last node
 	@Override
-	public boolean cut() {
+	public K cut() {
 //		_start = System.currentTimeMillis();
 		if (this.tail == null){
 //			_end = System.currentTimeMillis();
 //			System.out.println("Cut lasted:  " + getExecuteTime());
-			return false;
+			return this.tail.getElem();
 		} else if (this.tail.getPrevious() == null){
 			this.head = null;
 			this.tail = null;
@@ -303,7 +303,7 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 		this.length--;
 //		_end = System.currentTimeMillis();
 //		System.out.println("Cut lasted:  " + getExecuteTime());
-		return true;
+		return this.tail.getElem();
 	}
 
 //	@Override

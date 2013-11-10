@@ -14,6 +14,7 @@ public class StackWithArray<K> implements StackInterface<K>{
 	
 	private boolean isEmpty;
 	private int[] stack;
+	private int index;
 //	private double _start;
 //	private double _end;
 	private int[] temp ;
@@ -25,26 +26,19 @@ public class StackWithArray<K> implements StackInterface<K>{
 //		this._start = 0;
 //		this._end = 0;
 		this.temp =  new int[size + 1];
+		this.index = 0;
 	}
 	
 	@Override
 	public boolean push(K pk) {
 //		_start = System.currentTimeMillis();
 		boolean pushed = false;
-		if (isEmpty){
-			stack[0] = (Integer)pk;
-			isEmpty = false;
-			pushed = true;
-//			_end = System.currentTimeMillis();
-			return pushed;
-		}else if(!(contains(pk))){
-			for (int i = 0; i < this.stack.length; i++){
-				temp[i+1] = stack[i];
-			}
-			temp[0] = (Integer)pk;
-			stack = temp;
-			temp = null;
-			pushed = true;
+		if (index == this.stack.length){
+			resize();
+		}
+		if(!(contains(pk))){
+			this.stack[index] = (Integer)pk;
+			index++;
 		}
 //		_end = System.currentTimeMillis();
 //		System.out.println("The pushing lasted:  " + getExecuteTime());
@@ -54,7 +48,7 @@ public class StackWithArray<K> implements StackInterface<K>{
 	@Override
 	public String top() {
 //		this._start = System.currentTimeMillis();
-		String top  =  Integer.toString(stack[0]);
+		String top  =  Integer.toString(stack[index]);
 //		this._end = System.currentTimeMillis();
 //		System.out.println("Top lasted:  " + getExecuteTime());
 		return top;
@@ -64,21 +58,10 @@ public class StackWithArray<K> implements StackInterface<K>{
 	public boolean pop() {
 //		this._start = System.currentTimeMillis();
 		boolean popped = false;
-		if(isEmpty){
-//			this._end = System.currentTimeMillis();
-//			System.out.println("Top lasted:  " + getExecuteTime());
-			return popped;
-		}
-		for (int i = 0; i < this.stack.length;i++){
-			if ( stack[i + 1] == 0){
-				stack [i] = 0;
-				popped = true;
-				break;
-			}else{
-				stack [i] = stack[i + 1];
-				popped = true;
-			}
-		}
+		if (!(isEmpty)){
+			index --;
+			popped = true;
+		}		
 //		this._end = System.currentTimeMillis();
 //		System.out.println("Top lasted:  " + getExecuteTime());
 		return popped;
@@ -150,4 +133,12 @@ public class StackWithArray<K> implements StackInterface<K>{
 		return exists;
 	}
 
+	private void resize(){
+		int [] temp = new int [ (int)(this.stack.length + 
+								(this.stack.length *40)/100) ];
+		for (int i = 0 ; i < this.stack.length; i ++){
+			temp[i] = this.stack[i];
+		}
+		this.stack = temp;
+	}
 }

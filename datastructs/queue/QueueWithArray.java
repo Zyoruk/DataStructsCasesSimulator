@@ -10,14 +10,17 @@ import interfaces.QueueInterface;
  * @param <K>
  */
 public class QueueWithArray<K> implements QueueInterface<K> {
-	private boolean isEmpty;
+	public boolean isEmpty;
 	private int[] queue;
+	private int indexI;
+	private int indexJ;
 //	private double _start;
 //	private double _end;
 	
 	public QueueWithArray(int size){
 		this.isEmpty = true;
 		this.queue = new int[size];
+		this.indexI = 0;
 //		this._end = 0;
 //		this._start = 0;
 	}
@@ -29,29 +32,30 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 			this.queue[0] = (Integer) pk;
 			isEmpty = false;
 		}else if (!(contains(pk))){
-			int[] temp = new int[this.queue.length];
-			if (isEmpty){
-				queue[0] = (Integer) pk;
-			}else{
-				for (int i = 0 ; i < this.queue.length; i++){
-					temp [i + 1] = this.queue[i];
-				}
-				temp[0] = (Integer)pk;
-				queue = temp;
+			if ((indexI == this.queue.length -1 && indexJ == 0) | 
+			   (indexI == indexJ) ){
+				resize();
+			}else if (indexJ > 0 ){
+				indexI = 0;
 			}
+			queue[indexI] = (Integer) pk;
+			indexI ++;
+			isEmpty = false;
 		}
 //		_end = System.currentTimeMillis();
 //		System.out.println("Enqueue lasted:  " + getExecuteTime());		
 	}
 
 	@Override
-	public void Dequeue() {
+	public int Dequeue() {
 //		this._start = System.currentTimeMillis();
-		if (! isEmpty){
-			for (int i = 0; i < this.queue.length; i ++){
-				this.queue[i] = this.queue[i +1];
-			}
+		if (!(isEmpty)){
+			indexJ ++;
 		}
+		if (indexI == 0 && indexJ== 0){
+			isEmpty = true;
+		}
+		return (int)this.queue[0];
 //		this._end = System.currentTimeMillis();
 //		System.out.println("Dequeue lasted:  " + getExecuteTime());
 	}
@@ -121,5 +125,16 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 			}
 		}
 		return exists;
+	}
+	
+	private void resize(){
+		indexI = this.queue.length;
+		indexJ = 0;
+		int [] temp = new int [ (int)(this.queue.length + 
+								(this.queue.length *40)/100) ];
+		for (int i = 0 ; i < this.queue.length; i ++){
+			temp[i] = this.queue[i];
+		}
+		this.queue = temp;
 	}
 }
