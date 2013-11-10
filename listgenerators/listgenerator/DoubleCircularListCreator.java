@@ -15,11 +15,11 @@ public class DoubleCircularListCreator {
 	
 
 	public DoubleCircularList<Integer> creator(SimpleList<Integer> pNumbersToAdd){
-		SimpleList<Integer> temp = buildTemp(pNumbersToAdd);
+//		SimpleList<Integer> temp = buildTemp(pNumbersToAdd);
 		int counter = pNumbersToAdd.length();
-		while(temp.length()!=0){
+		while(pNumbersToAdd.length()!=0){
 			if (_myDoubleCircularlist.length() != counter){
-				_myDoubleCircularlist.append(temp.deleteHead());
+				_myDoubleCircularlist.append(pNumbersToAdd.deleteHead());
 			}else{
 				break;
 			}
@@ -38,11 +38,11 @@ public class DoubleCircularListCreator {
 		this._myDoubleCircularlist = pMyDoubleCircularlist;
 	}
 	
-	private SimpleList<Integer> buildTemp(SimpleList<Integer> pList){
-		SimpleList<Integer> temp = new SimpleList<Integer>();
-		for(int i = 0 ; i <pList.length();i++){
-			temp.append(pList.deleteHead());
-		}
-		return temp;
-	}
+//	private SimpleList<Integer> buildTemp(SimpleList<Integer> pList){
+//		SimpleList<Integer> temp = new SimpleList<Integer>();
+//		for(int i = 0 ; i <pList.length();i++){
+//			temp.append(pList.deleteHead());
+//		}
+//		return temp;
+//	}
 }

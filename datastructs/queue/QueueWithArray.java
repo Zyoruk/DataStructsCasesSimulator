@@ -12,19 +12,19 @@ import interfaces.QueueInterface;
 public class QueueWithArray<K> implements QueueInterface<K> {
 	private boolean isEmpty;
 	private int[] queue;
-	private double _start;
-	private double _end;
+//	private double _start;
+//	private double _end;
 	
 	public QueueWithArray(int size){
 		this.isEmpty = true;
 		this.queue = new int[size];
-		this._end = 0;
-		this._start = 0;
+//		this._end = 0;
+//		this._start = 0;
 	}
 	
 	@Override
 	public void Enqueue(K pk) {
-		_start = System.currentTimeMillis();
+//		_start = System.currentTimeMillis();
 		if (isEmpty){
 			this.queue[0] = (Integer) pk;
 			isEmpty = false;
@@ -40,20 +40,20 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 				queue = temp;
 			}
 		}
-		_end = System.currentTimeMillis();
-		System.out.println("Enqueue lasted:  " + getExecuteTime());		
+//		_end = System.currentTimeMillis();
+//		System.out.println("Enqueue lasted:  " + getExecuteTime());		
 	}
 
 	@Override
 	public void Dequeue() {
-		this._start = System.currentTimeMillis();
+//		this._start = System.currentTimeMillis();
 		if (! isEmpty){
 			for (int i = 0; i < this.queue.length; i ++){
 				this.queue[i] = this.queue[i +1];
 			}
 		}
-		this._end = System.currentTimeMillis();
-		System.out.println("Dequeue lasted:  " + getExecuteTime());
+//		this._end = System.currentTimeMillis();
+//		System.out.println("Dequeue lasted:  " + getExecuteTime());
 	}
 
 	@Override
@@ -81,12 +81,45 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 		}
 	}
 	
-	/**
-	 * Calculates the execution time.
-	 * @return
-	 */
-	public double getExecuteTime(){
-		return this._end - this._start;
+//	/**
+//	 * Calculates the execution time.
+//	 * @return
+//	 */
+//	public double getExecuteTime(){
+//		return this._end - this._start;
+//	}
+
+	public int length(){
+		return this.queue.length;
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return this.queue[0] == 0;
+	}
+
+	@Override
+	public String describe() {
+        StringBuilder result = new StringBuilder();
+
+        result.append("List: ");
+        for(int i = 0; i < this.queue.length; i++) {
+            result.append(String.format("%s ", Integer.toString(queue[i])));
+        }
+        result.append("\n");
+
+        result.append(String.format("Length: %d\n", this.queue.length));
+        return result.toString();
+	}
+
+	@Override
+	public boolean exists(K pk) {
+		boolean exists= false;
+		for (int i = 0 ; i < this.queue.length; i ++){
+			if ( queue[i] == (Integer) pk){
+				exists = true;
+			}
+		}
+		return exists;
+	}
 }

@@ -5,20 +5,7 @@ package interfaces;
  * @param <K> This implements Generics, which means we could build a list of 
  * any type.
  */
-public interface ListInterface<K> {
-	/**
-	 * Return the size of the list
-	 * @return an integer
-	 */
-	public int length();
-	
-	/**
-	 * checks if the list is empty
-	 * @return true or false
-	 */
-	public boolean isEmpty();
-	
-	
+public interface ListInterface<K> extends DataStructure<K> {
 	/**
 	 * Adds at the end of the list
 	 * @param pk
@@ -38,13 +25,6 @@ public interface ListInterface<K> {
      * @return
      */
     public boolean delete();
-    
-    /**
-     * Checks if the element is already in the list
-     * @param pk
-     * @return
-     */
-    public boolean exists(K pk);
     
     /**
      * Inserts at the specified position
@@ -72,16 +52,10 @@ public interface ListInterface<K> {
      * @return
      */
     public boolean cut();
-    
-    /**
-     * Describes the list. Length, head , list, tail.
-     * @return a description of the list.
-     */
-    public String describe();
-
-	/**
-	 * calcualtes the time an operation took to execute
-	 * @return
-	 */
-    public double getExecuteTime();
+//
+//	/**
+//	 * calcualtes the time an operation took to execute
+//	 * @return
+//	 */
+//    public double getExecuteTime();
 }

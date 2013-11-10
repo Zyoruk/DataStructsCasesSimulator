@@ -40,7 +40,7 @@ public class Window extends JFrame {
 		myMainPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(183, 53, 337, 343);
+		panel.setBounds(166, 49, 337, 343);
 		myMainPanel.add(panel);
 	}
 }

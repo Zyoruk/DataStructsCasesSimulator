@@ -6,7 +6,7 @@ package interfaces;
  * Model every stack should follow.
  * @param <K> 
  */
-public interface StackInterface<K>{
+public interface StackInterface<K> extends DataStructure<K>{
 	/**
 	 * Push will set the parameter as the first element of te stack.
 	 * This uses a temporal stack.
@@ -29,10 +29,10 @@ public interface StackInterface<K>{
      */
     public boolean pop();
     
-    /**
-     * Calculates the time it took to push, top or pop.
-     * It uses the System.getCurrentMillis().
-     * @return	the time it takes to do an operation.
-     */
-    public double getExecuteTime();
+//    /**
+//     * Calculates the time it took to push, top or pop.
+//     * It uses the System.getCurrentMillis().
+//     * @return	the time it takes to do an operation.
+//     */
+//    public double getExecuteTime();
 }

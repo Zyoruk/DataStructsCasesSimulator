@@ -1,7 +1,11 @@
-import interfaces.ListInterface;
+import interfaces.DataStructure;
 import listgenerator.DataStructureChoose;
 
 import org.junit.Test;
+
+import queue.QueueWithArray;
+
+import doublelist.DoubleList;
 
 /**
  * 
@@ -13,6 +17,8 @@ import org.junit.Test;
  */
 public class ChoosingStructs {
 
+	double _start = 0;
+	double _end = 0;
 	@Test
 	public void DoubleListTester(){		
 		
@@ -20,9 +26,9 @@ public class ChoosingStructs {
 		DataStructureChoose testDoubleList = 
 							new DataStructureChoose ("DoubleList", 20);
 		
-		ListInterface<Integer> newDoubleList = 
+		DataStructure<Integer> newDoubleList = 
 							   testDoubleList.createDataStructure();
-		
+		newDoubleList = (DoubleList<Integer>) newDoubleList;
 		System.out.println(testDoubleList.getStructureKind());
 		System.out.println(newDoubleList.describe());
 		System.out.println("<<<<<<<<<<<<<<<END OF DOUBLE LIST TESTER>>>>>>>>>");
@@ -36,7 +42,7 @@ public class ChoosingStructs {
 		DataStructureChoose testSimpleCircularList = 
 							new DataStructureChoose ("SimpleCircularList", 20);
 		
-		ListInterface<Integer> newSimpleCircularList = 
+		DataStructure<Integer> newSimpleCircularList = 
 							   testSimpleCircularList.createDataStructure();
 		
 		System.out.println(testSimpleCircularList.getStructureKind());
@@ -52,7 +58,7 @@ public class ChoosingStructs {
 		DataStructureChoose testDoubleCircularList = 
 							new DataStructureChoose ("DoubleCircularList", 20);
 		
-		ListInterface<Integer> newDoubleCircularList = 
+		DataStructure<Integer> newDoubleCircularList = 
 							   testDoubleCircularList.createDataStructure();
 		
 		System.out.println(testDoubleCircularList.getStructureKind());
@@ -61,19 +67,19 @@ public class ChoosingStructs {
 	}
 	
 	@Test
-	public void QueueTester(){	
+	public void QueueWithListTester(){	
 		
 		
-		System.out.println("<<<<<<<<<<<<<<<<<TESTING QUEUE>>>>>>>>>>>>>>");
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING  QUEUE WITH LIST >>>>>>>>>>>>>>");
 		DataStructureChoose testQueue = 
-							new DataStructureChoose ("Queue", 20);
+							new DataStructureChoose ("QueueWithList", 20);
 		
-		ListInterface<Integer> newQueue = 
+		DataStructure<Integer> newQueue = 
 							   testQueue.createDataStructure();
 		
 		System.out.println(testQueue.getStructureKind());
 		System.out.println(newQueue.describe());
-		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE TESTER>>>>>>>>>");
+		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE WITH LIST TESTER>>>>>>>>>");
 	}
 	
 	@Test
@@ -82,7 +88,7 @@ public class ChoosingStructs {
 		DataStructureChoose testSimpleList = 
 							new DataStructureChoose ("SimpleList", 20);
 		
-		ListInterface<Integer> newSimpleList = 
+		DataStructure<Integer> newSimpleList = 
 							   testSimpleList.createDataStructure();
 		
 		System.out.println(testSimpleList.getStructureKind());
@@ -91,18 +97,49 @@ public class ChoosingStructs {
 	}
 	
 	@Test
-	public void StackTester(){
-		System.out.println("<<<<<<<<<<<<<<<<<TESTING STACK>>>>>>>>>>>>>>");
+	public void StackWithListTester(){
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING STACK WITH LIST >>>>>>>>>>>>>>");
 		DataStructureChoose testStack = 
-							new DataStructureChoose ("Stack", 20);
+							new DataStructureChoose ("StackWithList", 20);
 		
-		ListInterface<Integer> newStack = 
+		DataStructure<Integer> newStack = 
 							   testStack.createDataStructure();
 		
 		System.out.println(testStack.getStructureKind());
 		System.out.println(newStack.describe());
-		System.out.println("<<<<<<<<<<<<<<<END OF STACK TESTER>>>>>>>>>");
+		System.out.println("<<<<<<<<<<<<<<<END OF STACK WITH LIST TESTER>>>>>>>>>");
 	}
+	
+	@Test
+	public void StackWithArrayTester(){
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING STACK WITH ARRAY >>>>>>>>>>>>>>");
+		DataStructureChoose testStack = 
+							new DataStructureChoose ("StackWithArray", 20);
+		
+		DataStructure<Integer> newStack = 
+							   testStack.createDataStructure();
+		
+		System.out.println(testStack.getStructureKind());
+		System.out.println(newStack.describe());
+		System.out.println("<<<<<<<<<<<<<<<END OF STACK WITH ARRAY TESTER>>>>>>>>>");
+	}
+	
+	@Test
+	public void QueueWithArrayTester(){
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING QUEUE WITH ARRAY >>>>>>>>>>>>>>");
+		DataStructureChoose testQueue = 
+							new DataStructureChoose ("QueueWithArray", 20);
+		
+		DataStructure<Integer> newQueue = 
+							   testQueue.createDataStructure();
+		
+		newQueue = (QueueWithArray<Integer>) newQueue;
+		System.out.println(testQueue.getStructureKind());
+//		System.out.println(newQueue.describe());
+		System.out.println(newQueue.isEmpty());
+		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE WITH ARRAY TESTER>>>>>>>>>");
+	}
+	
 }
 
 
