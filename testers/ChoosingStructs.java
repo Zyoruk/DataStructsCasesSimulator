@@ -4,6 +4,7 @@ import listgenerator.DataStructureChoose;
 import org.junit.Test;
 
 import queue.QueueWithArray;
+import trees.binary.BinaryTree;
 
 import doublelist.DoubleList;
 
@@ -130,17 +131,26 @@ public class ChoosingStructs {
 		System.out.println("<<<<<<<<<<<<<<<<<TESTING QUEUE WITH ARRAY >>>>>>>>>>>>>>");
 		DataStructureChoose testQueue = 
 							new DataStructureChoose ("QueueWithArray", 20);
-		System.out.println(":D");
 		DataStructure<Integer> newQueue = 
 							   testQueue.createDataStructure();
-		System.out.println(":(");
 		newQueue = (QueueWithArray<Integer>) newQueue;
 		System.out.println(testQueue.getStructureKind());
 		System.out.println(newQueue.describe());
 		System.out.println(newQueue.isEmpty());
 		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE WITH ARRAY TESTER>>>>>>>>>");
 	}
-	
+	@Test
+	public void BinaryTreetester(){
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING Binary >>>>>>>>>>>>>>");
+		DataStructureChoose testQueue = 
+							new DataStructureChoose ("BinaryTree", 20);
+		BinaryTree<Integer> newBT = 
+							   (BinaryTree<Integer>) testQueue.createDataStructure();
+		System.out.println(testQueue.getStructureKind());
+		System.out.println(newBT.inorden().describe());
+		System.out.println(newBT.isEmpty());
+		System.out.println("<<<<<<<<<<<<<<<END OF Binary>>>>>>>>>");
+	}
 }
 
 
