@@ -27,6 +27,7 @@ import interfaces.TreeInterface;
 public class BinaryTree<K> implements TreeInterface<K>{
     protected BinaryNode<K> root;
     private int lenght;
+    private SimpleList<K> list;
 
     public BinaryTree(){
         this.root = null;
@@ -214,41 +215,34 @@ public class BinaryTree<K> implements TreeInterface<K>{
     /*
          * How to goes through the tree made by an exit.
          */
-        public SimpleList<K> preorden (){
-	        SimpleList<K> list = new SimpleList<K>();
-	        list.append(this.root.getData());
-	        
-	        if (this.root.getLeft() != null){
-	                list = preorden_extended(this.root.getLeft(),list);
-	        }
-	        
-	        if (this.root.getRight() != null){
-	                list = preorden_extended(this.root.getRight(),list);
-	        }
-	        
-	        return list;
+        public void preorden (){
+        	list.append(this.root.getData());
+            if (this.root.getLeft() != null){
+            	preorden_extended(this.root.getLeft());
+            }
+            if (this.root.getRight() != null){
+            	preorden_extended(this.root.getRight());
+            }
         }
 
         /*
          * Extended method for going though the exit.
          */
-        private SimpleList<K> preorden_extended(BinaryNode<K> pnode,
-                                                SimpleList<K> plist){
+        private void preorden_extended(BinaryNode<K> pnode){
 
-            //System.out.println(pnode.getData());
-	        plist.append(pnode.getData());
-	        if (pnode.getLeft() != null){
-                plist = preorden_extended(this.root.getLeft(),plist); 
-	        }
-	        if (pnode.getRight() != null){
-                plist = preorden_extended(this.root.getRight(),plist);
-	        }
-	        return plist;
+        	System.out.println(pnode.getData());
+            list.append(pnode.getData());
+            if (pnode.getLeft() != null){
+            	preorden_extended(this.root.getLeft());
+            }
+            if (pnode.getRight() != null){
+            	preorden_extended(this.root.getRight());
+            }
         }
 
         @Override
         public String describe() {
-            System.out.println(this.preorden().describe());
+            this.preorden();
             return ("That's it");
         }
 
