@@ -30,11 +30,13 @@ public class BinaryTree<K> implements TreeInterface<K>{
     private SimpleList<K> list;
 
     public BinaryTree(){
+    	this.list = new SimpleList<K>();
         this.root = null;
         this.lenght = 0;
     }
 
     public BinaryTree(BinaryNode<K> proot){
+    	this.list = new SimpleList<K>();
         this.root = proot;
         this.lenght = 1;
     }
