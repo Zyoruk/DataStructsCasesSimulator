@@ -11,12 +11,9 @@ public class binaryTree {
 		newBT.insert(2);
 		newBT.insert(1);
 		newBT.insert(3);
-		System.out.println(newBT.getRoot().getData());
-		System.out.println(newBT.getRoot().getLeft().getData());
-		System.out.println(newBT.getRoot().getRight().getData());
-//		System.out.println(newBT.inorden().describe());
-//		System.out.println(newBT.postorden().describe());
-//		System.out.println(newBT.preorden().describe());
+
+		System.out.println(newBT.describe());
+
 
 	}
 

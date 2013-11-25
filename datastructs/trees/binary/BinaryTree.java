@@ -232,7 +232,7 @@ public class BinaryTree<K> implements TreeInterface<K>{
          */
         private void preorden_extended(BinaryNode<K> pnode){
 
-        	System.out.println(pnode.getData());
+//        	System.out.println(pnode.getData());
             list.append(pnode.getData());
             if (pnode.getLeft() != null){
             	preorden_extended(this.root.getLeft());
