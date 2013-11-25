@@ -21,22 +21,18 @@
 
 package trees.binary;
 
-import simplelist.SimpleList;
 import interfaces.TreeInterface;
 
 public class BinaryTree<K> implements TreeInterface<K>{
     protected BinaryNode<K> root;
     private int lenght;
-    private SimpleList<K> list;
 
     public BinaryTree(){
-    	this.list = new SimpleList<K>();
         this.root = null;
         this.lenght = 0;
     }
 
     public BinaryTree(BinaryNode<K> proot){
-    	this.list = new SimpleList<K>();
         this.root = proot;
         this.lenght = 1;
     }
@@ -219,7 +215,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
      * How to goes through the tree made by an exit.
      */
     public void preorden (){
-    	list.append(this.root.getData());
+    	//list.append(this.root.getData());
+    	System.out.println(this.root.getData());
         if (this.root.getLeft() != null){
         	preorden_extended(this.root.getLeft());
         }
@@ -233,28 +230,19 @@ public class BinaryTree<K> implements TreeInterface<K>{
      */
     private void preorden_extended(BinaryNode<K> pnode){
 
-    	//System.out.println(pnode.getData());
-        list.append(pnode.getData());
+    	System.out.println(pnode.getData());
+        //list.append(pnode.getData());
         if (pnode.getLeft() != null){
-        	preorden_extended(this.root.getLeft());
+        	preorden_extended(pnode.getLeft());
         }
         if (pnode.getRight() != null){
-        	preorden_extended(this.root.getRight());
+        	preorden_extended(pnode.getRight());
         }
     }
 
     @Override
     public String describe() {
         this.preorden();
-		int[] array = new int[list.length()];
-		for(int i = 0 ; i < list.length() ; i++){
-			array[i] = (Integer) list.getRootData();
-			list.delete();
-		}
-		list.clear();
-		for(int i=0; i<array.length;i++ ){
-    		System.out.println(array[i]);
-    	}
 		return("Done bitch");
     }
 }
