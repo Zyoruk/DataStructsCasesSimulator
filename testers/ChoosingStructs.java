@@ -147,7 +147,6 @@ public class ChoosingStructs {
 		BinaryTree<Integer> newBT = 
 							   (BinaryTree<Integer>) testQueue.createDataStructure();
 		System.out.println(testQueue.getStructureKind());
-		System.out.println(newBT.inorden().describe());
 		System.out.println(newBT.isEmpty());
 		System.out.println("<<<<<<<<<<<<<<<END OF Binary>>>>>>>>>");
 	}
