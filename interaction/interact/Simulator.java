@@ -336,7 +336,7 @@ public class Simulator {
 				BinaryTree<Integer> BinaryTree = 
 						(BinaryTree<Integer>) ourDataStruct.createDataStructure();
 				BinaryTree = (BinaryTree<Integer>) BinaryTree;
-				
+				BinaryTreeMenu(BinaryTree);
 			}else if(ourDataStruct.getStructureKind()  == "SplayTree"){
 				SplayTree<Integer> SplayTree = 
 						(SplayTree<Integer>) ourDataStruct.createDataStructure();
@@ -346,7 +346,77 @@ public class Simulator {
 			
 		}
 	}
+	private static void BinaryTreeMenu(BinaryTree<Integer> BinaryTree){
+		System.out.println("\nWhat do you want to do ?");
+		System.out.println("	1) Insert");
+		System.out.println("	2) Search");
+		System.out.println("	3) Delete");
+		System.out.println("Enter your option and hit enter: (from 1 to 3)");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					start = System.nanoTime();
+					BinaryTree.insert(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
+				}catch(Exception e){
+					break;
+				}
+			case 2:
+				try{
+					System.out.println("Insert the number to search: ");
+					size = in.nextInt();
+					start = System.nanoTime();
+					System.out.println("Does that number exist? " + BinaryTree.exists(size));
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
+				}catch(Exception e){
+					break;
+				}
+			case 3:
+				try{
+					System.out.println("Insert the number to delete: ");
+					size = in.nextInt();
+					start = System.nanoTime();
+					BinaryTree.delete(size);
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
+				}catch(Exception e){
+					break;
+				}
+			}
+			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			exitBinaryTree(BinaryTree);
+		}catch(Exception e){
+			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			exitBinaryTree(BinaryTree);
+		}
+	}
 	
+	private static void exitBinaryTree(BinaryTree<Integer> BinaryTree){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				BinaryTreeMenu(BinaryTree);
+				break;
+			default:
+				BinaryTreeMenu(BinaryTree);
+				break;
+			}
+		}catch (Exception e){
+			exitBinaryTree(BinaryTree);
+		}
+	}
 	private static void ArrayMenu (Array<Integer> Array){
 		System.out.println("\nWhat do you want to do ?");
 		System.out.println("	1) Insert");
