@@ -15,17 +15,12 @@ public class StackWithArray<K> implements StackInterface<K>{
 	private boolean isEmpty;
 	private int[] stack;
 	private int index;
-//	private double _start;
-//	private double _end;
-	private int[] temp ;
+
 	
 	//Constructor
 	public StackWithArray(int size){
 		this.stack = new int[size];
 		this.isEmpty = true;
-//		this._start = 0;
-//		this._end = 0;
-		this.temp =  new int[size + 1];
 		this.index = 0;
 	}
 	
@@ -35,10 +30,6 @@ public class StackWithArray<K> implements StackInterface<K>{
 		boolean pushed = false;
 		if (index == this.stack.length){
 			resize();
-		}
-		if(!(contains(pk))){
-			this.stack[index] = (Integer)pk;
-			index++;
 		}
 //		_end = System.currentTimeMillis();
 //		System.out.println("The pushing lasted:  " + getExecuteTime());

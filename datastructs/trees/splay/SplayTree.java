@@ -27,29 +27,40 @@ import interfaces.TreeInterface;
 
 public class SplayTree<K> implements TreeInterface<K>{
 
-    int cont;
-    SplayNode<K> root;
-    SplayNode<K> dad_node;
-    SplayNode<K> son_node;
-    K last;       //removed or inserted
-    boolean flag = true;
+    private int cont;
+    private SplayNode<K> root;
+    private SplayNode<K> dad_node;
+    private SplayNode<K> son_node;
+    private boolean flag = true;
+    private int length;
+    
+    public SplayTree() {
+        root = null;
+    }
+
+    public SplayTree(SplayNode<K> root) {
+        this.root = root;
+    }
+ 
     
     @Override
 	public int length() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.length;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if(this.root == null){
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean setEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		this.root = null;
+		return root == null;
 	}
 
 	@Override
@@ -58,30 +69,29 @@ public class SplayTree<K> implements TreeInterface<K>{
 		return true;
 	}
     
-    public SplayNode<K> search(K data) {
+    private SplayNode<K> search(K data) {
         if (data == getRoot().data) {
+        	return this.root;
         } else {
             SplayNode<K> padre = null;
             SplayNode<K> hijo = this.root;
-            
-            if(data.getClass().equals(Integer.class)){
-	            while ((hijo != null) && (hijo.data != data)) {
-	                if ((Integer)data < (Integer)hijo.data) {
-	                    padre = hijo;
-	                    hijo = hijo.left;
-	                }else{
-	                    padre = hijo;
-	                    hijo = hijo.right;
-	                }
-	            }
-	            if (hijo == null) {
-	                SplayNode<K> aux = gotGrandPa(padre);
-	                if (padre != this.root) {
-	                    Splay(aux, padre);
-	                }
-	            }else{
-	                Splay(padre, hijo);
-	            }
+
+            while ((hijo != null) && (hijo.data != data)) {
+            	if ((Integer)data < (Integer)hijo.data) {
+            		padre = hijo;
+            		hijo = hijo.left;
+            	}else{
+            		padre = hijo;
+            		hijo = hijo.right;
+            	}
+            }
+            if (hijo == null) {
+            	SplayNode<K> aux = gotGrandPa(padre);
+            	if (padre != this.root) {
+            		Splay(aux, padre);
+            	}
+            }else{
+            	Splay(padre, hijo);
             }
         }
         return this.root;
@@ -91,8 +101,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     @Override
     public boolean insert(K data) {
         if (!existBool(data)) {
-            insert(data);
-            last = data;
+            insert_aux(data);
         } else {
             System.out.println("El elemento ya existe");
             return false;
@@ -100,9 +109,9 @@ public class SplayTree<K> implements TreeInterface<K>{
         return true;
     }
 	
-    public SplayNode insert_aux(K data) {
+    private SplayNode<K> insert_aux(K data) {
         if (this.root == null) {
-            root = new SplayNode(data);
+            root = new SplayNode<K>(data);
         } else {
             dad_node = null;
             son_node = getRoot();
@@ -134,19 +143,11 @@ public class SplayTree<K> implements TreeInterface<K>{
         return this.root;
     }
 
-    public SplayTree() {
-        root = null;
-    }
-
-    public SplayTree(SplayNode<K> root) {
-        this.root = root;
-    }
- 
-    public void zagzag(SplayNode<K> grandPa) {
+    private void zagzag(SplayNode<K> grandPa) {
         if (cont < 2) {
             System.out.println("zag zag");
             cont++;
-            SplayNode temp = new SplayNode(grandPa.data);
+            SplayNode<K> temp = new SplayNode<K>(grandPa.data);
             temp.left = grandPa.left;
             temp.right = grandPa.left;
             temp.right = dad_node.left;
@@ -164,12 +165,12 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //rotacion zag zig
-    public void zagzig(SplayNode grandPa) {
+    private void zagzig(SplayNode<K> grandPa) {
         if (cont == 1 || cont == 2) {
             System.out.println("zag zig");
         }
         cont = 0;
-        SplayNode temp = new SplayNode(grandPa.data);
+        SplayNode<K> temp = new SplayNode<K>(grandPa.data);
         temp.left = grandPa.left;
         temp.right = grandPa.right;
         grandPa.data = son_node.data;
@@ -186,11 +187,11 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //rotacion zig zig
-    public void zigzig(SplayNode grandPa) {
+    private void zigzig(SplayNode<K> grandPa) {
         if (cont < 2) {
             System.out.print("zig zig");
             cont++;
-            SplayNode temp = new SplayNode(grandPa.data);
+            SplayNode<K> temp = new SplayNode<K>(grandPa.data);
             temp.left = grandPa.left;
             temp.right = grandPa.right;
             temp.left = dad_node.right;
@@ -207,7 +208,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //rotacion zig zag
-    public void zigzag(SplayNode<K> grandPa) {
+    private void zigzag(SplayNode<K> grandPa) {
         if (cont == 1 || cont == 2) {
             System.out.println("zig zag");
         }
@@ -229,7 +230,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //rotacion zig
-    public void zig() {
+    private void zig() {
         if (cont == 2) {
             System.out.println("zig ");
         }
@@ -240,7 +241,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //rotacion zag
-    public void zag() {
+    private void zag() {
         if (cont == 2) {
             System.out.println("zag");
         }
@@ -251,12 +252,12 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //sube el recien insertado a la root
-    public void Splay(SplayNode<K> dad, SplayNode<K> son) {
+    private void Splay(SplayNode<K> dad, SplayNode<K> son) {
         flag = true;
         dad_node = dad;
         son_node = son;
         while ((flag == true) && (gotGrandPa(dad_node) != null)) {
-            SplayNode grandPa = gotGrandPa(dad_node);
+        	SplayNode<K> grandPa = gotGrandPa(dad_node);
             //zag zag
             if ((grandPa.right == dad_node) && (dad_node.right == son_node)) {
                 zagzag(grandPa);
@@ -291,13 +292,12 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //grandPa de un nieto
-    public SplayNode<K> gotGrandPa(SplayNode<K> node) {
+    private SplayNode<K> gotGrandPa(SplayNode<K> node) {
         if (node == getRoot()) {
             return null;
         } else {
             SplayNode<K> dad = null;
-            @SuppressWarnings("unchecked")
-			SplayNode<K> son = this.root;
+            SplayNode<K> son = this.root;
             
             if(node.data.equals(Integer.class)){
             	while (son != node) {
@@ -366,7 +366,7 @@ public class SplayTree<K> implements TreeInterface<K>{
                 }
                 
                 Splay(dad, son);
-                SplayNode<K> raiz = this.root;
+//                SplayNode<K> raiz = this.root;
                 delete_aux((K) this.root.data);
             }
         }
@@ -374,7 +374,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     //buscar el mayor de los menores
-    public SplayNode<K> BigSmall(SplayNode<K> nodo) {
+    private SplayNode<K> BigSmall(SplayNode<K> nodo) {
         SplayNode<K> dad = nodo;
         SplayNode<K> aux = nodo.left;
         while (aux.right != null) {
@@ -386,24 +386,23 @@ public class SplayTree<K> implements TreeInterface<K>{
     }    
 
     //retorna si el elemento existe un elemento
-    boolean existBool(K data) {
-        SplayNode<K> temp = this.root;
-        boolean exist = false;
-        
-        if(data.getClass().equals(Integer.class)){
-        	while (temp != null) {
-                if ((Integer)data == temp.data) {
-                    exist = true;
-                } else {
-                    if ((Integer)data > (Integer)temp.data) {
-                        temp = temp.right;
-                    } else {
-                        temp = temp.left;
-                    }
-                }
-            }
-        }        
-        return exist;
+    private boolean existBool(K data) {
+    	SplayNode<K> temp = this.root;
+    	boolean exist = false;
+
+    	while (temp != null) {
+    		if ((Integer)data == temp.data) {
+    			exist = true;
+    		} else {
+    			if ((Integer)data > (Integer)temp.data) {
+    				temp = temp.right;
+    			} else {
+    				temp = temp.left;
+    			}
+    		}
+    	}
+
+    	return exist;
     }
 
     private K lastVisited(K data) {
@@ -432,7 +431,7 @@ public class SplayTree<K> implements TreeInterface<K>{
     
   //**********************************************************************//
     /*
-	 * How to goes through the tree made by an exit.
+	 * goes through the tree made by an exit.
 	 */
 	public SimpleList<K> preorden (){
         SimpleList<K> list = new SimpleList<K>();

@@ -6,7 +6,6 @@ import interfaces.QueueInterface;
 public class BiQueueWithList<K> extends SimpleList<K> implements QueueInterface<K> {
 
 	private boolean isEmpty;
-	private int length;
 	
 	public BiQueueWithList (){
 		
