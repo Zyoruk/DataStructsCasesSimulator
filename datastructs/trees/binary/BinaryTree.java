@@ -83,11 +83,13 @@ public class BinaryTree<K> implements TreeInterface<K>{
 
     //AUX Add data
     private void insertNode(K data, BinaryTree<K> tree){
-        if(data.getClass().equals(Integer.class)){
+        
+    	if(data.getClass().equals(Integer.class)){
             if((Integer) data > (Integer) tree.root.getData()){
             	
             	if(tree.root.getRight() == null){
             		tree.root.setRight(data);
+            		
             	} else{
 	                tree.root = tree.root.getRight();
 	                insertNode(data, tree);
@@ -106,6 +108,7 @@ public class BinaryTree<K> implements TreeInterface<K>{
 //            	System.out.println("El elemento ya existe, no se volverá " +
 // 					   "a insertar.");
             }
+            this.lenght++;
         }
     }
 
@@ -174,6 +177,7 @@ public class BinaryTree<K> implements TreeInterface<K>{
 //            	System.out.println("El elemento ya existe, no se volverá " +
 // 					   "a insertar.");
             }
+            this.lenght++;
         }
     }
 

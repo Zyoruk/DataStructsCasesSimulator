@@ -38,7 +38,21 @@ public class binaryTree {
 		
 		System.out.println("***************************");
 		
-		newBT.exists(43);
+		if(newBT.exists(43)){
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+		
+		System.out.println(newBT.describe());
+		
+		System.out.println("***************************");
+		
+		if(newBT.exists(5)){
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
 		
 		System.out.println(newBT.describe());
 		
