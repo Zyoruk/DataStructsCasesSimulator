@@ -215,95 +215,41 @@ public class BinaryTree<K> implements TreeInterface<K>{
          * How to goes through the tree made by an exit.
          */
         public SimpleList<K> preorden (){
-        SimpleList<K> list = new SimpleList<K>();
-        list.append(this.root.getData());
-        if (this.root.getLeft() != null){
-                list = preorden_extended(this.root.getLeft(),list);
+	        SimpleList<K> list = new SimpleList<K>();
+	        list.append(this.root.getData());
+	        
+	        if (this.root.getLeft() != null){
+	                list = preorden_extended(this.root.getLeft(),list);
+	        }
+	        
+	        if (this.root.getRight() != null){
+	                list = preorden_extended(this.root.getRight(),list);
+	        }
+	        
+	        return list;
         }
-        if (this.root.getRight() != null){
-                list = preorden_extended(this.root.getRight(),list);
-        }
-        return list;
-    }
 
         /*
          * Extended method for going though the exit.
          */
         private SimpleList<K> preorden_extended(BinaryNode<K> pnode,
-                                                                                        SimpleList<K> plist){
+                                                SimpleList<K> plist){
 
-                System.out.println(pnode.getData());
-        plist.append(pnode.getData());
-        if (pnode.getLeft() != null){
-                plist = preorden_extended(this.root.getLeft(),plist);
-        }
-        if (pnode.getRight() != null){
+            //System.out.println(pnode.getData());
+	        plist.append(pnode.getData());
+	        if (pnode.getLeft() != null){
+                plist = preorden_extended(this.root.getLeft(),plist); 
+	        }
+	        if (pnode.getRight() != null){
                 plist = preorden_extended(this.root.getRight(),plist);
-        }
-        return plist;
-        }
-        /*
-         * Inorden
-         */
-        public SimpleList<K> inorden (){
-        SimpleList<K> list = new SimpleList<K>();
-        if (this.root.getLeft() != null){
-                list = inorden_extended(this.root.getLeft(),list);
-        }
-        list.append(this.root.getData());
-        if (this.root.getRight() != null){
-                list = inorden_extended(this.root.getRight(),list);
-        }
-        return list;
-    }
-
-        private SimpleList<K> inorden_extended(BinaryNode<K> pnode,
-                                                                                 SimpleList<K> plist){
-
-                System.out.println(pnode.getData());
-        if (pnode.getLeft() != null){
-                plist = inorden_extended(this.root.getLeft(),plist);
-        }
-        plist.append(this.root.getData());
-        if (pnode.getRight() != null){
-                plist = inorden_extended(this.root.getRight(),plist);
-        }
-        return plist;
-        }
-
-        /*
-         * Postorden
-         */
-        public SimpleList<K> postorden (){
-        SimpleList<K> list = new SimpleList<K>();
-        if (this.root.getLeft() != null){
-                list = postorden_extended(this.root.getLeft(),list);
-        }
-        if (this.root.getRight() != null){
-                list = postorden_extended(this.root.getRight(),list);
-        }
-        list.append(this.root.getData());
-        return list;
-    }
-
-        private SimpleList<K> postorden_extended(BinaryNode<K> pnode,
-                                                                                         SimpleList<K> plist){
-
-                System.out.println(pnode.getData());
-        if (pnode.getLeft() != null){
-                plist = postorden_extended(this.root.getLeft(),plist);
-        }
-        if (pnode.getRight() != null){
-                plist = postorden_extended(this.root.getRight(),plist);
-        }
-        plist.append(this.root.getData());
-        return plist;
+	        }
+	        return plist;
         }
 
         @Override
         public String describe() {
-                // TODO Auto-generated method stub
-                return null;
+            System.out.println(this.preorden().describe());
+            return ("That's it");
         }
 
 }
