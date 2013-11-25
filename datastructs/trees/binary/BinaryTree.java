@@ -215,50 +215,45 @@ public class BinaryTree<K> implements TreeInterface<K>{
 
         //**********************************************************************//
     /*
-         * How to goes through the tree made by an exit.
-         */
-        public void preorden (){
-        	list.append(this.root.getData());
-            if (this.root.getLeft() != null){
-            	preorden_extended(this.root.getLeft());
-            }
-            if (this.root.getRight() != null){
-            	preorden_extended(this.root.getRight());
-            }
+     * How to goes through the tree made by an exit.
+     */
+    public void preorden (){
+    	list.append(this.root.getData());
+        if (this.root.getLeft() != null){
+        	preorden_extended(this.root.getLeft());
         }
-
-        /*
-         * Extended method for going though the exit.
-         */
-        private void preorden_extended(BinaryNode<K> pnode){
-
-        	System.out.println(pnode.getData());
-            list.append(pnode.getData());
-            if (pnode.getLeft() != null){
-            	preorden_extended(this.root.getLeft());
-            }
-            if (pnode.getRight() != null){
-            	preorden_extended(this.root.getRight());
-            }
+        if (this.root.getRight() != null){
+        	preorden_extended(this.root.getRight());
         }
+    }
 
-        @Override
-        public String describe() {
-            this.preorden();
-    		int[] array = new int[list.length()];
-    		for(int i = 0 ; i < list.length() ; i++){
-    			array[i] = (Integer) list.getRootData();
-    			list.delete();
-    		}
-    		list.clear();
-    		this.describeExtended(array);
-    		return("Done bitch");
-        }
-        
-        private void describeExtended(int [] array){
-        	for(int i=0; i<array.length;i++ ){
-        		System.out.println(array[i]);
-        	}
-        }
+    /*
+     * Extended method for going though the exit.
+     */
+    private void preorden_extended(BinaryNode<K> pnode){
 
+    	System.out.println(pnode.getData());
+        list.append(pnode.getData());
+        if (pnode.getLeft() != null){
+        	preorden_extended(this.root.getLeft());
+        }
+        if (pnode.getRight() != null){
+        	preorden_extended(this.root.getRight());
+        }
+    }
+
+    @Override
+    public String describe() {
+        this.preorden();
+		int[] array = new int[list.length()];
+		for(int i = 0 ; i < list.length() ; i++){
+			array[i] = (Integer) list.getRootData();
+			list.delete();
+		}
+		list.clear();
+		for(int i=0; i<array.length;i++ ){
+    		System.out.println(array[i]);
+    	}
+		return("Done bitch");
+    }
 }
