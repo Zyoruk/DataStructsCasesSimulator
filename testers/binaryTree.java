@@ -57,6 +57,12 @@ public class binaryTree {
 		System.out.println(newBT.describe());
 		
 		System.out.println("***************************");
+		
+		newBT.exists(5);
+		
+		System.out.println(newBT.describe());
+		
+		System.out.println("***************************");
 
 	}
 
