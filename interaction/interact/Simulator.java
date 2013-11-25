@@ -232,6 +232,7 @@ public class Simulator {
 			System.out.println("Do you want to end? (Yes / No)");
 			exitStructureInteraction();
 		}catch (Exception e){
+
 			System.out.println("Do you want to end? (Yes / No)");
 			exitStructureInteraction();
 		}
@@ -253,6 +254,7 @@ public class Simulator {
 		}
 	}
 	private static void structureMenu(String pType){
+
 		try{
 			System.out.println("Enter the size of the structure:");
 			size = in.nextInt();
@@ -337,13 +339,17 @@ public class Simulator {
 						(BinaryTree<Integer>) ourDataStruct.createDataStructure();
 				BinaryTree = (BinaryTree<Integer>) BinaryTree;
 				BinaryTreeMenu(BinaryTree);
+				
 			}else if(ourDataStruct.getStructureKind()  == "SplayTree"){
 				SplayTree<Integer> SplayTree = 
 						(SplayTree<Integer>) ourDataStruct.createDataStructure();
 				SplayTree = (SplayTree<Integer>) SplayTree;
 			}
 		}catch (Exception e){
-			
+			System.out.println("this catch");
+			System.out.println(e);
+			e.printStackTrace();
+			System.out.println(pType);
 		}
 	}
 	private static void BinaryTreeMenu(BinaryTree<Integer> BinaryTree){
@@ -392,10 +398,10 @@ public class Simulator {
 					break;
 				}
 			}
-			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			System.out.println("Do you want to exit the Binary Tree ? (Yes / No)");
 			exitBinaryTree(BinaryTree);
 		}catch(Exception e){
-			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			System.out.println("Do you want to exit the Binary Tree ? (Yes / No)");
 			exitBinaryTree(BinaryTree);
 		}
 	}

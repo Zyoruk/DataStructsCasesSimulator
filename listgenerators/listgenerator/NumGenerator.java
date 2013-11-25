@@ -294,18 +294,12 @@ public class NumGenerator {
 	public BinaryTree<Integer> generateBinaryTree (int phowmanynumbers){
 		int count = phowmanynumbers;
 		BinaryTree<Integer> randomnumbers = new BinaryTree<Integer> ();
-		while (count!=0){	
-			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
-				while(randomnumbers.exists(myInt)){
-					this.myDouble = Math.random() * ((phowmanynumbers));//random number
-					this.myInt = (int)myDouble;//casting to int.
-				}
+		while (count!=0){
+			if (randomnumbers.isEmpty() == true){	
 			}else{
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
 			randomnumbers.insert(myInt); //inserts my new number to the list
 			count--;
 			this.lenght++;

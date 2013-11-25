@@ -68,8 +68,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
                 	}
                     this.lenght++;
                 }else {
-                    System.out.println("El elemento ya existe, no se volverá "
-                    				   + "a insertar.");
+//                    System.out.println("El elemento ya existe, no se volverá "
+//                    				   + "a insertar.");
                     return false;
                 }
             }
@@ -103,8 +103,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	}
             	
             }else{
-            	System.out.println("El elemento ya existe, no se volverá " +
- 					   "a insertar.");
+//            	System.out.println("El elemento ya existe, no se volverá " +
+// 					   "a insertar.");
             }
         }
     }
@@ -134,8 +134,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
                 	}
                     this.lenght++;
                 }else {
-                    System.out.println("El elemento ya existe, no se volverá "
-                    				   + "a insertar.");
+//                    System.out.println("El elemento ya existe, no se volverá "
+//                    				   + "a insertar.");
                     return false;
                 }
             }
@@ -171,8 +171,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	}
             	
             }else{
-            	System.out.println("El elemento ya existe, no se volverá " +
- 					   "a insertar.");
+//            	System.out.println("El elemento ya existe, no se volverá " +
+// 					   "a insertar.");
             }
         }
     }
@@ -230,24 +230,29 @@ public class BinaryTree<K> implements TreeInterface<K>{
     }
         
     private BinaryNode<K> search(K pk){
+
 //		System.out.println("Aquitoy");
     	BinaryNode<K> current = this.root;
     	@SuppressWarnings("unused")
 		BinaryNode<K> previous = new BinaryNode<K>();
-        	
+//        System.out.println(pk);
     	while(current.getData() != pk){
-        	
+    		System.out.println(current.getData());
+    		System.out.println(current.getRight().getData());
+    		System.out.println(current.getLeft().getData());
     		//Conditions of insert
         	if((Integer)pk > (Integer)current.getData() &&
         	   current.getRight() != null){
-
+        		
     			previous = current;
         		current = current.getRight();
 //	        	System.out.println("derecha");
 	        		
 	        		
     		}
-        	
+    		System.out.println(current.getData());
+    		System.out.println(current.getRight().getData());
+    		System.out.println(current.getLeft().getData());
     		if ((Integer)pk < (Integer)current.getData() && 
 				current.getLeft() != null){
 					
@@ -256,12 +261,18 @@ public class BinaryTree<K> implements TreeInterface<K>{
 //        		System.out.println("izquierda");
     		}
     		
+    		System.out.println(current.getData());
+    		System.out.println(current.getRight().getData());
+    		System.out.println(current.getLeft().getData());
     		if(current.getLeft() == null && current.getRight() == null &&
     		   current.getData() != pk) {
     			
     			System.out.println("No fruit in this tree...");
     			break;
     		}
+    		System.out.println(current.getData());
+    		System.out.println(current.getRight().getData());
+    		System.out.println(current.getLeft().getData());
         }
     	
       //System.out.println(current.getData());
@@ -296,7 +307,7 @@ public class BinaryTree<K> implements TreeInterface<K>{
     		if(current.getLeft() == null && current.getRight() == null &&
     		   current.getData() != pk) {
     			
-    			System.out.println("No fruit in this tree...");
+//    			System.out.println("No fruit in this tree...");
     			break;
     		}
         }
@@ -356,6 +367,9 @@ public class BinaryTree<K> implements TreeInterface<K>{
 
     @Override
     public boolean exists(K pk) {
+    	if (this.root == null){
+    		return false;
+    	}
     	BinaryNode<K> node = search(pk);
     	return (node.getData() == pk);
     }

@@ -17,6 +17,8 @@ public class binaryTree {
 		newBT.insert(9);
 
 		System.out.println(newBT.describe());
+		System.out.println(newBT.exists(34));
+		System.out.println(newBT.isEmpty());
 		
 		//System.out.println("***************************");
 		

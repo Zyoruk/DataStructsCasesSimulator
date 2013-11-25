@@ -144,6 +144,7 @@ public class DataStructureChoose {
 			System.out.println("creating the Binary tree lasted: " + (end - start) + "nano seconds");
 			myNewDataStructure = generator.generateBinaryTree(_quantity);
 			
+			
 		}else if(this._datastructureKind == "SplayTree"){
 			myNewDataStructure = null;
 			start = System.nanoTime();
