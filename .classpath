@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="datastructs"/>
 	<classpathentry kind="src" path="testers"/>
 	<classpathentry kind="src" path="listgenerators"/>
-	<classpathentry kind="src" path="graphicalinterface"/>
 	<classpathentry kind="src" path="interaction"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>

@@ -21,11 +21,11 @@
 
 package trees.splay;
 
-class SplayNode<K> {
+public class SplayNode<K> {
 	
-    K data;
-    int balance;
-    SplayNode<K> right,left;
+	K data;
+	int balance;
+	SplayNode<K> right,left;
     
     public SplayNode(K pdata){
         this.data = pdata;
@@ -51,6 +51,10 @@ class SplayNode<K> {
 
 	public K getData() {
 		return this.data;
+	}
+	
+	public int getBalance(){
+		return this.balance;
 	}
     
 }
