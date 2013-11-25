@@ -15,31 +15,34 @@ public class binaryTree {
 		newBT.insert(3);
 		newBT.insert(6);
 		newBT.insert(9);
+		
+		System.out.println("***************************");
 
 		System.out.println(newBT.describe());
-		System.out.println(newBT.exists(34));
-		System.out.println(newBT.isEmpty());
-		
-		//System.out.println("***************************");
-		
-		newBT.delete(8);
-		
-		//System.out.println(newBT.describe());
 		
 		System.out.println("***************************");
 		
-		newBT.delete(81);
+		newBT.delete(8);
 		
-		//newBT.insert(10);
-		
-		System.out.println(newBT.describe());
-		/*
-		newBT.delete(3);
+		System.out.println("***************************");
+
 		System.out.println(newBT.describe());
 		
-		newBT.delete(5);
+		System.out.println("***************************");
+		
+		newBT.delete(1);
+		
+		System.out.println("***************************");
+		
 		System.out.println(newBT.describe());
-		*/
+		
+		System.out.println("***************************");
+		
+		newBT.exists(43);
+		
+		System.out.println(newBT.describe());
+		
+		System.out.println("***************************");
 
 	}
 

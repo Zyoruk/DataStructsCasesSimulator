@@ -245,12 +245,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
     			previous = current;
         		current = current.getRight();
 //	        	System.out.println("derecha");
-	        		
-	        		
     		}
-    		System.out.println(current.getData());
-    		System.out.println(current.getRight().getData());
-    		System.out.println(current.getLeft().getData());
+
     		if ((Integer)pk < (Integer)current.getData() && 
 				current.getLeft() != null){
 					
@@ -259,18 +255,12 @@ public class BinaryTree<K> implements TreeInterface<K>{
 //        		System.out.println("izquierda");
     		}
     		
-    		System.out.println(current.getData());
-    		System.out.println(current.getRight().getData());
-    		System.out.println(current.getLeft().getData());
     		if(current.getLeft() == null && current.getRight() == null &&
     		   current.getData() != pk) {
     			
     			System.out.println("No fruit in this tree...");
     			break;
     		}
-    		System.out.println(current.getData());
-    		System.out.println(current.getRight().getData());
-    		System.out.println(current.getLeft().getData());
         }
     	
       //System.out.println(current.getData());
