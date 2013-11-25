@@ -388,8 +388,11 @@ public class SplayTree<K> implements TreeInterface<K>{
     	boolean exist = false;
 
     	while (temp != null) {
+//    		System.out.println(temp.getData());
+//    		System.out.println(data + "\n");
     		if ((Integer)data == temp.data) {
     			exist = true;
+    			break;
     		} else {
     			if ((Integer)data > (Integer)temp.data) {
     				temp = temp.right;
@@ -398,7 +401,6 @@ public class SplayTree<K> implements TreeInterface<K>{
     			}
     		}
     	}
-
     	return exist;
     }
 

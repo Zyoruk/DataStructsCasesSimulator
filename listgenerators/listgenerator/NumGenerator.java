@@ -23,9 +23,9 @@ import trees.splay.SplayTree;
 
 public class NumGenerator {
 	
-	private int lenght;
 	private double myDouble=0;
 	private int myInt=0;
+	private SimpleList<Integer> numbers;
 	
 	public SimpleList<Integer> generateSimpleList(int phowmanynumbers){
 		int count = phowmanynumbers;
@@ -41,10 +41,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -63,10 +62,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -85,10 +83,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -107,10 +104,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -129,10 +125,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -151,10 +146,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.push(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -173,10 +167,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.append(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -186,7 +179,7 @@ public class NumGenerator {
 		QueueWithArray<Integer> randomnumbers = new QueueWithArray<Integer> (phowmanynumbers);
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty == true && randomnumbers.contains(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.contains(myInt)){
 				while(randomnumbers.contains(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -195,10 +188,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.Enqueue(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -208,7 +200,7 @@ public class NumGenerator {
 		BiQueueWithList<Integer> randomnumbers = new BiQueueWithList<Integer> ();
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){
 				while(randomnumbers.exists(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -217,10 +209,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.Enqueue(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -230,7 +221,7 @@ public class NumGenerator {
 		PriorityQueue<Integer> randomnumbers = new PriorityQueue<Integer> ();
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){
 				while(randomnumbers.exists(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -239,10 +230,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.Enqueue(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -252,7 +242,7 @@ public class NumGenerator {
 		Array<Integer> randomnumbers = new Array<Integer> ();
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){
 				while(randomnumbers.exists(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -261,10 +251,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.add(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -274,7 +263,7 @@ public class NumGenerator {
 		AVLTree<Integer> randomnumbers = new AVLTree<Integer> ();
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){
 				while(randomnumbers.exists(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -283,10 +272,9 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.insert(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -295,14 +283,18 @@ public class NumGenerator {
 		int count = phowmanynumbers;
 		BinaryTree<Integer> randomnumbers = new BinaryTree<Integer> ();
 		while (count!=0){
-			if (randomnumbers.isEmpty() == true){	
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){	
+				while(randomnumbers.exists(myInt)){
+					this.myDouble = Math.random() * ((phowmanynumbers));//random number
+					this.myInt = (int)myDouble;//casting to int.
+				}
 			}else{
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
+			numbers.append(myInt);
 			randomnumbers.insert(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
@@ -312,7 +304,7 @@ public class NumGenerator {
 		SplayTree<Integer> randomnumbers = new SplayTree<Integer> ();
 		while (count!=0){	
 			
-			if (randomnumbers.isEmpty() == true && randomnumbers.exists(myInt)){
+			if (randomnumbers.length() != 0 && randomnumbers.exists(myInt)){
 				while(randomnumbers.exists(myInt)){
 					this.myDouble = Math.random() * ((phowmanynumbers));//random number
 					this.myInt = (int)myDouble;//casting to int.
@@ -321,14 +313,14 @@ public class NumGenerator {
 				this.myDouble = Math.random() * ((phowmanynumbers));//random number
 				this.myInt = (int)myDouble;//casting to int.
 			}
-			
+			numbers.append(myInt);
 			randomnumbers.insert(myInt); //inserts my new number to the list
 			count--;
-			this.lenght++;
 		}
 		return randomnumbers;
 	}
-	public int getLenght(){
-		return this.lenght;
+	
+	public SimpleList<Integer> getList(){
+		return this.numbers;
 	}
 }
