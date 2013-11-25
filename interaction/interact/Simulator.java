@@ -54,10 +54,10 @@ public class Simulator {
 				structureInteractionMenu();
 				break;	
 			}
-			System.out.println("Do you want to exit the Main Menu?");
+			System.out.println("Do you want to exit the Main Menu?(Yes / No)");
 			exitMainMenu();
 		}catch(Exception e){
-			System.out.println("Do you want to exit? the Main Menu");
+			System.out.println("Do you want to exit the Main Menu?(Yes / No)");
 			exitMainMenu();
 		}
 	}
@@ -127,10 +127,10 @@ public class Simulator {
 				default:
 					System.out.println("Invalid integer");
 			}
-			System.out.println("Do you want to exit the simulator?");
+			System.out.println("Do you want to exit the simulator?(Yes / No)");
 			exitSimulator();
 		}catch(Exception e){
-			System.out.println("Do you want to exitthe simulator?");
+			System.out.println("Do you want to exit the simulator?(Yes / No)");
 			exitSimulator();
 		}
 	}
@@ -173,47 +173,52 @@ public class Simulator {
 			switch (choose){
 			case 1:
 				structureMenu("SimpleList");
-				break;
 			case 2:
 				structureMenu("DoubleList");
-				break;
 			case 3:
 				structureMenu("SimpleCircularList");
-				break;
 			case 4:
 				structureMenu("DoubleCircularList");
-				break;
 			case 5:
 				structureMenu("AVLTree");
-				break;
 			case 6:
 				structureMenu("BinaryTree");
-				break;
 			case 7:
-				structureMenu("SplayTree");
-				break;				
+				structureMenu("SplayTree");			
 			case 8:
 				structureMenu("QueueWithList");
-				break;
 			case 9:
 				structureMenu("QueueWithArray");
-				break;
 			case 10:
 				structureMenu("PriorityQueue");
-				break;
 			case 11:
 				structureMenu("Biqueue");
-				break;
 			case 12:
 				structureMenu("Array");
-				break;
 			default:
-				
+				System.out.println("Invalid choose");
+			}
+			System.out.println("Do you want to end?(Yes / No)");
+			exitStructureInteraction();
+		}catch (Exception e){
+			System.out.println("Do you want to end?(Yes / No)");
+			exitStructureInteraction();
+		}
+	}
+	private static void exitStructureInteraction(){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				structureInteraction();
+			default:
+				exitStructureInteraction();
 			}
 		}catch (Exception e){
 		}
 	}
-	
 	private static void structureMenu(String pType){
 		try{
 			System.out.println("Enter the size of the structure:");
@@ -224,452 +229,71 @@ public class Simulator {
 				DoubleList<Integer> newDoubleList = 
 						(DoubleList<Integer>) ourDataStruct.createDataStructure();
 				newDoubleList = (DoubleList<Integer>) newDoubleList;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert at the beginning");
-				System.out.println("2) Insert at the end");
-				System.out.println("3) Search");
-				System.out.println("4) Delete the beginning");
-				System.out.println("5) Delete the end");
-				System.out.println("6) Delete a node");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							newDoubleList.insert(size);
-						}catch(Exception e){
-						}
-					case 2: 
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							newDoubleList.append(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + newDoubleList.exists(size));
-						}catch(Exception e){
-						}
-					case 4 :
-						try{
-							newDoubleList.delete();
-						}catch(Exception e){
-						}
-					case 5:
-						try{
-							newDoubleList.cut();
-						}catch(Exception e){
-						}
-					case 6:
-						try{
-							System.out.println("Insert the number to delete");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + newDoubleList.exists(size));
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-				
+				DoubleListMenu(newDoubleList);
 				
 			}else if(ourDataStruct.getStructureKind() == "SimpleList"){
 				SimpleList<Integer> SimpleList = 
 						(SimpleList<Integer>) ourDataStruct.createDataStructure();
 				SimpleList = (SimpleList<Integer>) SimpleList;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert at the beginning");
-				System.out.println("2) Insert at the end");
-				System.out.println("3) Search");
-				System.out.println("4) Delete the beginning");
-				System.out.println("5) Delete the end");
-				System.out.println("6) Delete a node");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							SimpleList.insert(size);
-						}catch(Exception e){
-						}
-					case 2: 
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							SimpleList.append(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + SimpleList.exists(size));
-						}catch(Exception e){
-						}
-					case 4 :
-						try{
-							SimpleList.delete();
-						}catch(Exception e){
-						}
-					case 5:
-						try{
-							SimpleList.cut();
-						}catch(Exception e){
-						}
-					case 6:
-						try{
-							System.out.println("Insert the number to delete");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + SimpleList.exists(size));
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-				
+				SimpleListMenu(SimpleList);
 				
 				
 			}else if(ourDataStruct.getStructureKind() == "SimpleCircularList"){
 				SimpleCircularList<Integer> SimpleCircularList = 
 						(SimpleCircularList<Integer>) ourDataStruct.createDataStructure();
 				SimpleCircularList = (SimpleCircularList<Integer>) SimpleCircularList;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert");
-				System.out.println("2) Search");
-				System.out.println("3) Delete");
-				System.out.println("4) Delete a node");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							SimpleCircularList.append(size);
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							SimpleCircularList.delete();
-						}catch(Exception e){
-						}
-					case 4:
-						try{
-							System.out.println("Insert the number to delete");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-								
-
+				SimpleCircularListMenu(SimpleCircularList);
+				
 			}else if(ourDataStruct.getStructureKind()  == "DoubleCircularList"){
 				DoubleCircularList<Integer> DoubleCircularList = 
 						(DoubleCircularList<Integer>) ourDataStruct.createDataStructure();
 				DoubleCircularList = (DoubleCircularList<Integer>) DoubleCircularList;
-
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert");
-				System.out.println("2) Search");
-				System.out.println("3) Delete");
-				System.out.println("4) Delete a node");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							DoubleCircularList.append(size);
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							DoubleCircularList.delete();
-						}catch(Exception e){
-						}
-					case 4:
-						try{
-							System.out.println("Insert the number to delete");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
+				DoubleCircularListMenu(DoubleCircularList);
 								
 
 			}else if(ourDataStruct.getStructureKind() == "QueueWithArray"){
 				QueueWithArray<Integer> QueueWithArray = 
 						(QueueWithArray<Integer>) ourDataStruct.createDataStructure();
 				QueueWithArray = (QueueWithArray<Integer>) QueueWithArray;
-				
-
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Dequeue");
-				System.out.println("2) Enqueue");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to enqueue: ");
-							size = in.nextInt();
-							QueueWithArray.Enqueue(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							QueueWithArray.Dequeue();
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
+				QueueWithArrayMenu(QueueWithArray);
 								
 			}else if(ourDataStruct.getStructureKind() == "QueueWithList"){
 				QueueWithList<Integer> QueueWithList = 
 						(QueueWithList<Integer>) ourDataStruct.createDataStructure();
 				QueueWithList = (QueueWithList<Integer>) QueueWithList;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Dequeue");
-				System.out.println("2) Enqueue");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to enqueue: ");
-							size = in.nextInt();
-							QueueWithList.Enqueue(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							QueueWithList.Dequeue();
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
+				QueueWithListMenu(QueueWithList);
 					
 			}else if(ourDataStruct.getStructureKind()  == "StackWithArray"){
 				StackWithArray<Integer> StackWithArray = 
 						(StackWithArray<Integer>) ourDataStruct.createDataStructure();
 				StackWithArray = (StackWithArray<Integer>) StackWithArray;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) pop");
-				System.out.println("2) top");
-				System.out.println("2) push");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							StackWithArray.pop();
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							StackWithArray.top();
-						}catch(Exception e){
-						}
-					case 3 : 
-						try{
-							System.out.println("Insert the number to push: ");
-							size = in.nextInt();
-							StackWithArray.push(size);
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-					
+				StackWithArrayMenu(StackWithArray);
 				
 			}else if(ourDataStruct.getStructureKind()  == "StackWithList"){
 				StackWithList<Integer> StackWithList = 
 						(StackWithList<Integer>) ourDataStruct.createDataStructure();
 				StackWithList = (StackWithList<Integer>) StackWithList;
-				
-				System.out.println("What do you want to do ?");
-				System.out.println("1) pop");
-				System.out.println("2) top");
-				System.out.println("2) push");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							StackWithList.pop();
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							StackWithList.top();
-						}catch(Exception e){
-						}
-					case 3 : 
-						try{
-							System.out.println("Insert the number to push: ");
-							size = in.nextInt();
-							StackWithList.push(size);
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
+			StackWithListMenu(StackWithList);
 					
 				
 			}else if(ourDataStruct.getStructureKind()  == "PriorityQueue"){
 				PriorityQueue<Integer> PriorityQueue = 
 						(PriorityQueue<Integer>) ourDataStruct.createDataStructure();
 				PriorityQueue = (PriorityQueue<Integer>) PriorityQueue;
+				PriorityQueueMenu(PriorityQueue);
 				
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Dequeue");
-				System.out.println("2) Enqueue");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to enqueue: ");
-							size = in.nextInt();
-							PriorityQueue.Enqueue(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							PriorityQueue.Dequeue();
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-					
 			}else if(ourDataStruct.getStructureKind()  == "BiQueueWithList"){
 				BiQueueWithList<Integer> BiQueueWithList = 
 						(BiQueueWithList<Integer>) ourDataStruct.createDataStructure();
 				BiQueueWithList = (BiQueueWithList<Integer>) BiQueueWithList;
-				
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert at the beginning");
-				System.out.println("2) Insert at the end");
-				System.out.println("3) Search");
-				System.out.println("4) Delete the beginning");
-				System.out.println("5) Delete the end");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							BiQueueWithList.insert(size);
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							BiQueueWithList.append(size);
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + BiQueueWithList.exists(size));
-						}catch(Exception e){
-						}
-					case 4:
-						try{
-							System.out.println("Insert the number to delete: ");
-							size = in.nextInt();
-							BiQueueWithList.delete();
-						}catch(Exception e){
-						}
-					case 5:
-						try{
-							System.out.println("Insert the number to delete");
-							size = in.nextInt();
-							BiQueueWithList.cut();
-						}catch(Exception e){
-						}
-					}
-				}catch (Exception e){					
-				}
-								
+				BiqueueWithListMenu(BiQueueWithList);
 
 			}else if(ourDataStruct.getStructureKind()  == "Array"){
 				Array<Integer> Array = 
 						(Array<Integer>) ourDataStruct.createDataStructure();
 				Array = (Array<Integer>) Array;
-				System.out.println("What do you want to do ?");
-				System.out.println("1) Insert");
-				System.out.println("2) Search");
-				System.out.println("3) Delete");
-				System.out.println("Enter your option");
-				try{
-					choose = in.nextInt();
-					switch (choose){
-					case 1:
-						try{
-							System.out.println("Insert the number to add: ");
-							size = in.nextInt();
-							Array.append(size);
-						}catch(Exception e){
-						}
-					case 2:
-						try{
-							System.out.println("Insert the number to search");
-							size = in.nextInt();
-							System.out.println("Does that number exist?" + Array.exists(size));
-						}catch(Exception e){
-						}
-					case 3:
-						try{
-							System.out.println("Insert the number to delete: ");
-							size = in.nextInt();
-							Array.delete(size);
-						}catch(Exception e){
-						}
-					}
-				}catch(Exception e){					
-				}
+				ArrayMenu(Array);
+				
 			}else if(ourDataStruct.getStructureKind() == "AVLTree"){
 				AVLTree<Integer> AVLTree = 
 						(AVLTree<Integer>) ourDataStruct.createDataStructure();
@@ -687,6 +311,641 @@ public class Simulator {
 			}
 		}catch (Exception e){
 			
+		}
+	}
+	
+	private static void ArrayMenu (Array<Integer> Array){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert");
+		System.out.println("2) Search");
+		System.out.println("3) Delete");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					Array.append(size);
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + Array.exists(size));
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					System.out.println("Insert the number to delete: ");
+					size = in.nextInt();
+					Array.delete(size);
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			exitArrayMenu(Array);
+		}catch(Exception e){
+			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
+			exitArrayMenu(Array);
+		}
+	}
+	
+	private static void exitArrayMenu(Array<Integer> Array){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				ArrayMenu(Array);
+			default:
+				ArrayMenu(Array);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void BiqueueWithListMenu(BiQueueWithList<Integer> BiQueueWithList){
+
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert at the beginning");
+		System.out.println("2) Insert at the end");
+		System.out.println("3) Search");
+		System.out.println("4) Delete the beginning");
+		System.out.println("5) Delete the end");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					BiQueueWithList.insert(size);
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					BiQueueWithList.append(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + BiQueueWithList.exists(size));
+				}catch(Exception e){
+				}
+			case 4:
+				try{
+					System.out.println("Insert the number to delete: ");
+					size = in.nextInt();
+					BiQueueWithList.delete();
+				}catch(Exception e){
+				}
+			case 5:
+				try{
+					System.out.println("Insert the number to delete");
+					size = in.nextInt();
+					BiQueueWithList.cut();
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the Biqueue With List Menu ? (Yes / No)");
+			exitBiqueueWithList(BiQueueWithList);
+		}catch (Exception e){	
+			System.out.println("Do you want to exit the Biqueue With List menu ? (Yes / No)");
+			exitBiqueueWithList(BiQueueWithList);
+		}
+						
+	}
+	
+	private static void exitBiqueueWithList(BiQueueWithList<Integer> BiqueueWithList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitBiqueueWithList(BiqueueWithList);
+			default:
+				exitBiqueueWithList(BiqueueWithList);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void PriorityQueueMenu(PriorityQueue<Integer> PriorityQueue){
+
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Dequeue");
+		System.out.println("2) Enqueue");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to enqueue: ");
+					size = in.nextInt();
+					PriorityQueue.Enqueue(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					PriorityQueue.Dequeue();
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the Priority Queue Menu? (Yes / No)");
+			exitPriorityQueue(PriorityQueue);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the Priority Queue Menu? (Yes / No)");
+			exitPriorityQueue(PriorityQueue);
+		}
+			
+	}
+	
+	private static void exitPriorityQueue(PriorityQueue<Integer> PriorityQueue){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitPriorityQueue(PriorityQueue);
+			default:
+				exitPriorityQueue(PriorityQueue);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void StackWithListMenu(StackWithList<Integer> StackWithList){
+		
+		System.out.println("What do you want to do ?");
+		System.out.println("1) pop");
+		System.out.println("2) top");
+		System.out.println("2) push");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					StackWithList.pop();
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					StackWithList.top();
+				}catch(Exception e){
+				}
+			case 3 : 
+				try{
+					System.out.println("Insert the number to push: ");
+					size = in.nextInt();
+					StackWithList.push(size);
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the stack with list menu ? (Yes / No)");
+			exitStackWithList(StackWithList);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the Stack with list menu ? (Yes / No)");
+			exitStackWithList(StackWithList);
+		}
+	}
+	
+	private static void exitStackWithList(StackWithList<Integer> StackWithList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitStackWithList(StackWithList);
+			default:
+				exitStackWithList(StackWithList);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void StackWithArrayMenu(StackWithArray<Integer> StackWithArray){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) pop");
+		System.out.println("2) top");
+		System.out.println("2) push");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					StackWithArray.pop();
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					StackWithArray.top();
+				}catch(Exception e){
+				}
+			case 3 : 
+				try{
+					System.out.println("Insert the number to push: ");
+					size = in.nextInt();
+					StackWithArray.push(size);
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the Stack with array menu ? (Yes / No)");
+			exitStackWithArray(StackWithArray);
+		}catch (Exception e){		
+			System.out.println("Do you want to exit the Stack with array menu ? (Yes / No)");
+			exitStackWithArray(StackWithArray);
+		}		
+	}
+	
+	private static void exitStackWithArray(StackWithArray<Integer> StackWithArray){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitStackWithArray(StackWithArray);
+			default:
+				exitStackWithArray(StackWithArray);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void QueueWithListMenu(QueueWithList<Integer> QueueWithList){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Dequeue");
+		System.out.println("2) Enqueue");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to enqueue: ");
+					size = in.nextInt();
+					QueueWithList.Enqueue(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					QueueWithList.Dequeue();
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the queue with list menu ? (Yes / No)");
+			exitQueueWithListMenu(QueueWithList);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the queue with list menu ? (Yes / No)");
+			exitQueueWithListMenu(QueueWithList);
+		}
+	}
+	
+	private static void exitQueueWithListMenu(QueueWithList<Integer> QueueWithList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitQueueWithListMenu(QueueWithList);
+			default:
+				exitQueueWithListMenu(QueueWithList);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void QueueWithArrayMenu(QueueWithArray<Integer> QueueWithArray){
+
+
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Dequeue");
+		System.out.println("2) Enqueue");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to enqueue: ");
+					size = in.nextInt();
+					QueueWithArray.Enqueue(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					QueueWithArray.Dequeue();
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the Queue with array ? (Yes / No)");
+			exitQueueWithArray(QueueWithArray);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the queue with array ? (Yes / No)");
+			exitQueueWithArray(QueueWithArray);
+		}
+	}
+	
+	private static void exitQueueWithArray(QueueWithArray<Integer> QueueWithArray){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitQueueWithArray(QueueWithArray);
+			default:
+				exitQueueWithArray(QueueWithArray);
+			}
+		}catch (Exception e){
+		}
+	}
+		
+	private static void DoubleCircularListMenu(DoubleCircularList<Integer> DoubleCircularList){
+
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert");
+		System.out.println("2) Search");
+		System.out.println("3) Delete");
+		System.out.println("4) Delete a node");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					DoubleCircularList.append(size);
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					DoubleCircularList.delete();
+				}catch(Exception e){
+				}
+			case 4:
+				try{
+					System.out.println("Insert the number to delete");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the Double circular list menu ? (Yes / No)");
+			exitDoubleCircularListMenu(DoubleCircularList);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the double circular list menu? (Yes / No)");
+			exitDoubleCircularListMenu(DoubleCircularList);
+		}
+	}
+	
+	private static void exitDoubleCircularListMenu(DoubleCircularList<Integer> DoubleCircularList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitDoubleCircularListMenu(DoubleCircularList);
+			default:
+				exitDoubleCircularListMenu(DoubleCircularList);
+			}
+		}catch (Exception e){
+		}
+	}
+	private static void SimpleCircularListMenu(SimpleCircularList<Integer> SimpleCircularList){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert");
+		System.out.println("2) Search");
+		System.out.println("3) Delete");
+		System.out.println("4) Delete a node");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					SimpleCircularList.append(size);
+				}catch(Exception e){
+				}
+			case 2:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					SimpleCircularList.delete();
+				}catch(Exception e){
+				}
+			case 4:
+				try{
+					System.out.println("Insert the number to delete");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the simple circular list ? (Yes / No)");
+			exitSimpleCircularList(SimpleCircularList);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the simple circular list ? (Yes / No)");
+			exitSimpleCircularList(SimpleCircularList);
+		}
+						
+	}
+	
+	
+	private static void exitSimpleCircularList(SimpleCircularList<Integer> SimpleCircularList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitSimpleCircularList(SimpleCircularList);
+			default:
+				exitSimpleCircularList(SimpleCircularList);
+			}
+		}catch (Exception e){
+		}
+	}
+	
+	private static void DoubleListMenu(DoubleList<Integer> newDoubleList){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert at the beginning");
+		System.out.println("2) Insert at the end");
+		System.out.println("3) Search");
+		System.out.println("4) Delete the beginning");
+		System.out.println("5) Delete the end");
+		System.out.println("6) Delete a node");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					newDoubleList.insert(size);
+				}catch(Exception e){
+				}
+			case 2: 
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					newDoubleList.append(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + newDoubleList.exists(size));
+				}catch(Exception e){
+				}
+			case 4 :
+				try{
+					newDoubleList.delete();
+				}catch(Exception e){
+				}
+			case 5:
+				try{
+					newDoubleList.cut();
+				}catch(Exception e){
+				}
+			case 6:
+				try{
+					System.out.println("Insert the number to delete");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + newDoubleList.exists(size));
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the double list menu ? (Yes / No)");
+			exitDoubleListMenu(newDoubleList);
+		}catch (Exception e){		
+			System.out.println("Do you want to exit the double list menu ? (Yes / No)");
+			exitDoubleListMenu(newDoubleList);
+		}
+		
+	}
+	
+	
+	private static void exitDoubleListMenu(DoubleList<Integer> newDoubleList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitDoubleListMenu(newDoubleList);
+			default:
+				exitDoubleListMenu(newDoubleList);
+			}
+		}catch (Exception e){
+		}
+	}
+	
+	private static void SimpleListMenu(SimpleList<Integer> SimpleList){
+		System.out.println("What do you want to do ?");
+		System.out.println("1) Insert at the beginning");
+		System.out.println("2) Insert at the end");
+		System.out.println("3) Search");
+		System.out.println("4) Delete the beginning");
+		System.out.println("5) Delete the end");
+		System.out.println("6) Delete a node");
+		System.out.println("Enter your option");
+		try{
+			choose = in.nextInt();
+			switch (choose){
+			case 1:
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					SimpleList.insert(size);
+				}catch(Exception e){
+				}
+			case 2: 
+				try{
+					System.out.println("Insert the number to add: ");
+					size = in.nextInt();
+					SimpleList.append(size);
+				}catch(Exception e){
+				}
+			case 3:
+				try{
+					System.out.println("Insert the number to search");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + SimpleList.exists(size));
+				}catch(Exception e){
+				}
+			case 4 :
+				try{
+					SimpleList.delete();
+				}catch(Exception e){
+				}
+			case 5:
+				try{
+					SimpleList.cut();
+				}catch(Exception e){
+				}
+			case 6:
+				try{
+					System.out.println("Insert the number to delete");
+					size = in.nextInt();
+					System.out.println("Does that number exist?" + SimpleList.exists(size));
+				}catch(Exception e){
+				}
+			}
+			System.out.println("Do you want to exit the simple list menu ? (Yes / No)");
+			exitSimpleList(SimpleList);
+		}catch (Exception e){
+			System.out.println("Do you want to exit the simple list menu ? (Yes / No)");
+			exitSimpleList(SimpleList);
+		}
+	}
+	
+	private static void exitSimpleList(SimpleList<Integer> SimpleList){
+		try{
+			exit = in.next();
+			switch (exit){
+			case "Yes":
+				break;
+			case "No":
+				exitSimpleList(SimpleList);
+			default:
+				exitSimpleList(SimpleList);
+			}
+		}catch (Exception e){
 		}
 	}
 	private static void test1(){
