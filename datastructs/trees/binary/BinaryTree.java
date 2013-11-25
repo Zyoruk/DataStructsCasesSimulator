@@ -54,62 +54,71 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	if((Integer)data > (Integer)this.root.getData()){
 	            	if(this.root.getRight() == null){
 	            		this.root.setRight(data);
+	            		this.lenght++;
+	            		return true;
 	            	}else {
 	                    recursivetree.setRoot(this.root.getRight());
-	                    insertNode(data, recursivetree);
+	                    return insertNode(data, recursivetree);
 	            	}
-	                this.lenght++;
+
                 }else if ((Integer)data < (Integer)this.root.getData()){
                 	if(this.root.getLeft() == null){
                 		this.root.setLeft(data);
+                		this.lenght++;
+                		return true;
                 	}else {
                 		recursivetree.setRoot(this.root.getLeft());
-                        insertNode(data, recursivetree);
+                        return insertNode(data, recursivetree);
                 	}
-                    this.lenght++;
+
                 }else {
 //                    System.out.println("El elemento ya existe, no se volverá "
 //                    				   + "a insertar.");
-                    return false;
                 }
             }
         	
         }else{
         	BinaryNode<K> node = new BinaryNode<K>(data);
             this.root = node;
+            this.lenght++;
+    		return true;
         }
-                return true;
+        return false;
     }
 
     //AUX Add data
-    private void insertNode(K data, BinaryTree<K> tree){
+    private boolean insertNode(K data, BinaryTree<K> tree){
         
     	if(data.getClass().equals(Integer.class)){
             if((Integer) data > (Integer) tree.root.getData()){
             	
             	if(tree.root.getRight() == null){
             		tree.root.setRight(data);
+                    this.lenght++;
+            		return true;
             		
             	} else{
 	                tree.root = tree.root.getRight();
-	                insertNode(data, tree);
+	                return insertNode(data, tree);
             	}
             	
             }else if ((Integer) data < (Integer) tree.root.getData()){
             	
             	if(tree.root.getLeft() == null){
             		tree.root.setLeft(data);
+            		this.lenght++;
+            		return true;
             	} else{
             		tree.root = tree.root.getLeft();
-            		insertNode(data, tree);
+            		return insertNode(data, tree);
             	}
             	
             }else{
 //            	System.out.println("El elemento ya existe, no se volverá " +
-// 					   "a insertar.");
+//								   "a insertar.");
             }
-            this.lenght++;
         }
+    	return false;
     }
 
     public boolean insert(BinaryNode<K> pnode) {
@@ -121,36 +130,42 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	
             	//Conditions of insert
             	if((Integer)pnode.getData() > (Integer)this.root.getData()){
-	            	if(this.root.getRight() == null){
+	            	
+            		if(this.root.getRight() == null){
 	            		this.root.setRight(pnode);
+	            		this.lenght++;
+	            		return true;
 	            	}else {
 	                    recursivetree.setRoot(this.root.getRight());
 	                    insertNode(pnode, recursivetree);
 	            	}
-	                this.lenght++;
+
                 }else if ((Integer)pnode.getData() < (Integer)this.root.getData()){
                 	if(this.root.getLeft() == null){
                 		this.root.setLeft(pnode);
+                		this.lenght++;
+                		return true;
                 	}else {
                 		recursivetree.setRoot(this.root.getLeft());
                         insertNode(pnode, recursivetree);
                 	}
-                    this.lenght++;
+
                 }else {
 //                    System.out.println("El elemento ya existe, no se volverá "
 //                    				   + "a insertar.");
-                    return false;
                 }
             }
-        	
+            
         }else{
             this.root = pnode;
+            this.lenght++;
+    		return true;
         }
-                return true;
+        return false;
     }
 
     //AUX Add data
-    private void insertNode(BinaryNode<K> pnode, BinaryTree<K> tree){
+    private boolean insertNode(BinaryNode<K> pnode, BinaryTree<K> tree){
 
     	if(pnode.getData().getClass().equals(Integer.class)){
         
@@ -159,6 +174,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	
             	if(tree.root.getRight() == null){
             		tree.root.setRight(pnode);
+            		this.lenght++;
+            		return true;
             	} else{
 	                tree.root = tree.root.getRight();
 	                insertNode(pnode, tree);
@@ -168,6 +185,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	
             	if(tree.root.getLeft() == null){
             		tree.root.setLeft(pnode);
+            		this.lenght++;
+            		return true;
             	} else{
             		tree.root = tree.root.getLeft();
             		insertNode(pnode, tree);
@@ -175,10 +194,10 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	
             }else{
 //            	System.out.println("El elemento ya existe, no se volverá " +
-// 					   "a insertar.");
+// 								   "a insertar.");
             }
-            this.lenght++;
         }
+    	return false;
     }
 
     
