@@ -215,23 +215,24 @@ public class BinaryTree<K> implements TreeInterface<K>{
 
         //**********************************************************************//
     /*
-         * How to goes through the tree made by an exit.
-         */
-        public void preorden (){
-        	list.append(this.root.getData());
-            if (this.root.getLeft() != null){
-            	preorden_extended(this.root.getLeft());
-            }
-            if (this.root.getRight() != null){
-            	preorden_extended(this.root.getRight());
-            }
+     * How to goes through the tree made by an exit.
+     */
+    public void preorden (){
+    	list.append(this.root.getData());
+        if (this.root.getLeft() != null){
+        	preorden_extended(this.root.getLeft());
         }
+        if (this.root.getRight() != null){
+        	preorden_extended(this.root.getRight());
+        }
+    }
 
-        /*
-         * Extended method for going though the exit.
-         */
-        private void preorden_extended(BinaryNode<K> pnode){
+    /*
+     * Extended method for going though the exit.
+     */
+    private void preorden_extended(BinaryNode<K> pnode){
 
+<<<<<<< HEAD
 //        	System.out.println(pnode.getData());
             list.append(pnode.getData());
             if (pnode.getLeft() != null){
@@ -240,12 +241,30 @@ public class BinaryTree<K> implements TreeInterface<K>{
             if (pnode.getRight() != null){
             	preorden_extended(this.root.getRight());
             }
+=======
+    	System.out.println(pnode.getData());
+        list.append(pnode.getData());
+        if (pnode.getLeft() != null){
+        	preorden_extended(this.root.getLeft());
+>>>>>>> 294ccc419ae683ec221ce1c6685dff817e172495
         }
-
-        @Override
-        public String describe() {
-            this.preorden();
-            return ("That's it");
+        if (pnode.getRight() != null){
+        	preorden_extended(this.root.getRight());
         }
+    }
 
+    @Override
+    public String describe() {
+        this.preorden();
+		int[] array = new int[list.length()];
+		for(int i = 0 ; i < list.length() ; i++){
+			array[i] = (Integer) list.getRootData();
+			list.delete();
+		}
+		list.clear();
+		for(int i=0; i<array.length;i++ ){
+    		System.out.println(array[i]);
+    	}
+		return("Done bitch");
+    }
 }
