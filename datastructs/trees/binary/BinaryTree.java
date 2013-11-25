@@ -41,8 +41,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             this.root = proot;
     }
 
-        //Adds node to tree. Append as the insert is placed at the end.
-        @Override
+    //Adds node to tree. Append as the insert is placed at the end.
+    @Override
     public boolean insert(K data) {
         if (this.root != null){
         	BinaryTree<K> recursivetree = new BinaryTree<K>();
@@ -109,6 +109,75 @@ public class BinaryTree<K> implements TreeInterface<K>{
         }
     }
 
+    public boolean insert(BinaryNode<K> pnode) {
+        if (this.root != null){
+        	BinaryTree<K> recursivetree = new BinaryTree<K>();
+            
+            //If is a integer
+            if(pnode.getData().getClass().equals(Integer.class)){
+            	
+            	//Conditions of insert
+            	if((Integer)pnode.getData() > (Integer)this.root.getData()){
+	            	if(this.root.getRight() == null){
+	            		this.root.setRight(pnode);
+	            	}else {
+	                    recursivetree.setRoot(this.root.getRight());
+	                    insertNode(pnode, recursivetree);
+	            	}
+	                this.lenght++;
+                }else if ((Integer)pnode.getData() < (Integer)this.root.getData()){
+                	if(this.root.getLeft() == null){
+                		this.root.setLeft(pnode);
+                	}else {
+                		recursivetree.setRoot(this.root.getLeft());
+                        insertNode(pnode, recursivetree);
+                	}
+                    this.lenght++;
+                }else {
+                    System.out.println("El elemento ya existe, no se volverá "
+                    				   + "a insertar.");
+                    return false;
+                }
+            }
+        	
+        }else{
+            this.root = pnode;
+        }
+                return true;
+    }
+
+    //AUX Add data
+    private void insertNode(BinaryNode<K> pnode, BinaryTree<K> tree){
+
+    	if(pnode.getData().getClass().equals(Integer.class)){
+        
+    		
+    		if((Integer) pnode.getData() > (Integer) tree.root.getData()){
+            	
+            	if(tree.root.getRight() == null){
+            		tree.root.setRight(pnode);
+            	} else{
+	                tree.root = tree.root.getRight();
+	                insertNode(pnode, tree);
+            	}
+            	
+            }else if ((Integer) pnode.getData() < (Integer) tree.root.getData()){
+            	
+            	if(tree.root.getLeft() == null){
+            		tree.root.setLeft(pnode);
+            	} else{
+            		tree.root = tree.root.getLeft();
+            		insertNode(pnode, tree);
+            	}
+            	
+            }else{
+            	System.out.println("El elemento ya existe, no se volverá " +
+ 					   "a insertar.");
+            }
+        }
+    }
+
+    
     //Goes thru tree and delete node accordin' to childs.
     @Override
     public boolean delete (K data) {
@@ -120,46 +189,47 @@ public class BinaryTree<K> implements TreeInterface<K>{
     	
     	BinaryNode<K> current = search(data);
     	BinaryNode<K> previous = search2(data);
-    	
-    	if (previous.getLeft().getData() == data){
-    		
-    		if (current.getLeft() != null && current.getRight() != null){
-                previous.setLeft(this.smallerOfGreatests(current));
-            
-            }else if (current.getLeft() == null && 
-            		  current.getRight() != null){
-            	
-                previous.setLeft(current.getRight());
-            
-            }else if (current.getLeft() != null && 
-            		current.getRight() == null){
-            	
-            	previous.setLeft(current.getLeft());
-            
-            }else{
-            	previous.setLeft();
-            }
-    		
-    	} else {
-    		
-    		if (current.getLeft() != null && current.getRight() != null){
-                previous.setRight(this.smallerOfGreatests(current));
-            
-            }else if (current.getLeft() == null && current.getRight() != null){
-                previous.setRight(current.getRight());
-            
-            }else if (current.getLeft() != null && current.getRight() == null){
-                previous.setRight(current.getLeft());
-            
-            }else{
-                previous.setRight();
-            }
-    	}
+    	try{
+    		if (previous.getLeft().getData() == data){
+        		
+        		if (current.getLeft() != null && current.getRight() != null){
+                    previous.setLeft(this.smallerOfGreatests(current));
+                
+                }else if (current.getLeft() == null && 
+                		  current.getRight() != null){
+                	
+                    previous.setLeft(current.getRight());
+                
+                }else if (current.getLeft() != null && 
+                		current.getRight() == null){
+                	
+                	previous.setLeft(current.getLeft());
+                
+                }else{
+                	previous.setLeft();
+                }
+        		
+        	} else {
+        		
+        		if (current.getLeft() != null && current.getRight() != null){
+                    previous.setRight(this.smallerOfGreatests(current));
+                
+                }else if (current.getLeft() == null && current.getRight() != null){
+                    previous.setRight(current.getRight());
+                
+                }else if (current.getLeft() != null && current.getRight() == null){
+                    previous.setRight(current.getLeft());
+                
+                }else{
+                    previous.setRight();
+                }
+        	}
+    	} catch(Exception e){}    	
     	
 		return true;
     }
         
-    public BinaryNode<K> search(K pk){
+    private BinaryNode<K> search(K pk){
 //		System.out.println("Aquitoy");
     	BinaryNode<K> current = this.root;
     	@SuppressWarnings("unused")
@@ -171,9 +241,9 @@ public class BinaryTree<K> implements TreeInterface<K>{
         	if((Integer)pk > (Integer)current.getData() &&
         	   current.getRight() != null){
 
-        			previous = current;
-	        		current = current.getRight();
-//	        		System.out.println("derecha");
+    			previous = current;
+        		current = current.getRight();
+//	        	System.out.println("derecha");
 	        		
 	        		
     		}
@@ -194,11 +264,11 @@ public class BinaryTree<K> implements TreeInterface<K>{
     		}
         }
     	
-//      System.out.println(current.getData());
+      //System.out.println(current.getData());
         return current;
     }
     
-    public BinaryNode<K> search2(K pk){
+    private BinaryNode<K> search2(K pk){
 //		System.out.println("Ahora aqui");
     	BinaryNode<K> current = this.root;
 		BinaryNode<K> previous = new BinaryNode<K>();
@@ -209,9 +279,9 @@ public class BinaryTree<K> implements TreeInterface<K>{
         	if((Integer)pk > (Integer)current.getData() &&
         	   current.getRight() != null){
 
-        			previous = current;
-	        		current = current.getRight();
-//	        		System.out.println("derecha");
+    			previous = current;
+        		current = current.getRight();
+//	        	System.out.println("derecha");
 	        		
     		}
         	
@@ -231,23 +301,35 @@ public class BinaryTree<K> implements TreeInterface<K>{
     		}
         }
     	
-//      System.out.println(current.getData());
+      //System.out.println(previous.getData());
         return previous;
     }
     
     private BinaryNode<K> smallerOfGreatests(BinaryNode<K> node){
-    	BinaryNode<K> previous = node;
+
+    	@SuppressWarnings("unused")
+		BinaryNode<K> previous = node;
+    	//Gets greater numbers
     	BinaryNode<K> current = node.getRight();
+    	BinaryTree<K> tree= new BinaryTree<K>();
     	
+    	//Gets the node in question
     	if(current.getLeft() != null){
     		while(current.getLeft() != null){
     			previous = current;
-        		current = this.root.getLeft();
+        		current = node.getLeft();
     		}
-    	}
+    	}		
+//		System.out.println(current.getData());
+    	
+    	//If that node has a right branch it is  inserted on the right branch 
+    	//of the node to be deleted
     	if (current.getRight() != null){
-    		previous.setLeft(current.getRight());
+    		tree.insert(current.getRight());
     	}
+    	
+    	current.setRight(node.getLeft());	
+    	
         return current;
     }
 
@@ -276,7 +358,6 @@ public class BinaryTree<K> implements TreeInterface<K>{
     public boolean exists(K pk) {
     	BinaryNode<K> node = search(pk);
     	return (node.getData() == pk);
-    		
     }
 
     //**********************************************************************//

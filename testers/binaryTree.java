@@ -18,12 +18,19 @@ public class binaryTree {
 
 		System.out.println(newBT.describe());
 		
+		//System.out.println("***************************");
+		
 		newBT.delete(8);
 		
+		//System.out.println(newBT.describe());
+		
+		System.out.println("***************************");
+		
+		newBT.delete(81);
+		
+		//newBT.insert(10);
+		
 		System.out.println(newBT.describe());
-		
-		newBT.delete(80);
-		
 		/*
 		newBT.delete(3);
 		System.out.println(newBT.describe());
