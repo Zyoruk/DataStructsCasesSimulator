@@ -24,6 +24,14 @@ public class binaryTree {
 		*/
 
 		System.out.println(newBT.describe());
+		
+		newBT.delete(80);
+		
+		newBT.delete(3);
+		System.out.println(newBT.describe());
+		
+		newBT.delete(5);
+		System.out.println(newBT.describe());
 
 
 	}

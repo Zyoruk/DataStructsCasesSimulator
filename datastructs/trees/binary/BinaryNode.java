@@ -61,6 +61,10 @@ public class BinaryNode<K>{
     	this.data = pk;
     }
     
+    public void setLeft(){
+    	this.left = null;
+    }
+    
     public void setLeft(K pk){
     	BinaryNode<K> left = new BinaryNode<K>(pk);
     	this.left = left;
@@ -68,6 +72,10 @@ public class BinaryNode<K>{
     
     public void setLeft(BinaryNode<K> pk){
     	this.left = pk;
+    }
+    
+    public void setRight(){
+    	this.left = null;
     }
     
     public void setRight(K pk){

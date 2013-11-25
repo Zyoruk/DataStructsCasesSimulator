@@ -111,106 +111,149 @@ public class BinaryTree<K> implements TreeInterface<K>{
 
     //Goes thru tree and delete node accordin' to childs.
     @Override
-        public boolean delete (K data) {
-        if (this.root == null){
-            System.out.println("El elemento no se enuentra en el arbol");
+    public boolean delete (K data) {
+    	
+    	if (this.root == null){
+            System.out.println("El elemento no se encuentra en el arbol");
             return false;
-        }else{
-            BinaryTree<K> temp = this;
-            if(data.getClass().equals(Integer.class)){
-                    if(data == this.root.getData()){
-                    temp.root = waysToDelete(temp);
-                }else if ((Integer) data < (Integer) temp.root.getData()){
-                    temp.root = temp.root.getLeft();
-                    this.root.setLeft(deleteNode(data, temp));
-                    this.lenght--;
-                }else{
-                    temp.root = temp.root.getRight();
-                    this.root.setRight(deleteNode(data, temp));
-                    this.lenght--;
-                }
+        }
+    	
+    	BinaryNode<K> current = search(data);
+    	BinaryNode<K> previous = search(data);
+    	
+    	if (previous.getLeft().getData() == data){
+    		
+    		if (current.getLeft() != null && current.getRight() != null){
+                previous.setLeft(this.smallerOfGreatests(current));
+            
+            }else if (current.getLeft() == null && 
+            		  current.getRight() != null){
+            	
+                previous.setLeft(current.getRight());
+            
+            }else if (current.getLeft() != null && 
+            		current.getRight() == null){
+            	
+            	previous.setLeft(current.getLeft());
+            
+            }else{
+            	previous.setLeft();
             }
+    		
+    	} else {
+    		
+    		if (current.getLeft() != null && current.getRight() != null){
+                previous.setRight(this.smallerOfGreatests(current));
+            
+            }else if (current.getLeft() == null && current.getRight() != null){
+                previous.setRight(current.getRight());
+            
+            }else if (current.getLeft() != null && current.getRight() == null){
+                previous.setRight(current.getLeft());
+            
+            }else{
+                previous.setRight();
+            }
+    	}
+    	
+		return true;
+    }
+        
+    public BinaryNode<K> search(K pk){
+    	BinaryNode<K> current = this.root;
+    	@SuppressWarnings("unused")
+		BinaryNode<K> previous = new BinaryNode<K>();
+    	
+    	//If is a integer
+        if(pk.equals(Integer.class)){
+        	
+        	while(current.getData() != pk){
+        	
+	        	//Conditions of insert
+	        	if((Integer)pk > (Integer)this.root.getData()){
+	        		previous = current;
+	        		current = this.root.getRight();
+	        	} else if ((Integer)pk < (Integer)this.root.getData()){
+	        		previous = current;
+	        		current = this.root.getLeft();
+	            } else {
+	            	return current;
+	            }
+        	}
         }
-        return true;
+        return current;
+    }
+    
+    public BinaryNode<K> search2(K pk){
+    	BinaryNode<K> current = this.root;
+    	BinaryNode<K> previous = new BinaryNode<K>();
+    	
+    	//If is a integer
+        if(pk.equals(Integer.class)){
+        	
+        	while(current.getData() != pk){
+        	
+	        	//Conditions of insert
+	        	if((Integer)pk > (Integer)this.root.getData()){
+	        		previous = current;
+	        		current = this.root.getRight();
+	        	}
+	            
+	        	if ((Integer)pk < (Integer)this.root.getData()){
+	        		previous = current;
+	        		current = this.root.getLeft();
+	            }
+        	}
         }
-
-    //AUX deleteNode
-    private BinaryNode<K> deleteNode(K data, BinaryTree<K> temp) {
-        if (temp == null){
-            System.out.println("El arbol se encuentra vacío");
-        }else{
-                if(data.getClass().equals(Integer.class)){
-                        if(data == temp.root.getData()){
-                    temp.root = waysToDelete(temp);
-                }else if ((Integer)data < (Integer)this.root.getData()){
-                    temp.root = temp.root.getLeft();
-                    deleteNode(data, temp);
-                }else{
-                    temp.root = temp.root.getRight();
-                    deleteNode(data, temp);
-                }
-                }
-        }
-        return temp.root;
+        return previous;
+    }
+    
+    private BinaryNode<K> smallerOfGreatests(BinaryNode<K> node){
+    	BinaryNode<K> previous = node;
+    	BinaryNode<K> current = node.getRight();
+    	
+    	if(current.getLeft() != null){
+    		while(current.getLeft() != null){
+    			previous = current;
+        		current = this.root.getLeft();
+    		}
+    	}
+    	if (current.getRight() != null){
+    		previous.setLeft(current.getRight());
+    	}
+        return current;
     }
 
-    //Return new tree after deletion.
-    private BinaryNode<K> waysToDelete(BinaryTree<K> tree){
-        BinaryTree<K> temp = new BinaryTree<K>();;
-        if (tree.root.getLeft() != null && tree.root.getRight() != null){
-            temp.root = reArrange(tree);
-        }else if (tree.root.getLeft() == null && tree.root.getRight() != null){
-            temp.root = tree.root.getRight();
-        }else if (tree.root.getLeft() != null && tree.root.getRight() == null){
-            temp.root = tree.root.getLeft();
-        }else{
-            temp.root = null;
-        }
-        return temp.root;
-    }
-
-    private BinaryNode<K> reArrange(BinaryTree<K> TREE){
-        BinaryTree<K> temp = new BinaryTree<K>(); //Arbol para la busqueda
-        BinaryTree<K> tree = new BinaryTree<K>(); //Nuevo arbol
-
-        tree.setRoot(TREE.getRoot().getLeft());
-        temp.root = TREE.getRoot().getLeft();
-
-        while(temp.root.getRight() != null){
-            temp.root = temp.root.getLeft();
-        }
-        temp.root.setRight(TREE.getRoot().getRight());
-        return tree.root;
-    }
-
+    //**********************************************************************//
+    
     public boolean setEmpty(){
         this.root = null;
         return true;
     }
 
-        //**********************************************************************//
-
     public BinaryNode<K> getRoot(){
         return root;
     }
 
-        @Override
-        public int length() {
-                return lenght;
-        }
+    @Override
+    public int length() {
+        return lenght;
+    }
 
-        @Override
-        public boolean isEmpty() {
-                return this.getRoot() == null;
-        }
+    @Override
+    public boolean isEmpty() {
+        return this.getRoot() == null;
+    }
 
-        @Override
-        public boolean exists(K pk) {
-                // TODO Auto-generated method stub
-                return false;
-        }
+    @Override
+    public boolean exists(K pk) {
+    	BinaryNode<K> node = search(pk);
+    	return (node.getData() == pk);
+    		
+    }
 
-        //**********************************************************************//
+    //**********************************************************************//
+    
     /*
      * How to goes through the tree made by an exit.
      */
