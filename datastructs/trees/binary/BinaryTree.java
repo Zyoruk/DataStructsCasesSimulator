@@ -235,11 +235,9 @@ public class BinaryTree<K> implements TreeInterface<K>{
     	BinaryNode<K> current = this.root;
     	@SuppressWarnings("unused")
 		BinaryNode<K> previous = new BinaryNode<K>();
-//        System.out.println(pk);
+
+    	
     	while(current.getData() != pk){
-    		System.out.println(current.getData());
-    		System.out.println(current.getRight().getData());
-    		System.out.println(current.getLeft().getData());
     		//Conditions of insert
         	if((Integer)pk > (Integer)current.getData() &&
         	   current.getRight() != null){
