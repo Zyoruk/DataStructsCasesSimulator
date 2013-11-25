@@ -1698,7 +1698,7 @@ public class Simulator {
 		System.out.println("Delete lasted: " + (end - start)+ "nano seconds\n");
 
 		start = System.nanoTime();
-		ourArray.search(3677);
+		ourArray.exists(3677);
 		end = System.nanoTime();
 		System.out.println("Search lasted: " + (end - start)+ "nano seconds");
 		
@@ -1747,7 +1747,7 @@ public class Simulator {
 		System.out.println("Delete lasted: " + (end - start)+ "nano seconds\n");
 
 		start = System.nanoTime();
-		ourArray.search(976);
+		ourArray.exists(976);
 		end = System.nanoTime();
 		System.out.println("Search lasted: " + (end - start)+ "nano seconds\n");
 		
@@ -1796,7 +1796,7 @@ public class Simulator {
 		System.out.println("Delete lasted: " + (end - start)+ "nano seconds\n");
 
 		start = System.nanoTime();
-		ourArray.search(439);
+		ourArray.exists(439);
 		end = System.nanoTime();
 		System.out.println("Search lasted: " + (end - start)+ "nano seconds\n");
 		
@@ -1845,7 +1845,7 @@ public class Simulator {
 		System.out.println("Delete lasted: " + (end - start)+ "nano seconds\n");
 
 		start = System.nanoTime();
-		ourArray.search(7654);
+		ourArray.exists(7654);
 		end = System.nanoTime();
 		System.out.println("Search lasted: " + (end - start)+ "nano seconds\n");
 		

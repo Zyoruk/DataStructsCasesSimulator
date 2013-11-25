@@ -9,6 +9,9 @@ public class splayTree {
 		ourST.insert(34);
 		ourST.insert(45);
 		ourST.insert(23);
+		ourST.insert(34);
+		ourST.insert(23);
+		
 		
 		System.out.println(ourST.length());
 		
