@@ -119,7 +119,7 @@ public class BinaryTree<K> implements TreeInterface<K>{
         }
     	
     	BinaryNode<K> current = search(data);
-    	BinaryNode<K> previous = search(data);
+    	BinaryNode<K> previous = search2(data);
     	
     	if (previous.getLeft().getData() == data){
     		
@@ -160,51 +160,78 @@ public class BinaryTree<K> implements TreeInterface<K>{
     }
         
     public BinaryNode<K> search(K pk){
+//		System.out.println("Aquitoy");
     	BinaryNode<K> current = this.root;
     	@SuppressWarnings("unused")
 		BinaryNode<K> previous = new BinaryNode<K>();
-    	
-    	//If is a integer
-        if(pk.equals(Integer.class)){
         	
-        	while(current.getData() != pk){
+    	while(current.getData() != pk){
         	
-	        	//Conditions of insert
-	        	if((Integer)pk > (Integer)this.root.getData()){
-	        		previous = current;
-	        		current = this.root.getRight();
-	        	} else if ((Integer)pk < (Integer)this.root.getData()){
-	        		previous = current;
-	        		current = this.root.getLeft();
-	            } else {
-	            	return current;
-	            }
-        	}
+    		//Conditions of insert
+        	if((Integer)pk > (Integer)current.getData() &&
+        	   current.getRight() != null){
+
+        			previous = current;
+	        		current = current.getRight();
+//	        		System.out.println("derecha");
+	        		
+	        		
+    		}
+        	
+    		if ((Integer)pk < (Integer)current.getData() && 
+				current.getLeft() != null){
+					
+        		previous = current;
+        		current = current.getLeft();
+//        		System.out.println("izquierda");
+    		}
+    		
+    		if(current.getLeft() == null && current.getRight() == null &&
+    		   current.getData() != pk) {
+    			
+    			System.out.println("No fruit in this tree...");
+    			break;
+    		}
         }
+    	
+//      System.out.println(current.getData());
         return current;
     }
     
     public BinaryNode<K> search2(K pk){
+//		System.out.println("Ahora aqui");
     	BinaryNode<K> current = this.root;
-    	BinaryNode<K> previous = new BinaryNode<K>();
-    	
-    	//If is a integer
-        if(pk.equals(Integer.class)){
+		BinaryNode<K> previous = new BinaryNode<K>();
         	
-        	while(current.getData() != pk){
+    	while(current.getData() != pk){
         	
-	        	//Conditions of insert
-	        	if((Integer)pk > (Integer)this.root.getData()){
-	        		previous = current;
-	        		current = this.root.getRight();
-	        	}
-	            
-	        	if ((Integer)pk < (Integer)this.root.getData()){
-	        		previous = current;
-	        		current = this.root.getLeft();
-	            }
-        	}
+    		//Conditions of insert
+        	if((Integer)pk > (Integer)current.getData() &&
+        	   current.getRight() != null){
+
+        			previous = current;
+	        		current = current.getRight();
+//	        		System.out.println("derecha");
+	        		
+    		}
+        	
+    		if ((Integer)pk < (Integer)current.getData() && 
+				current.getLeft() != null){
+					
+        		previous = current;
+        		current = current.getLeft();
+//        		System.out.println("izquierda");
+    		}
+    		
+    		if(current.getLeft() == null && current.getRight() == null &&
+    		   current.getData() != pk) {
+    			
+    			System.out.println("No fruit in this tree...");
+    			break;
+    		}
         }
+    	
+//      System.out.println(current.getData());
         return previous;
     }
     

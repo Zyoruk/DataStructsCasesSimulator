@@ -15,24 +15,22 @@ public class binaryTree {
 		newBT.insert(3);
 		newBT.insert(6);
 		newBT.insert(9);
-		
-		/*
-		System.out.println(newBT.getRoot().getLeft().getLeft().getData());
-		System.out.println(newBT.getRoot().getLeft().getRight().getData());
-		System.out.println(newBT.getRoot().getRight().getLeft().getData());
-		System.out.println(newBT.getRoot().getRight().getRight().getData());
-		*/
 
+		System.out.println(newBT.describe());
+		
+		newBT.delete(8);
+		
 		System.out.println(newBT.describe());
 		
 		newBT.delete(80);
 		
+		/*
 		newBT.delete(3);
 		System.out.println(newBT.describe());
 		
 		newBT.delete(5);
 		System.out.println(newBT.describe());
-
+		*/
 
 	}
 
