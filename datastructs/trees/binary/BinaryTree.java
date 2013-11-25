@@ -48,11 +48,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
         //Adds node to tree. Append as the insert is placed at the end.
         @Override
     public boolean insert(K data) {
-                if (this.root == null){
-            BinaryNode<K> node = new BinaryNode<K>(data);
-            this.root = node;
-        }else{
-            BinaryTree<K> recursivetree = new BinaryTree<K>();
+        if (this.root != null){
+        	BinaryTree<K> recursivetree = new BinaryTree<K>();
             
             //If is a integer
             if(data.getClass().equals(Integer.class)){
@@ -80,6 +77,10 @@ public class BinaryTree<K> implements TreeInterface<K>{
                     return false;
                 }
             }
+        	
+        }else{
+        	BinaryNode<K> node = new BinaryNode<K>(data);
+            this.root = node;
         }
                 return true;
     }
@@ -98,8 +99,8 @@ public class BinaryTree<K> implements TreeInterface<K>{
             	
             }else if ((Integer) data < (Integer) tree.root.getData()){
             	
-            	if(tree.root.getRight() == null){
-            		tree.root.setRight(data);
+            	if(tree.root.getLeft() == null){
+            		tree.root.setLeft(data);
             	} else{
             		tree.root = tree.root.getLeft();
             		insertNode(data, tree);
@@ -232,21 +233,10 @@ public class BinaryTree<K> implements TreeInterface<K>{
      */
     private void preorden_extended(BinaryNode<K> pnode){
 
-<<<<<<< HEAD
-//        	System.out.println(pnode.getData());
-            list.append(pnode.getData());
-            if (pnode.getLeft() != null){
-            	preorden_extended(this.root.getLeft());
-            }
-            if (pnode.getRight() != null){
-            	preorden_extended(this.root.getRight());
-            }
-=======
-    	System.out.println(pnode.getData());
+    	//System.out.println(pnode.getData());
         list.append(pnode.getData());
         if (pnode.getLeft() != null){
         	preorden_extended(this.root.getLeft());
->>>>>>> 294ccc419ae683ec221ce1c6685dff817e172495
         }
         if (pnode.getRight() != null){
         	preorden_extended(this.root.getRight());
