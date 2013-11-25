@@ -283,6 +283,10 @@ public class SimpleList<K> implements ListInterface<K>, Iterable<K> {
 		return current.getElem();
 	}
 
+	public K getRootData() {
+		return this.head.getElem();
+	}
+
 //	@Override
 //	public double getExecuteTime() {
 //		double executeTime = this._end - this._start;

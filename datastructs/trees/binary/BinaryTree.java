@@ -245,7 +245,20 @@ public class BinaryTree<K> implements TreeInterface<K>{
         @Override
         public String describe() {
             this.preorden();
-            return ("That's it");
+    		int[] array = new int[list.length()];
+    		for(int i = 0 ; i < list.length() ; i++){
+    			array[i] = (Integer) list.getRootData();
+    			list.delete();
+    		}
+    		list.clear();
+    		this.describeExtended(array);
+    		return("Done bitch");
+        }
+        
+        private void describeExtended(int [] array){
+        	for(int i=0; i<array.length;i++ ){
+        		System.out.println(array[i]);
+        	}
         }
 
 }
