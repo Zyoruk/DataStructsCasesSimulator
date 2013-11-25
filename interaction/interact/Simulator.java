@@ -39,10 +39,10 @@ public class Simulator {
 
 	}
 	private static void mainMenu(){
-		System.out.println("Welcome to the main menu");
-		System.out.println("Please choose: ");
+		System.out.println("						Welcome to the main menu\n");
+		System.out.println("Please choose: \n");
 		System.out.println("1)Do you want to see tests?" + 
-							"\n2)Do you want to use data structures?");
+							"\n2)Do you want to use data structures?\n");
 		System.out.println("Enter 1 or 2 and hit enter ");
 		
 		try{
@@ -50,6 +50,7 @@ public class Simulator {
 			switch (choose){
 			case 1 :
 				simulatorMenu();
+				break;
 			case 2 :
 				structureInteractionMenu();
 				break;	
@@ -76,68 +77,82 @@ public class Simulator {
 	}
 
 	private static void simulatorMenu(){
-		System.out.println("Welcome to the structure performance simulator");
-		System.out.println("Please, choose which option you want to simulate");
-		System.out.println("1. Simple Linked list with Double Linked list");
-		System.out.println("2. Simple  Linked Circular List with Double  Linked Circular List");
-		System.out.println("3. AVL with Splay");
-		System.out.println("4. Splay with Binary");
-		System.out.println("5. AVL with Binary");
-		System.out.println("6. Queue implemented with list and with array");
-		System.out.println("7. Stack implemented with list and with array");
-		System.out.println("8. Biqueue");
-		System.out.println("9. Array with Simple List");
-		System.out.println("10. Array with Double List");
-		System.out.println("11. Array with Simple Circular List");
-		System.out.println("12. Array with Double Circular List");
+		System.out.println("						Welcome to the structure performance simulator\n");
+		System.out.println("Please, choose which option you want to simulate: ");
+		System.out.println("	1. Simple Linked list with Double Linked list");
+		System.out.println("	2. Simple  Linked Circular List with Double  Linked Circular List");
+		System.out.println("	3. AVL with Splay");
+		System.out.println("	4. Splay with Binary");
+		System.out.println("	5. AVL with Binary");
+		System.out.println("	6. Queue implemented with list and with array");
+		System.out.println("	7. Stack implemented with list and with array");
+		System.out.println("	8. Biqueue");
+		System.out.println("	9. Array with Simple List");
+		System.out.println("	10. Array with Double List");
+		System.out.println("	11. Array with Simple Circular List");
+		System.out.println("	12. Array with Double Circular List");
 		simulator();
 	}
 	
 	private static void simulator(){
 		try{
-			System.out.println("Write the option number:");
+			System.out.println("Write the option number and hit enter: (1 to 12)");
 			choose = in.nextInt();
-			System.out.println("Please, now enter how large you want the structure to be (larger than 1 less than 100 000): ");
+			System.out.println("Please, now enter how large you want the structure to be  and hit enter: (larger than 1 less than 100 000)");
 			size = in.nextInt();
 			switch (choose) {
 				case 1:
 				test1();
+				break;
 				case 2:  choose = 2;
 				test2();
+				break;
 				case 3:  choose = 3;
 				test3();
+				break;
 				case 4:  choose = 4;
 				test4();
+				break;
 				case 5:  choose = 5;
 				test5();
+				break;
 				case 6:  choose = 6;
 				test6();
+				break;
 				case 7:  choose = 7;
 				test7();
+				break;
 				case 8:  choose = 8;
 				test8();
+				break;
 				case 9:  choose = 9;
 				test9();
+				break;
 				case 10: choose = 10;
 				test10();
+				break;
 				case 11: choose = 11;
 				test11();
+				break;
 				case 12: choose = 12;
 				test12();
+				break;
 				default:
 					System.out.println("Invalid integer");
+					break;
 			}
-			System.out.println("Do you want to exit the simulator?(Yes / No)");
+			System.out.println("Do you want to exit the simulator? (Yes / No)");
 			exitSimulator();
 		}catch(Exception e){
-			System.out.println("Do you want to exit the simulator?(Yes / No)");
+			System.out.println("Do you want to exit the simulator? (Yes / No)");
 			exitSimulator();
 		}
 	}
 	
 	private static void exitSimulator(){
-		exit = in.next();
-		switch(exit){
+		try{
+			exit = in.next();
+			switch(exit){
 			case "No":
 				simulator();
 				break;
@@ -146,24 +161,27 @@ public class Simulator {
 			default:
 				exitSimulator();
 				break;
+			}
+		}catch (Exception e){
+			exitSimulator();
 		}
 	}
 	
 	private	static void structureInteractionMenu(){
-		System.out.println("Welcome to the structure Interaction menu");
-		System.out.println("Please, choose which structure you want to interact with\n " +
-				"1) Simple List\n" +
-				"2) Double List\n" +
-				"3) Simple Circular Linked list\n" +
-				"4) Doubly Linked Circular List\n" +
-				"5) AVL tree\n" +
-				"6) Binary Tree\n" +
-				"7) Splay Tree\n" +
-				"8) Queue implemented with list\n" +
-				"9) Queue implemented with array\n" +
-				"10) Priority Queue\n" +
-				"11) Biqueue\n" +
-				"12) Array\n");
+		System.out.println("					Welcome to the structure Interaction menu\n");
+		System.out.println("Please, choose which structure you want to interact with: \n " +
+				"	1) Simple List\n" +
+				"	2) Double List\n" +
+				"	3) Simple Circular Linked list\n" +
+				"	4) Doubly Linked Circular List\n" +
+				"	5) AVL tree\n" +
+				"	6) Binary Tree\n" +
+				"	7) Splay Tree\n" +
+				"	8) Queue implemented with list\n" +
+				"	9) Queue implemented with array\n" +
+				"	10) Priority Queue\n" +
+				"	11) Biqueue\n" +
+				"	12) Array\n");
 		structureInteraction();
 	}
 	private static void structureInteraction(){
@@ -173,35 +191,48 @@ public class Simulator {
 			switch (choose){
 			case 1:
 				structureMenu("SimpleList");
+				break;
 			case 2:
 				structureMenu("DoubleList");
+				break;
 			case 3:
 				structureMenu("SimpleCircularList");
+				break;
 			case 4:
 				structureMenu("DoubleCircularList");
+				break;
 			case 5:
 				structureMenu("AVLTree");
+				break;
 			case 6:
 				structureMenu("BinaryTree");
+				break;
 			case 7:
-				structureMenu("SplayTree");			
+				structureMenu("SplayTree");	
+				break;
 			case 8:
-				structureMenu("QueueWithList");
+				structureMenu("QueueWithList");				
+				break;
 			case 9:
 				structureMenu("QueueWithArray");
+				break;
 			case 10:
 				structureMenu("PriorityQueue");
+				break;
 			case 11:
 				structureMenu("Biqueue");
+				break;
 			case 12:
 				structureMenu("Array");
+				break;
 			default:
 				System.out.println("Invalid choose");
+				break;
 			}
-			System.out.println("Do you want to end?(Yes / No)");
+			System.out.println("Do you want to end? (Yes / No)");
 			exitStructureInteraction();
 		}catch (Exception e){
-			System.out.println("Do you want to end?(Yes / No)");
+			System.out.println("Do you want to end? (Yes / No)");
 			exitStructureInteraction();
 		}
 	}
@@ -213,8 +244,10 @@ public class Simulator {
 				break;
 			case "No":
 				structureInteraction();
+				break;
 			default:
 				exitStructureInteraction();
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -315,11 +348,11 @@ public class Simulator {
 	}
 	
 	private static void ArrayMenu (Array<Integer> Array){
-		System.out.println("What do you want to do ?");
-		System.out.println("1) Insert");
-		System.out.println("2) Search");
-		System.out.println("3) Delete");
-		System.out.println("Enter your option");
+		System.out.println("\nWhat do you want to do ?");
+		System.out.println("	1) Insert");
+		System.out.println("	2) Search");
+		System.out.println("	3) Delete");
+		System.out.println("Enter your option and hit enter: (from 1 to 3)");
 		try{
 			choose = in.nextInt();
 			switch (choose){
@@ -327,22 +360,37 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					Array.append(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
-					System.out.println("Insert the number to search");
+					System.out.println("Insert the number to search: ");
 					size = in.nextInt();
-					System.out.println("Does that number exist?" + Array.exists(size));
+					start = System.nanoTime();
+					System.out.println("Does that number exist? " + Array.exists(size));
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
 					System.out.println("Insert the number to delete: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					Array.delete(size);
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the ArrayMenu ? (Yes / No)");
@@ -361,8 +409,10 @@ public class Simulator {
 				break;
 			case "No":
 				ArrayMenu(Array);
+				break;
 			default:
 				ArrayMenu(Array);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -371,11 +421,11 @@ public class Simulator {
 	private static void BiqueueWithListMenu(BiQueueWithList<Integer> BiQueueWithList){
 
 		System.out.println("What do you want to do ?");
-		System.out.println("1) Insert at the beginning");
-		System.out.println("2) Insert at the end");
-		System.out.println("3) Search");
-		System.out.println("4) Delete the beginning");
-		System.out.println("5) Delete the end");
+		System.out.println("	1) Insert at the beginning");
+		System.out.println("	2) Insert at the end");
+		System.out.println("	3) Search");
+		System.out.println("	4) Delete the beginning");
+		System.out.println("	5) Delete the end");
 		System.out.println("Enter your option");
 		try{
 			choose = in.nextInt();
@@ -384,36 +434,61 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					BiQueueWithList.insert(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					BiQueueWithList.append(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
 					System.out.println("Insert the number to search");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + BiQueueWithList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Search lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 4:
 				try{
 					System.out.println("Insert the number to delete: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					BiQueueWithList.delete();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 5:
 				try{
 					System.out.println("Insert the number to delete");
 					size = in.nextInt();
+					start = System.nanoTime();
 					BiQueueWithList.cut();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the Biqueue With List Menu ? (Yes / No)");
@@ -433,8 +508,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitBiqueueWithList(BiqueueWithList);
+				break;
 			default:
 				exitBiqueueWithList(BiqueueWithList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -453,13 +530,23 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to enqueue: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					PriorityQueue.Enqueue(size);
+					end = System.nanoTime();
+					System.out.println("Enqueueing lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
+					start = System.nanoTime();
 					PriorityQueue.Dequeue();
+					end = System.nanoTime();
+					System.out.println("Dequeueing lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the Priority Queue Menu? (Yes / No)");
@@ -479,8 +566,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitPriorityQueue(PriorityQueue);
+				break;
 			default:
 				exitPriorityQueue(PriorityQueue);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -498,20 +587,35 @@ public class Simulator {
 			switch (choose){
 			case 1:
 				try{
+					start = System.nanoTime();
 					StackWithList.pop();
+					end = System.nanoTime();
+					System.out.println("Pop lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
+					start = System.nanoTime();
 					StackWithList.top();
+					end = System.nanoTime();
+					System.out.println("Top lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3 : 
 				try{
 					System.out.println("Insert the number to push: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					StackWithList.push(size);
+					end = System.nanoTime();
+					System.out.println("push lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the stack with list menu ? (Yes / No)");
@@ -530,8 +634,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitStackWithList(StackWithList);
+				break;
 			default:
 				exitStackWithList(StackWithList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -548,20 +654,35 @@ public class Simulator {
 			switch (choose){
 			case 1:
 				try{
+					start = System.nanoTime();
 					StackWithArray.pop();
+					end = System.nanoTime();
+					System.out.println("Pop lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
+					start = System.nanoTime();
 					StackWithArray.top();
+					end = System.nanoTime();
+					System.out.println("Top lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3 : 
 				try{
 					System.out.println("Insert the number to push: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					StackWithArray.push(size);
+					end = System.nanoTime();
+					System.out.println("Push lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the Stack with array menu ? (Yes / No)");
@@ -580,8 +701,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitStackWithArray(StackWithArray);
+				break;
 			default:
 				exitStackWithArray(StackWithArray);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -599,13 +722,23 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to enqueue: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					QueueWithList.Enqueue(size);
+					end = System.nanoTime();
+					System.out.println("Enqueueing lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
+					start = System.nanoTime();
 					QueueWithList.Dequeue();
+					end = System.nanoTime();
+					System.out.println("Dequeueing lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the queue with list menu ? (Yes / No)");
@@ -624,8 +757,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitQueueWithListMenu(QueueWithList);
+				break;
 			default:
 				exitQueueWithListMenu(QueueWithList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -645,13 +780,22 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to enqueue: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					QueueWithArray.Enqueue(size);
+					end = System.nanoTime();
+					System.out.println("Queue lasted: " + (end - start));
+					break;
 				}catch(Exception e){
 				}
-			case 3:
+			case 2:
 				try{
+					start = System.nanoTime();
 					QueueWithArray.Dequeue();
+					end = System.nanoTime();
+					System.out.println("Dequeue lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the Queue with array ? (Yes / No)");
@@ -670,8 +814,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitQueueWithArray(QueueWithArray);
+				break;
 			default:
 				exitQueueWithArray(QueueWithArray);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -692,27 +838,47 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					DoubleCircularList.append(size);
+					end = System.nanoTime();
+					System.out.println("Insert lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
 					System.out.println("Insert the number to search");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Search lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
+					start = System.nanoTime();
 					DoubleCircularList.delete();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 4:
 				try{
 					System.out.println("Insert the number to delete");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + DoubleCircularList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the Double circular list menu ? (Yes / No)");
@@ -731,8 +897,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitDoubleCircularListMenu(DoubleCircularList);
+				break;
 			default:
 				exitDoubleCircularListMenu(DoubleCircularList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -751,27 +919,47 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					SimpleCircularList.append(size);
+					end = System.nanoTime();
+					System.out.println("Insert lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2:
 				try{
 					System.out.println("Insert the number to search");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Search lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
+					start = System.nanoTime();
 					SimpleCircularList.delete();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 4:
 				try{
 					System.out.println("Insert the number to delete");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + SimpleCircularList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the simple circular list ? (Yes / No)");
@@ -792,8 +980,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitSimpleCircularList(SimpleCircularList);
+				break;
 			default:
 				exitSimpleCircularList(SimpleCircularList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -815,39 +1005,69 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					newDoubleList.insert(size);
+					end = System.nanoTime();
+					System.out.println("Add lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 2: 
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					newDoubleList.append(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
 					System.out.println("Insert the number to search");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + newDoubleList.exists(size));
+					end = System.nanoTime();
+					System.out.println("search lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 4 :
 				try{
+					start = System.nanoTime();
 					newDoubleList.delete();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 5:
 				try{
+					start = System.nanoTime();
 					newDoubleList.cut();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 6:
 				try{
 					System.out.println("Insert the number to delete");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + newDoubleList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the double list menu ? (Yes / No)");
@@ -868,8 +1088,10 @@ public class Simulator {
 				break;
 			case "No":
 				exitDoubleListMenu(newDoubleList);
+				break;
 			default:
 				exitDoubleListMenu(newDoubleList);
+				break;
 			}
 		}catch (Exception e){
 		}
@@ -891,39 +1113,68 @@ public class Simulator {
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					SimpleList.insert(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
 				}
 			case 2: 
 				try{
 					System.out.println("Insert the number to add: ");
 					size = in.nextInt();
+					start = System.nanoTime();
 					SimpleList.append(size);
+					end = System.nanoTime();
+					System.out.println("Adding lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 3:
 				try{
 					System.out.println("Insert the number to search");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + SimpleList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Search lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 4 :
 				try{
+					start = System.nanoTime();
 					SimpleList.delete();
+					end = System.nanoTime();
+					System.out.println("delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 5:
 				try{
+					start = System.nanoTime();
 					SimpleList.cut();
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			case 6:
 				try{
 					System.out.println("Insert the number to delete");
 					size = in.nextInt();
+					start = System.nanoTime();
 					System.out.println("Does that number exist?" + SimpleList.exists(size));
+					end = System.nanoTime();
+					System.out.println("Delete lasted: " + (end - start));
+					break;
 				}catch(Exception e){
+					break;
 				}
 			}
 			System.out.println("Do you want to exit the simple list menu ? (Yes / No)");
@@ -942,10 +1193,13 @@ public class Simulator {
 				break;
 			case "No":
 				exitSimpleList(SimpleList);
+				break;
 			default:
 				exitSimpleList(SimpleList);
+				break;
 			}
 		}catch (Exception e){
+			exitSimpleList(SimpleList);
 		}
 	}
 	private static void test1(){
