@@ -3,7 +3,12 @@ package doublelist;
 import interfaces.ListInterface;
 
 import java.util.Iterator;
-
+/**
+ * 
+ * @author zyoruk
+ * Lets us move trough the structure
+ * @param <K>
+ */
 class DoubleCircularListIterator<K> implements Iterator<K> {
 
     DoubleCircularList<K> list;
@@ -14,6 +19,10 @@ class DoubleCircularListIterator<K> implements Iterator<K> {
         this.current = null;
     }
     
+    /**
+     * If the element has a next element
+     * @return True or false depending if it has or not a next element 
+     */
     @Override
     public boolean hasNext() {
         
@@ -30,6 +39,10 @@ class DoubleCircularListIterator<K> implements Iterator<K> {
     }
 
     @Override
+    /**
+     * Returns the element of the next element.
+     * @return K which is the element
+     */
     public K next() {
         if(this.current == null) {
             return null;
@@ -42,12 +55,17 @@ class DoubleCircularListIterator<K> implements Iterator<K> {
         throw new UnsupportedOperationException();
     }
 }
-
+/**
+ * 
+ * @author zyoruk
+ * A Doubly linked circular list is a list that has a tail pointing to the head
+ * and viceversa. This means that it is circular. Also, every elemement has a 
+ * next pointer and a previous one.
+ * @param <K>
+ */
 public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
     
     protected int length;
-//    protected double _start;
-//    protected double _end;
     protected DoubleListNode<K> head;
     protected DoubleListNode<K> tail;
 
@@ -58,13 +76,20 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
     }
     
     @Override
+    /**
+     * The list is empty when the head is null.
+     * @return True or false depending
+     */
     public boolean isEmpty() {
         return this.head == null;
     }
 
     @Override
+    /**
+     * This list will add to the last position the element.
+     * @return a boolean depending if it was able to do it.
+     */
     public boolean append(K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
 
         if(isEmpty()) {
@@ -76,28 +101,24 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
         }
         this.tail = node;
         this.length += 1;
-//        _end = System.currentTimeMillis();
         return true;
     }
 
     @Override
+    /**
+     * The list will delete the element.
+     * @return a boolean if it was able to do the delete
+     */
     public boolean delete(K pk) {
-//    	_start = System.currentTimeMillis();
         if(isEmpty()) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         if(this.length == 1) {
             if(this.head.getElem().equals(pk)) {
                 clear();
                 this.length -= 1;
-//                _end = System.currentTimeMillis();
-//                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }
-//            _end = System.currentTimeMillis();
-//            System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         
@@ -109,16 +130,12 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
                 	this.tail = current.getPrevious();
                 	current.getPrevious().setNext(current.getNext());
                 	this.length -= 1;
-//                	_end = System.currentTimeMillis();
-//                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 if (current == this.head){
                 	this.head = current.getNext();
                 	current.getNext().setPrevious(current.getPrevious());
                 	this.length -= 1;
-//                	_end = System.currentTimeMillis();
-//                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 current.getPrevious().setNext(current.getNext());
@@ -126,47 +143,45 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
                 current.setNext(null);
                 current = null;
                 this.length -= 1;
-//                _end = System.currentTimeMillis();
-//                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }            
             current = current.getNext();
         }        
-//        _end = System.currentTimeMillis();
-//        System.out.println("Delete lasted:  " + getExecuteTime());
         return false;
     }
 
     @Override
+    /**
+     * Lets us know how many elements the list has.
+     * @return an integer 
+     */
     public int length() {
         return this.length;
     }
 
     @Override
+    /**
+     * Search for an element.
+     * @return If the element is in the list true, false if not.
+     */
     public boolean exists(K pk) {
-//    	_start = System.currentTimeMillis();
         for(K ck : this) {
             if(ck.equals(pk)) {
-//            	_end = System.currentTimeMillis();
-//            	System.out.println("Search lasted:  " + getExecuteTime());
                 return true;
             }
         }
-//        _end = System.currentTimeMillis();
-//        System.out.println("Search lasted:  " + getExecuteTime());
         return false;
     }
 
     @Override
+    /**
+     * Inserts the element into de position.
+     * @return boolean 
+     */
     public boolean insert(int pos, K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
         int i;
-
-        // Check valid position
         if((pos < 0) || (pos > this.length)) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Insert lasted:  " + getExecuteTime());
             return false;
         }
 
@@ -198,12 +213,14 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
             this.tail = tail.getNext();
         }
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
     }
 
     @Override
+    /**
+     * Empties the list.
+     * @return boolean
+     */
     public boolean clear() {
         DoubleListNode<K> temp = null;
         while(this.head != null) {
@@ -216,18 +233,18 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
         return true;
     }
     
-    @Override
-    public Iterator<K> iterator() {
-        return new DoubleCircularListIterator<K>(this);
-    }
-    
+    /**
+     * This uses a string builder.
+     * It will give us the elements of the list , the length, tail and head.
+     * @return the string
+     */
     public String describe() {
         StringBuilder result = new StringBuilder();
 
         result.append("List: ");
-//        for(K k : this) {
-//            result.append(String.format("%s ", k.toString()));
-//        }
+        for(K k : this) {
+            result.append(String.format("%s ", k.toString()));
+        }
         result.append("\n");
 
         result.append(String.format("Length: %d\n", this.length));
@@ -240,10 +257,13 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
         return result.toString();
     }    
-    //Insert as head
+    
+    /**
+     * Inserts the element as the head of the list.
+     * @return boolean
+     */
     @Override
     public boolean insert(K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
 
         // Insert node
@@ -255,46 +275,53 @@ public class DoubleCircularList<K> implements ListInterface<K>, Iterable<K> {
         if(isEmpty()) {
             this.tail = node;
         }
-        
+        System.out.println(this.head);
+        System.out.println(this.tail);
         this.tail.setNext(this.head);
         this.head.getNext().setPrevious(this.tail);
 
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
 	}
     
-    //Delete head
+    /**
+     * Delete the head.
+     * @return if it was able to do it
+     */
 	@Override
 	public boolean delete() {
-//		_start = System.currentTimeMillis();
 		//Set tmp list
         DoubleListNode<K> node = this.head.getNext();
         
         //Destroy
-        this.head.getNext().setPrevious(null);
+        this.head.getNext().setPrevious(this.tail);
         this.head = null;
                 
         //Set new list
         this.head = node;
-//        System.out.println("Delete lasted:  " + getExecuteTime());
-//        _end = System.currentTimeMillis();
         return true;
 	}
 
 	@Override
-	public K cut() {
-//		_start = System.currentTimeMillis();
-		// TODO Auto-generated method stub
-//		_end = System.currentTimeMillis();
-//		System.out.println("Cut lasted:  " + getExecuteTime());
-		DoubleListNode<K> p = new DoubleListNode<K>(null); 
-		return p.getElem();
+	/**
+	 * Deletes the tail of the list.
+	 * @return the tail deleted
+	 */
+	public K cut() {		
+		//Set tmp list
+        DoubleListNode<K> node = this.tail.getPrevious();
+        
+        //Destroy
+        this.tail.getPrevious().setNext(this.head);
+        this.tail = null;
+                
+        //Set new list
+        this.tail = node;
+        return node.getElem();
 	}
 
-//	@Override
-//	public double getExecuteTime() {
-//		return _end - _start;
-//	}
+    @Override
+    public Iterator<K> iterator() {
+        return new DoubleCircularListIterator<K>(this);
+    }
 }

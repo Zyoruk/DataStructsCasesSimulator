@@ -20,6 +20,21 @@ public class ChoosingStructs {
 
 	double _start = 0;
 	double _end = 0;
+	@Test
+	public void BinayTreeTester(){
+		
+		System.out.println("<<<<<<<<<<<<<<<<<TESTING BINARY TREE>>>>>>>>>>>>>>");
+		DataStructureChoose testBinaryTree = 
+							new DataStructureChoose ("BinaryTree", 20);
+		
+		
+		DataStructure<Integer> newDoubleList = 
+							   testBinaryTree.createDataStructure();
+		newDoubleList = (BinaryTree<Integer>) newDoubleList;
+		System.out.println(testBinaryTree.getStructureKind());
+		System.out.println(newDoubleList.describe());
+		System.out.println("<<<<<<<<<<<<<<<END OF BINARY TREE TESTER>>>>>>>>>");
+	}
 	
 	@Test
 	public void DoubleListTester(){		
@@ -138,17 +153,6 @@ public class ChoosingStructs {
 		System.out.println(newQueue.describe());
 		System.out.println(newQueue.isEmpty());
 		System.out.println("<<<<<<<<<<<<<<<END OF QUEUE WITH ARRAY TESTER>>>>>>>>>");
-	}
-	@Test
-	public void BinaryTreetester(){
-		System.out.println("<<<<<<<<<<<<<<<<<TESTING Binary >>>>>>>>>>>>>>");
-		DataStructureChoose testQueue = 
-							new DataStructureChoose ("BinaryTree", 20);
-		BinaryTree<Integer> newBT = 
-							   (BinaryTree<Integer>) testQueue.createDataStructure();
-		System.out.println(testQueue.getStructureKind());
-		System.out.println(newBT.isEmpty());
-		System.out.println("<<<<<<<<<<<<<<<END OF Binary>>>>>>>>>");
 	}
 }
 

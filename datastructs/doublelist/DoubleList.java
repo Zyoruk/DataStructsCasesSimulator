@@ -4,7 +4,9 @@ package doublelist;
 import interfaces.ListInterface;
 
 import java.util.Iterator;
-
+/**
+ * Lets us move through the list.
+ */
 class DoubleListIterator<K> implements Iterator<K> {
 
     DoubleList<K> list;
@@ -16,6 +18,9 @@ class DoubleListIterator<K> implements Iterator<K> {
     }
     
     @Override
+    /**
+     *   @return if it has a next element
+     */
     public boolean hasNext() {
         
         if(this.current == null) {
@@ -31,6 +36,9 @@ class DoubleListIterator<K> implements Iterator<K> {
     }
 
     @Override
+    /**
+     * @return the next element
+     */
     public K next() {
         if(this.current == null) {
             return null;
@@ -44,11 +52,16 @@ class DoubleListIterator<K> implements Iterator<K> {
     }
 }
 
+/**
+ * 
+ * @author zyoruk
+ * A double list is a list that has each element pointing to the next and the
+ * previous. Head and tail are not connected between them.
+ * @param <K>
+ */
 public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
     
     protected int length;
-//    protected double _start;
-//    protected double _end;
     protected DoubleListNode<K> head;
     protected DoubleListNode<K> tail;
 
@@ -59,13 +72,19 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
     }
     
     @Override
+    /**
+     * @return if head is null
+     */
     public boolean isEmpty() {
         return this.head == null;
     }
 
     @Override
+    /**
+     * Add the element as the tail.
+     * @return if it was able
+     */
     public boolean append(K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
 
         if(isEmpty()) {
@@ -77,29 +96,24 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         }
         this.tail = node;
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Append lasted:  " + getExecuteTime());
         return true;
     }
 
     @Override
+    /**
+     * Deletes the element
+     * @return if it was able
+     */
     public boolean delete(K pk) {
-//    	_start = System.currentTimeMillis();
         if(isEmpty()) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         if(this.length == 1) {
             if(this.head.getElem().equals(pk)) {
                 clear();
                 this.length -= 1;
-//                _end = System.currentTimeMillis();
-//                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }
-//            _end = System.currentTimeMillis();
-//            System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         
@@ -111,16 +125,12 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 	this.tail = current.getPrevious();
                 	current.getPrevious().setNext(current.getNext());
                 	this.length -= 1;
-//                	_end = System.currentTimeMillis();
-//                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 if (current == this.head){
                 	this.head = current.getNext();
                 	current.getNext().setPrevious(current.getPrevious());
                 	this.length -= 1;
-//                	_end = System.currentTimeMillis();
-//                	System.out.println("Delete lasted:  " + getExecuteTime());
                 	return true;
                 }
                 current.getPrevious().setNext(current.getNext());
@@ -128,47 +138,46 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 current.setNext(null);
                 current = null;
                 this.length -= 1;
-//                _end = System.currentTimeMillis();
-//                System.out.println("Delete lasted:  " + getExecuteTime());
                 return true;
             }            
             current = current.getNext();
         }        
-//        _end = System.currentTimeMillis();
-//        System.out.println("Delete lasted:  " + getExecuteTime());
         return false;
     }
 
     @Override
+    /**
+     * let us know the quantity of elements
+     * @return the quantity
+     */
     public int length() {
         return this.length;
     }
 
     @Override
+    /**
+     * @return if the list has the element
+     */
     public boolean exists(K pk) {
-//    	_start = System.currentTimeMillis();
         for(K ck : this) {
             if(ck.equals(pk)) {
-//            	_end = System.currentTimeMillis();
-//            	System.out.println("Search lasted:  " + getExecuteTime());
                 return true;
             }
         }
-//        _end = System.currentTimeMillis();
-//        System.out.println("Search lasted:  " + getExecuteTime());
         return false;
     }
 
     @Override
+    /**
+     * Adds the element into a position
+     * @return if it was able
+     */
     public boolean insert(int pos, K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
         int i;
 
         // Check valid position
         if((pos < 0) || (pos > this.length)) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Insert lasted:  " + getExecuteTime());
             return false;
         }
 
@@ -200,12 +209,14 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
             this.tail = tail.getNext();
         }
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
     }
 
     @Override
+    /**
+     * empties the list
+     * @return if it was able to clear it.
+     */
     public boolean clear() {
         DoubleListNode<K> temp = null;
         while(this.head != null) {
@@ -218,15 +229,14 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         return true;
     }
     
-    @Override
-    public Iterator<K> iterator() {
-        return new DoubleListIterator<K>(this);
-    }
-    
     public String returnElem(){
     	return (String) this.head.getElem();
     }
     
+    /**
+     * @return a decription of the list (length, head , tail and elements of
+     * the list)
+     */
     public String describe() {
         StringBuilder result = new StringBuilder();
 
@@ -246,9 +256,13 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 
         return result.toString();
     }
+    
     @Override
+    /**
+     * Inserts the element
+     * @return If it was able to insert
+     */
     public boolean insert(K pk) {
-//    	_start = System.currentTimeMillis();
         DoubleListNode<K> node = new DoubleListNode<K>(pk);
 
         // Insert node
@@ -262,15 +276,16 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
         this.head = node;
 
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Insert lasted:  " + getExecuteTime());
         return true;
 	}
 
 	//Erase first node
 	@Override
+	/**
+	 * deletes the head
+	 * @return if it was able
+	 */
 	public boolean delete() {
-//		_start = System.currentTimeMillis();
 		//Set tmp list
         DoubleListNode<K> node = this.head.getNext();
         
@@ -280,18 +295,17 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
                 
         //Set new list
         this.head = node;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Delete lasted:  " + getExecuteTime());
         return true;
 	}
 
 	//Erase last node
 	@Override
+	/**
+	 * Deletes the tail
+	 * @return the tail removed
+	 */
 	public K cut() {
-//		_start = System.currentTimeMillis();
 		if (this.tail == null){
-//			_end = System.currentTimeMillis();
-//			System.out.println("Cut lasted:  " + getExecuteTime());
 			return this.tail.getElem();
 		} else if (this.tail.getPrevious() == null){
 			this.head = null;
@@ -301,14 +315,11 @@ public class DoubleList<K> implements ListInterface<K>, Iterable<K> {
 			this.tail.setNext(null);
 		}
 		this.length--;
-//		_end = System.currentTimeMillis();
-//		System.out.println("Cut lasted:  " + getExecuteTime());
 		return this.tail.getElem();
 	}
 
-//	@Override
-//	public double getExecuteTime() {
-//		double executeTime = _end - _start;
-//		return executeTime;
-//	}
+    @Override
+    public Iterator<K> iterator() {
+        return new DoubleListIterator<K>(this);
+    }
 }

@@ -36,122 +36,118 @@ public class DataStructureChoose {
 
 		if (this._datastructureKind == "DoubleList"){
 			myNewDataStructure = null;
-			start = System.nanoTime();
 			myNewDataStructure = (DoubleList<Integer>) myNewDataStructure;
+			start = System.nanoTime();
+			myNewDataStructure = generator.generateDoubleList(_quantity);	
 			end = System.nanoTime();
 			System.out.println("creating the double list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateDoubleList(_quantity);		
 			
 		}else if(this._datastructureKind == "SimpleList"){
 			myNewDataStructure = null;
-			start = System.nanoTime();
 			myNewDataStructure = (SimpleList<Integer>) myNewDataStructure ;
+			start = System.nanoTime();
+			myNewDataStructure = generator.generateSimpleList(_quantity);
 			end = System.nanoTime();
 			System.out.println("creating the simple list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateSimpleList(_quantity);
 			
 		}else if(this._datastructureKind == "SimpleCircularList"){
 			myNewDataStructure = null;
-			start = System.nanoTime();
 			myNewDataStructure = (SimpleCircularList<Integer>) myNewDataStructure ;
+			start = System.nanoTime();
+			myNewDataStructure = generator.generateSimpleCircularList(_quantity);	
 			end = System.nanoTime();
 			System.out.println("creating the simple circular list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateSimpleCircularList(_quantity);			
 
 		}else if(this._datastructureKind == "DoubleCircularList"){
 			myNewDataStructure = null;
+			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
 			end = System.nanoTime();
 			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
+			
 
 		}else if(this._datastructureKind == "QueueWithArray"){
 			myNewDataStructure = null;
+			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
 			myNewDataStructure= generator.generateQueueWithArray(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the queue with array lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = (QueueWithArray<Integer>) myNewDataStructure;
+			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "QueueWithList"){
 			myNewDataStructure = null;
+			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (QueueWithList<Integer>) myNewDataStructure; 
+			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the queue with list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateQueueWithList(_quantity);
+			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "StackWithArray"){
 			myNewDataStructure = null;
+			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (StackWithArray<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the stack with array lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure= generator.generateStackWithArray(_quantity);
+			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "StackWithList"){
 			myNewDataStructure = null;
+			myNewDataStructure = (StackWithList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (StackWithList<Integer>) myNewDataStructure; 
-			
+			myNewDataStructure= generator.generateStackWithList(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the stack with list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateStackWithList(_quantity);
+			System.out.println("creating the StackWithList lasted: " + (end - start) + "nano seconds");
 			
 			
 		}else if(this._datastructureKind == "PriorityQueue"){
 			myNewDataStructure = null;
+			myNewDataStructure = (PriorityQueue<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (PriorityQueue<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generatePriorityQueue(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the priority queue lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generatePriorityQueue(_quantity);
+			System.out.println("creating the PriorityQueue  lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "BiQueueWithList"){
 			myNewDataStructure = null;
+			myNewDataStructure = (BiQueueWithList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (BiQueueWithList<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateBiQueueWithList(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the biqueue with list lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateBiQueueWithList(_quantity);
-			
-//		}else if(this._datastructureKind == "BiQueueWithArray"){
-//			BiQueueWithList<Integer> myNewDataStructure = generator.generateBiQueueWithList(_quantity);
-//			
+			System.out.println("creating the BiQueueWithList  lasted: " + (end - start) + "nano seconds");
+
 		}else if(this._datastructureKind == "Array"){
 			myNewDataStructure = null;
+			myNewDataStructure = (Array<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (Array<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateArray(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the array lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateArray(_quantity);
+			System.out.println("creating the Array  lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "AVLTree"){
 			myNewDataStructure = null;
+			myNewDataStructure = (AVLTree<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (AVLTree<Integer>) myNewDataStructure;
-			
+			myNewDataStructure= generator.generateAVLTree(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the AVL lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateAVLTree(_quantity);
+			System.out.println("creating the AVLTreelasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "BinaryTree"){
 			myNewDataStructure = null;
+			myNewDataStructure = (BinaryTree<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (BinaryTree<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateBinaryTree(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the Binary tree lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateBinaryTree(_quantity);
+			System.out.println("creating the BinaryTree  lasted: " + (end - start) + "nano seconds");
 			
 			
 		}else if(this._datastructureKind == "SplayTree"){
 			myNewDataStructure = null;
+			myNewDataStructure = (SplayTree<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure = (SplayTree<Integer>) myNewDataStructure;
+			myNewDataStructure= generator.generateSplayTree(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the splay tree lasted: " + (end - start) + "nano seconds");
-			myNewDataStructure = generator.generateSplayTree(_quantity);
+			System.out.println("creating the SplayTree  lasted: " + (end - start) + "nano seconds");
 		
 		}
 		

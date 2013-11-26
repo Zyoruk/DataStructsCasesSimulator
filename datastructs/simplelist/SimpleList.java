@@ -237,9 +237,6 @@ public class SimpleList<K> implements ListInterface<K>, Iterable<K> {
         result.append(
                 String.format("Head: %s\n", this.head.getElem().toString())
             );
-        result.append(
-                String.format("Tail: %s\n", this.tail.getElem().toString())
-            );
 
         return result.toString();
     }

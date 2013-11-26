@@ -29,10 +29,4 @@ public interface StackInterface<K> extends DataStructure<K>{
      */
     public boolean pop();
     
-//    /**
-//     * Calculates the time it took to push, top or pop.
-//     * It uses the System.getCurrentMillis().
-//     * @return	the time it takes to do an operation.
-//     */
-//    public double getExecuteTime();
 }

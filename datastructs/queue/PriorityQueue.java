@@ -5,24 +5,20 @@ import doublelist.DoubleListNode;
 import interfaces.QueueInterface;
 
 /**
-* Class to create a Queue. It extends from DoubleList because each node
-* has references to the previous and next nodes of the list.
-* @author zyoruk,jeukel
-*
-* @param <K>
-*/
+ * Class to create a Queue. It extends from DoubleList because each node
+ * has references to the previous and next nodes of the list.
+ * @author zyoruk,jeukel
+ *
+ * @param <K>
+ */
 public class PriorityQueue<K> extends DoubleList<K> implements QueueInterface<K> {
-
-
 	/**
 	 * Adds to the first position
 	 * @param pk
 	 */
-
 	@Override
 	public void Enqueue(K pk) {
- 
-            super.insert(pk);
+		super.insert(pk);
 	}
 
 	/**
@@ -41,6 +37,12 @@ public class PriorityQueue<K> extends DoubleList<K> implements QueueInterface<K>
 		return super.returnElem();
 	}
 
+	/**
+	 * Enqueues an element with an established priority	
+	 * @param pk element to insert
+	 * @param priori 
+	 * @return if it was able to enqueue
+	 */
 	public boolean Enqueue(K pk, int priori){
 		DoubleListNode<K> node = new DoubleListNode<K>(pk);
 		node.setPriority(priori);
@@ -55,7 +57,6 @@ public class PriorityQueue<K> extends DoubleList<K> implements QueueInterface<K>
 		DoubleListNode<K> current = this.head;
 		for(i = 1; current.getPriority() > current.getNext().getPriority()
 				;i++) {
-
 			if(current == this.tail){
 				break;
 			}
@@ -86,7 +87,5 @@ public class PriorityQueue<K> extends DoubleList<K> implements QueueInterface<K>
 		this.length += 1;
 		return true;
 	}
-
-
 }
 

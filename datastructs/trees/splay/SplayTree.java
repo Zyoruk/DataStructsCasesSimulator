@@ -141,83 +141,92 @@ public class SplayTree<K> implements TreeInterface<K>{
     }
 
     private void zagzag(SplayNode<K> grandPa) {
-        if (cont < 2) {
-            System.out.println("zag zag");
-            cont++;
-            SplayNode<K> temp = new SplayNode<K>(grandPa.data);
-            temp.left = grandPa.left;
-            temp.right = grandPa.left;
-            temp.right = dad_node.left;
-            grandPa.left = temp;
-            grandPa.right = dad_node.right;
-            grandPa.data = (K) dad_node.data;
-
-            if (grandPa == getRoot()) {
-                flag = false;
-            }
-            dad_node = grandPa;
-        } else {
-            cont = 0;
-        }
+    	SplayNode<K> temp = grandPa;
+    	while (cont < 2) {
+            System.out.print("zag zag");
+    		SplayNode<K> z = temp;
+    		SplayNode<K> y = z.left;
+    		SplayNode<K> x = y.left;
+    		
+    		temp = y;
+    		temp.right = z;
+    		z.left = y.right;
+    		cont ++;
+    		
+    		if (temp == getRoot()) {
+    			flag = false;
+    		}
+    		dad_node = temp;
+    	}
+    	grandPa = temp;
+    	cont = 0;
     }
+
 
     //rotacion zag zig
     private void zagzig(SplayNode<K> grandPa) {
-        if (cont == 1 || cont == 2) {
-            System.out.println("zag zig");
-        }
-        cont = 0;
-        SplayNode<K> temp = new SplayNode<K>(grandPa.data);
-        temp.left = grandPa.left;
-        temp.right = grandPa.right;
-        grandPa.data = son_node.data;
-        temp.right = son_node.left;
-        grandPa.left = temp;
-        dad_node.left = son_node.right;
-        grandPa.right = dad_node;
-        if (grandPa == getRoot()) {
-            root = grandPa;
-            flag = false;
-        }
-        son_node = grandPa;
-        dad_node = gotGrandPa(son_node);
+    	SplayNode<K> temp = grandPa;
+    	System.out.print("zag zig");
+    	SplayNode<K> x = temp;
+    	SplayNode<K> z = x.right;
+    	SplayNode<K> y = z.left;
+
+    	x.right = y;
+    	z.left = y.right;
+    	y.right = z;
+
+    	temp = y;
+    	x.right = temp.left;
+    	temp.left = x;
+    	grandPa = temp;
+    	if (grandPa == getRoot()) {
+    		flag = false;
+    	}
+    	dad_node = grandPa;
+    	cont = 0;
     }
 
     //rotacion zig zig
     private void zigzig(SplayNode<K> grandPa) {
-        if (cont < 2) {
-            System.out.print("zig zig");
-            cont++;
-            SplayNode<K> temp = new SplayNode<K>(grandPa.data);
-            temp.left = grandPa.left;
-            temp.right = grandPa.right;
-            temp.left = dad_node.right;
-            grandPa.right = temp;
-            grandPa.left = dad_node.left;
-            grandPa.data = dad_node.data;
-            if (grandPa == getRoot()) {
-                flag = false;
-            }
-            dad_node = grandPa;
-        } else {
-            cont = 0;
-        }
-    }
+    	SplayNode<K> temp = grandPa;
+    	while (cont < 2) {
+    		System.out.print("zig zig");
+    		cont++;
+    		SplayNode<K> z = temp;
+    		SplayNode<K> y = z.right;
+    		SplayNode<K> x = y.right;
+
+    		temp = y;
+    		temp.left = z;
+    		z.right = y.left;
+
+    		if (temp == getRoot()) {
+    			flag = false;
+    		}
+    		dad_node = temp;
+    	}
+    	grandPa = temp;
+    	cont = 0;
+    }	
 
     //rotacion zig zag
     private void zigzag(SplayNode<K> grandPa) {
-        if (cont == 1 || cont == 2) {
-            System.out.println("zig zag");
-        }
-        cont = 0;
-        SplayNode<K> temp = new SplayNode<K>((K)grandPa.data);
-        temp.left = grandPa.left;
-        temp.right = grandPa.right;
-        grandPa.data = (K) son_node.data;
-        temp.left = son_node.right;
-        grandPa.right = temp;
-        dad_node.right = son_node.left;
-        grandPa.left = dad_node;
+    	SplayNode<K> temp = grandPa;
+    	System.out.print("zig zag");
+    	SplayNode<K> z = temp;
+    	SplayNode<K> x = z.right;
+    	SplayNode<K> y = x.left;
+
+    	z.left = y;
+    	x.right = y.left;
+    	y.left = x;
+
+    	temp = y;
+    	z.left = temp.right;
+    	temp.right = z;
+    	
+    	cont = 0;
+        grandPa = temp;
         if (grandPa == getRoot()) {
             root = grandPa;
             flag = false;

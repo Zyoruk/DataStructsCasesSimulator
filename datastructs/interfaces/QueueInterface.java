@@ -18,14 +18,4 @@ public interface QueueInterface<K> extends DataStructure<K> {
 	 * Removes the last element
 	 */
 	public int Dequeue();
-	/**
-	 * Return the last element
-	 * @return
-	 */
-	public String Peek();
-//	/**
-//	 * Calculates the time an operation took to execute
-//	 * @return a double .
-//	 */
-//	public double getExecuteTime();
 }

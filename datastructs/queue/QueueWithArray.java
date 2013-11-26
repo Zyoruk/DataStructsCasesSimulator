@@ -14,41 +14,41 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 	private int[] queue;
 	private int indexI;
 	private int indexJ;
-//	private double _start;
-//	private double _end;
+
 	
 	public QueueWithArray(int size){
 		this.isEmpty = true;
 		this.queue = new int[size];
 		this.indexI = 0;
-//		this._end = 0;
-//		this._start = 0;
+
 	}
 	
+	/**
+	 * Enqueue the element
+	 * @param pk
+	 */
 	@Override
 	public void Enqueue(K pk) {
-//		_start = System.currentTimeMillis();
 		if (isEmpty){
 			this.queue[0] = (Integer) pk;
 			isEmpty = false;
-		}else if (!(contains(pk))){
+		}else if (!(exists(pk))){
 			if ((indexI == this.queue.length -1 && indexJ == 0) | 
 			   (indexI == indexJ) ){
 				resize();
-			}else if (indexJ > 0 ){
-				indexI = 0;
 			}
 			queue[indexI] = (Integer) pk;
 			indexI ++;
 			isEmpty = false;
-		}
-//		_end = System.currentTimeMillis();
-//		System.out.println("Enqueue lasted:  " + getExecuteTime());		
+		}		
 	}
 
+	/**
+	 * Dequeues
+	 * @return the data of the element removed.
+	 */
 	@Override
 	public int Dequeue() {
-//		this._start = System.currentTimeMillis();
 		if (!(isEmpty)){
 			indexJ ++;
 		}
@@ -56,16 +56,8 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 			isEmpty = true;
 		}
 		return (int)this.queue[0];
-//		this._end = System.currentTimeMillis();
-//		System.out.println("Dequeue lasted:  " + getExecuteTime());
 	}
 
-	@Override
-	public String Peek() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	/**
 	 * Checks if the queue contains the element.
 	 * @param pk 
@@ -76,7 +68,7 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 			return false;
 		}else{
 			boolean contains = false;
-			for (int i = 0 ; i < this.queue.length; i ++){
+			for (int i = 0 ; i < this.queue.length -1; i ++){
 				if (this.queue[i] == (Integer) pk){
 					contains = true;
 				}
@@ -84,24 +76,25 @@ public class QueueWithArray<K> implements QueueInterface<K> {
 			return contains;
 		}
 	}
-	
-//	/**
-//	 * Calculates the execution time.
-//	 * @return
-//	 */
-//	public double getExecuteTime(){
-//		return this._end - this._start;
-//	}
-
+		
+	/**
+	 * @return size of the queue
+	 */
 	public int length(){
 		return this.queue.length;
 	}
 
+	/**
+	 *  @return if the queue is empty
+	 */
 	@Override
 	public boolean isEmpty() {
 		return this.queue[0] == 0;
 	}
 
+	/**
+	 * @return description of the queue
+	 */
 	@Override
 	public String describe() {
         StringBuilder result = new StringBuilder();
@@ -116,20 +109,30 @@ public class QueueWithArray<K> implements QueueInterface<K> {
         return result.toString();
 	}
 
+	/**
+	 * @return if the element exists
+	 */
 	@Override
 	public boolean exists(K pk) {
 		boolean exists= false;
 		for (int i = 0 ; i < this.queue.length; i ++){
+			if((Integer)pk == 0){
+				return false;
+			}
 			if ( queue[i] == (Integer) pk){
 				exists = true;
+				break;
 			}
 		}
 		return exists;
 	}
 	
+	/**
+	 * resizes the list to the 40%
+	 */
 	private void resize(){
-		indexI = this.queue.length;
-		indexJ = 0;
+		indexJ = this.queue.length;
+		indexI = 0;
 		int [] temp = new int [ (int)(this.queue.length + 
 								(this.queue.length *40)/100) ];
 		for (int i = 0 ; i < this.queue.length; i ++){

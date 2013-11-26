@@ -10,15 +10,18 @@ public class splayTree {
 //		System.out.println(ourST.getRoot().getData());
 		ourST.insert(45);
 //		System.out.println(ourST.getRoot().getData());
-		
+//		System.out.println(ourST.getRoot().getLeft().getData());
 		ourST.insert(23);
+		System.out.println(ourST.getRoot().getData());
+		System.out.println(ourST.getRoot().getRight().getData());
 		
 		ourST.insert(66);
-		System.out.println(ourST.getRoot().getData());
-		
-		System.out.println(ourST.getRoot().getRight().getData());
-//		ourST.insert(23);
-//		ourST.insert(34);
+//		System.out.println(ourST.getRoot().getData());
+//		System.out.println(ourST.getRoot().getLeft().getData());
+//		System.out.println(ourST.getRoot().getRight().getData());
+		ourST.insert(23);
+		ourST.insert(34);
 
+//		System.out.println(ourST.getRoot().getData());
 	}
 }

@@ -6,6 +6,13 @@ import interfaces.ListInterface;
 
 import java.util.Iterator;
 
+
+/**
+ * 
+ * @author zyoruk
+ * Lets us move trough the list
+ * @param <K>
+ */
 class SimpleCircularListIterator<K> implements Iterator<K> {
 
     SimpleCircularList<K> list;
@@ -16,6 +23,9 @@ class SimpleCircularListIterator<K> implements Iterator<K> {
         this.current = null;
     }
     
+    /**
+     * @return if has next
+     */
     @Override
     public boolean hasNext() {
         
@@ -31,6 +41,9 @@ class SimpleCircularListIterator<K> implements Iterator<K> {
         return this.current != null;
     }
 
+    /**
+     * @return the next element
+     */
     @Override
     public K next() {
         if(this.current == null) {
@@ -39,6 +52,9 @@ class SimpleCircularListIterator<K> implements Iterator<K> {
         return this.current.getElem();
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public void remove() {
         throw new UnsupportedOperationException();
@@ -48,8 +64,6 @@ class SimpleCircularListIterator<K> implements Iterator<K> {
 public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
     
     protected int length;
-//    protected double _start;
-//    protected double _end;
     protected SimpleListNode<K> head;
     protected SimpleListNode<K> tail;
 
@@ -59,15 +73,21 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         this.tail = null;
     }
     
+    /**
+     * @return if head is null
+     */
     @Override
     public boolean isEmpty() {
         return this.head == null;
     }
 
+    /**
+     * Adds to the end an element
+     * @param pk element to add
+     * @return if it was able
+     */
     @Override
     public boolean append(K pk) {
-//    	_start = System.currentTimeMillis();
-
         SimpleListNode<K> node = new SimpleListNode<K>(pk);
 
         if(isEmpty()) {
@@ -77,17 +97,16 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         }
         this.tail = node;
         this.length += 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Append lasted:  " + getExecuteTime());
         return true;
     }
-
+    /**
+     * Deletes and element
+     * @param pk element
+     * @return If it was able
+     */
     @Override
     public boolean delete(K pk) {
-//    	_start = System.currentTimeMillis();
         if(isEmpty()) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
         
@@ -104,8 +123,6 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
 
         // If not found
         if(current == null) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Delete lasted:  " + getExecuteTime());
             return false;
         }
 
@@ -125,40 +142,39 @@ public class SimpleCircularList<K> implements ListInterface<K>, Iterable<K> {
         current.setNext(null);
         current = null;
         this.length -= 1;
-//        _end = System.currentTimeMillis();
-//        System.out.println("Delete lasted:  " + getExecuteTime());
         return true;
     }
 
     @Override
+    /**
+     * @return simple circular length
+     */
     public int length() {
         return this.length;
     }
 
+    /**
+     * @return if the element exists
+     */
     @Override
     public boolean exists(K pk) {
-//    	_start = System.currentTimeMillis();
         for(K ck : this) {
             if(ck.equals(pk)) {
-//            	_end = System.currentTimeMillis();
-//            	System.out.println("Search lasted:  " + getExecuteTime());
                 return true;
             }
         }
-//        _end = System.currentTimeMillis();
-//        System.out.println("Search lasted:  " + getExecuteTime());
         return false;
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean insert(int pos, K pk) {
-//    	_start = System.currentTimeMillis();
         SimpleListNode<K> node = new SimpleListNode<K>(pk);
 
         // Check valid position
         if((pos < 0) || (pos > this.length)) {
-//        	_end = System.currentTimeMillis();
-//        	System.out.println("Insert lasted:  " + getExecuteTime());
             return false;
         }
 

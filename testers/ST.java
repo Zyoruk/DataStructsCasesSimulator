@@ -1,4 +1,6 @@
-import trees.splayv2.SplayTree;
+import trees.splay.SplayTree;
+
+
 
 
 public class ST {

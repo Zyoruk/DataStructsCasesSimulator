@@ -11,37 +11,33 @@ import interfaces.StackInterface;
  * Implements StackInterface to attach to a model
  */
 public class StackWithArray<K> implements StackInterface<K>{
-	
-	private boolean isEmpty;
+
 	private int[] stack;
 	private int index;
 
 	
 	//Constructor
 	public StackWithArray(int size){
+        if (size <= 0)
+
+            throw new IllegalArgumentException("Stack's capacity must be positive");
 		this.stack = new int[size];
-		this.isEmpty = true;
-		this.index = 0;
+		this.index = -1;
 	}
 	
 	@Override
 	public boolean push(K pk) {
-//		_start = System.currentTimeMillis();
-		boolean pushed = false;
 		if (index == this.stack.length){
 			resize();
 		}
-//		_end = System.currentTimeMillis();
-//		System.out.println("The pushing lasted:  " + getExecuteTime());
-		return pushed;
+		index++;
+		this.stack[index] = (Integer) pk;
+		return true;
 	}
 
 	@Override
 	public String top() {
-//		this._start = System.currentTimeMillis();
 		String top  =  Integer.toString(stack[index]);
-//		this._end = System.currentTimeMillis();
-//		System.out.println("Top lasted:  " + getExecuteTime());
 		return top;
 	}
 
@@ -49,7 +45,7 @@ public class StackWithArray<K> implements StackInterface<K>{
 	public boolean pop() {
 //		this._start = System.currentTimeMillis();
 		boolean popped = false;
-		if (!(isEmpty)){
+		if (!(isEmpty())){
 			index --;
 			popped = true;
 		}		
@@ -71,7 +67,7 @@ public class StackWithArray<K> implements StackInterface<K>{
 	public boolean contains(K pk){
 		boolean contains = false;
 		
-		if(isEmpty){
+		if(isEmpty()){
 			return contains;
 		}
 		
@@ -97,20 +93,13 @@ public class StackWithArray<K> implements StackInterface<K>{
         result.append("\n");
 
         result.append(String.format("Length: %d\n", this.stack.length));
-        result.append(
-                String.format("Head: %s\n", Integer.toString(stack[0]))
-            );
-        result.append(
-                String.format("Tail: %s\n", Integer.toString(stack[19]))
-            );
-
         return result.toString();
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this.stack[0] == 0;
+		return index == -1;
 	}
 
 	@Override
