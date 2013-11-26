@@ -408,6 +408,7 @@ System.out.println("Authors: Daniel Jenkins(jeukel)\n" +
 			exitStructureInteraction();
 		}catch (Exception e){
 			System.out.println("Do you want to end playing with the structures?");
+			System.out.println(e);
 			exitStructureInteraction();
 		}
 	}

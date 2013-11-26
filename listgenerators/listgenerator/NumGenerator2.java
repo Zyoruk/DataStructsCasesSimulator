@@ -1,6 +1,5 @@
 package listgenerator;
 import simplelist.SimpleList;
-import trees.binary.BinaryTree;
 
 
 public class NumGenerator2 {

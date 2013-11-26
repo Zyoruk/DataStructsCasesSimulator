@@ -69,27 +69,27 @@ public class DataStructureChoose {
 
 		}else if(this._datastructureKind == "QueueWithArray"){
 			myNewDataStructure = null;
-			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
+			myNewDataStructure = (QueueWithArray<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
 			myNewDataStructure= generator.generateQueueWithArray(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
+			System.out.println("creating the queue with array lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "QueueWithList"){
 			myNewDataStructure = null;
-			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
+			myNewDataStructure = (QueueWithList<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
+			myNewDataStructure= generator.generateQueueWithList(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
+			System.out.println("creating the QueueWithList lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "StackWithArray"){
 			myNewDataStructure = null;
-			myNewDataStructure = (DoubleCircularList<Integer>) myNewDataStructure;			
+			myNewDataStructure = (StackWithArray<Integer>) myNewDataStructure;			
 			start = System.nanoTime();
-			myNewDataStructure= generator.generateDoubleCircularList(_quantity);
+			myNewDataStructure= generator.generateStackWithArray(_quantity);
 			end = System.nanoTime();
-			System.out.println("creating the double circular list lasted: " + (end - start) + "nano seconds");
+			System.out.println("creating the StackWithArray lasted: " + (end - start) + "nano seconds");
 			
 		}else if(this._datastructureKind == "StackWithList"){
 			myNewDataStructure = null;
